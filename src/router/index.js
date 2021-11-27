@@ -27,9 +27,9 @@ const router = new Router({
 
       // Components
       route('Notifications', null, 'components/notifications'),
+      route('TextEditor', null, 'components/texteditor'),
       route('Icons', null, 'components/icons'),
       route('Typography', null, 'components/typography'),
-      route('TextEditor', null, 'components/texteditor'),
       route('Event', null, 'components/event'),
 
       // Tables
