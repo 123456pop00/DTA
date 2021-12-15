@@ -1,4 +1,4 @@
-export const quotes =[
+const quotes =[
     {
       ID: 1,
       Content:
@@ -710,3 +710,8 @@ export const quotes =[
         "Như chim thiên nga bay,\nThần thông liệng giữa trời,\nChiến thắng Ma, Ma quân,\nKẻ trí thoát đời này.\n\nTrích Kinh Pháp Cú (Phẩm Thế Gian)",
     },
   ]
+
+
+export default {
+  Data: quotes
+}
