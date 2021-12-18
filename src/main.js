@@ -14,12 +14,29 @@ import 'vuetify/dist/vuetify.min.css'
 // icons. Only if you need mdi or fortawesome icons
 import "@mdi/font/css/materialdesignicons.css";
 import "@fortawesome/fontawesome-free/css/all.css";
+
+import axios from 'axios';
+
+const baseUrl = 'https://localhost:5001'
+
+const instance = axios.create({
+    baseURL: `${baseUrl}`
+});
+export default {
+  install: function(Vue) {
+    Object.defineProperty(Vue.prototype, '$axios', { value: instance });
+  }
+}
+
+
 Vue.config.productionTip = false
 Vue.use(TiptapVuetifyPlugin, {
   // the next line is important! You need to provide the Vuetify Object to this place.
   vuetify, // same as "vuetify: vuetify"
   iconsGroup: 'fa'
 })
+
+
 
 sync(store, router)
 
