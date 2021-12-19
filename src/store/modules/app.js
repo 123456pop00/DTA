@@ -7,45 +7,47 @@ const state = {
   drawerImage: true,
   mini: false,
   items: [
+    // {
+    //   title: 'Dashboard',
+    //   icon: 'mdi-view-dashboard',
+    //   to: '/',
+    // },
+    // {
+    //   title: 'User Profile',
+    //   icon: 'mdi-account',
+    //   to: '/components/profile/',
+    // },
+    // {
+    //   title: 'Regular Tables',
+    //   icon: 'mdi-clipboard-outline',
+    //   to: '/tables/regular/',
+    // },
+    // {
+    //   title: 'Typography',
+    //   icon: 'mdi-format-font',
+    //   to: '/components/typography/',
+    // },
+    // {
+    //   title: 'Icons',
+    //   icon: 'mdi-chart-bubble',
+    //   to: '/components/icons/',
+    // },
+    
+   
     {
-      title: 'Dashboard',
-      icon: 'mdi-view-dashboard',
-      to: '/',
+      title: 'Ngày - Sự kiện',
+      icon: 'mdi-bell',
+      to: '/components/event/',
     },
     {
-      title: 'User Profile',
-      icon: 'mdi-account',
-      to: '/components/profile/',
-    },
-    {
-      title: 'Regular Tables',
-      icon: 'mdi-clipboard-outline',
-      to: '/tables/regular/',
-    },
-    {
-      title: 'Typography',
-      icon: 'mdi-format-font',
-      to: '/components/typography/',
-    },
-    {
-      title: 'Icons',
-      icon: 'mdi-chart-bubble',
-      to: '/components/icons/',
-    },
-    {
-      title: 'Google Maps',
-      icon: 'mdi-map-marker',
-      to: '/maps/google/',
-    },
-    {
-      title: 'Notifications',
+      title: 'Thông báo/Lời chúc',
       icon: 'mdi-bell',
       to: '/components/notifications/',
     },
     {
-      title: 'Sự kiện',
-      icon: 'mdi-bell',
-      to: '/components/event/',
+      title: 'Quản lý user',
+      icon: 'mdi-map-marker',
+      to: '/maps/google/',
     },
     {
       title: 'texteditor',

@@ -27,6 +27,8 @@ const router = new Router({
 
       // Components
       route('Notifications', null, 'components/notifications'),
+      route('NotificationsV2', null, 'components/notificationsV2'),
+
       route('TextEditor', null, 'components/texteditor'),
       route('Icons', null, 'components/icons'),
       route('Typography', null, 'components/typography'),
