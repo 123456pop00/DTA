@@ -309,7 +309,11 @@ import lunarCalendar from "vue-lunar-calendar";
 import moment from "moment";
 import ImageUploader from "vue-image-upload-resize";
 import $ from "jquery";
+<<<<<<< HEAD
 
+=======
+import apiClient from "../services/APIClient"
+>>>>>>> b962d78025f0b8f635370b73aa3301f10d7fb9f9
 //  defaultDate: today,
 export default {
   name: "EventView",
@@ -400,6 +404,24 @@ export default {
       this.lunarDateConvert = lunarDate.format("DD/MM/YYYY");
       this.isLunarChecked = isLunarChecked;
       this.inputDate = this.solarDate;
+
+      const eventTime = {
+        LunarDate: this.lunarDateConvert ,
+        SolarDate: this.solarDateConvert 
+      }
+      
+      apiClient
+        .post(`Event/GetByDate`, eventTime)
+        .then((response) => {
+          if (response.Data && response.Success){
+            let events = response.Data;
+
+            if (events && events.length > 0){
+              this.event = events[0];
+            }
+          }
+        });
+
     },
     customLumna() {
       // $(".calendar-month").html("Hello <b>world</b>!");
