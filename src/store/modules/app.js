@@ -36,24 +36,24 @@ const state = {
    
     {
       title: 'Ngày - Sự kiện',
-      icon: 'mdi-bell',
+      icon: '1',
       to: '/components/event/',
     },
     {
       title: 'Thông báo/Lời chúc',
-      icon: 'mdi-bell',
+      icon: '2',
       to: '/components/notifications/',
     },
     {
       title: 'Quản lý user',
-      icon: 'mdi-map-marker',
+      icon: '3',
       to: '/maps/google/',
     },
-    {
-      title: 'texteditor',
-      icon: 'mdi-bell',
-      to: '/components/texteditor/',
-    },
+    // {
+    //   title: 'texteditor',
+    //   icon: 'mdi-bell',
+    //   to: '/components/texteditor/',
+    // },
   ],
 }
 

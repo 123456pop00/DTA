@@ -14,11 +14,6 @@ import 'vuetify/dist/vuetify.min.css'
 // icons. Only if you need mdi or fortawesome icons
 import "@mdi/font/css/materialdesignicons.css";
 import "@fortawesome/fontawesome-free/css/all.css";
-<<<<<<< HEAD
-import VueFilterDateFormat from 'vue-filter-date-format';
-
-Vue.use(VueFilterDateFormat);
-=======
 
 import axios from 'axios';
 
@@ -34,7 +29,6 @@ export default {
 }
 
 
->>>>>>> b962d78025f0b8f635370b73aa3301f10d7fb9f9
 Vue.config.productionTip = false
 Vue.use(TiptapVuetifyPlugin, {
   // the next line is important! You need to provide the Vuetify Object to this place.

@@ -12,7 +12,7 @@ export default {
   name: "App",
   metaInfo: {
     title: "App",
-    titleTemplate: "%s | Material Dashboard Free",
+    titleTemplate: "Diệu Tướng Am",
     htmlAttrs: { lang: "en" },
     meta: [
       { charset: "utf-8" },
@@ -158,5 +158,12 @@ export default {
 .text-h5 {
   border-bottom: thin solid #d9d9d9;
   margin-bottom: 24px;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.v-image__image.v-image__image--preload.v-image__image--cover{
+  background-image:none !important;
+  background-color: #F0F0F0;
 }
 </style>

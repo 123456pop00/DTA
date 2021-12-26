@@ -51,7 +51,7 @@
                         class="text-insert text-input"
                         type="text"
                         id="name"
-                        v-model="user.Name"
+                        v-model="user.FullName"
                         placeholder="Nhập tên tài khoản"
                       />
                     </div>
@@ -82,26 +82,26 @@
                     </div>
                     <div
                       class="color-text font-italic mt-1"
-                      v-if="checkValidateEmail"
+                      v-if="!checkValidateEmail"
                     >
                       Email sai định dạng
                     </div>
                     <div>
                       <div class="font-14 mt-4 font-weight-black mb-2">
-                        <label for="password">Mật Khẩu <span>*</span></label>
+                        <label for="Password">Mật Khẩu <span>*</span></label>
                       </div>
                       <input
                         class="text-insert text-input"
                         type="text"
                         placeholder="Nhập mật khẩu"
-                        id="password"
-                        v-model="user.password"
+                        id="Password"
+                        v-model="user.Password"
                         v-on:blur="validatePassword"
                       />
                     </div>
                     <div
                       class="color-text font-italic mt-1"
-                      v-if="checkValidatePassword"
+                      v-if="!checkValidatePassword"
                     >
                       Mật khẩu không được để trống
                     </div>
@@ -176,6 +176,7 @@
 </template>
 
 <script>
+import apiClient from '../services/APIClient';
 export default {
   name: "GoogleMapsView",
 
@@ -191,7 +192,7 @@ export default {
         text: "Tên",
         align: "center",
         sortable: false,
-        value: "Name",
+        value: "FullName",
       },
       {
         text: "Email",
@@ -203,7 +204,7 @@ export default {
         text: "Phân quyền",
         align: "center",
         sortable: false,
-        value: "permission",
+        value: "Permission",
       },
 
       {
@@ -213,68 +214,7 @@ export default {
         value: "actions",
       },
     ],
-    desserts: [
-      {
-        STT: "1",
-        Name: 159,
-        Email: 6.0,
-        permission: 24,
-      },
-      {
-        STT: "2",
-        Name: 237,
-        Email: 9.0,
-        permission: 37,
-      },
-      {
-        STT: "3",
-        Name: 262,
-        Email: 16.0,
-        permission: 23,
-      },
-      {
-        STT: "4",
-        Name: 305,
-        Email: 3.7,
-        permission: 67,
-      },
-      {
-        STT: "5",
-        Name: 356,
-        Email: 16.0,
-        permission: 49,
-      },
-      {
-        STT: "6",
-        Name: 375,
-        Email: 0.0,
-        permission: 94,
-      },
-      {
-        STT: "7",
-        Name: 392,
-        Email: 0.2,
-        permission: 98,
-      },
-      {
-        STT: "8",
-        Name: 408,
-        Email: 3.2,
-        permission: 87,
-      },
-      {
-        STT: "9",
-        Name: 452,
-        Email: 25.0,
-        permission: 51,
-      },
-      {
-        STT: "10",
-        Name: 518,
-        Email: 26.0,
-        permission: 65,
-      },
-    ],
+    desserts: [],
     dialog: false,
     dialogDelete: false,
     // headers: [
@@ -320,13 +260,25 @@ export default {
     },
     initialize() {
       // call serive
+      const me = this;
+      apiClient.get("user").then(res => {
+        if (res.Data && res.Success){
+          me.desserts = res.Data;
+          me.desserts.forEach((x, index) => {
+            x.STT = index + 1;
+            return x;
+          })
+        }
+      })
+
     },
 
     editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.user = this.editedItem;
-      // call service
+      this.checkValidateEmail = true;
+      this.checkValidatePassword = true;
       this.dialog = true;
     },
 
@@ -337,10 +289,15 @@ export default {
     },
 
     deleteItemConfirm() {
-      this.desserts.splice(this.editedIndex, 1);
+      const me = this;
       // call service
-
-      this.closeDelete();
+      apiClient.post("user/Delete", me.editedItem).then(res => {
+        if (res.Success){
+          me.initialize();
+          this.closeDelete();
+        }
+      })
+      
     },
 
     close() {
@@ -359,34 +316,45 @@ export default {
       });
     },
     validateEmail() {
-      if (
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user?.Email)
-      ) {
-        this.checkValidateEmail = false;
-      } else {
-        this.checkValidateEmail = true;
-      }
+      this.checkValidateEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user?.Email);
     },
     validatePassword() {
       if (this.user?.Password != "") {
-        this.checkValidatePassword = false;
-      } else {
         this.checkValidatePassword = true;
+      } else {
+        this.checkValidatePassword = false;
       }
     },
     save() {
+      
       if (
-        this.checkValidateEmail ||
-        this.checkValidateEmail ||
+        !this.checkValidateEmail ||
+        !this.checkValidatePassword ||
         !this.user.Password ||
         !this.user.Email
       )
         return;
+
+      const me = this;
       // call service
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+         apiClient.post("user/UpdateUser", this.user).then(res => {
+          if (res.Data && res.Success){
+            me.initialize();
+          }
+          else {
+            alert(res.Message);
+          }
+        });
       } else {
-        this.desserts.push(this.editedItem);
+        apiClient.post("user/CreateUser", this.user).then(res => {
+          if (res.Data && res.Success){
+            me.initialize();
+          }
+          else {
+            alert(res.Message);
+          }
+        });
       }
       this.close();
     },
@@ -405,7 +373,7 @@ export default {
     },
   },
   created() {
-    // this.initialize();
+    this.initialize();
   },
 };
 </script>

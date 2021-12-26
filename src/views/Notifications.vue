@@ -26,6 +26,27 @@
             <v-card>
               <v-card-title class="text-h5"> {{formTitle}} </v-card-title>
               <v-card-text>
+                <div class="font-13 font-weight mb-2 flex-column text-title-name">
+                  Tiêu đề thông báo/Lời chúc
+                </div>
+                <div
+                  style="width: 100%; "
+                  class="mb-3 flex-1-0-auto"
+                >
+                  <input 
+                      style="
+                      border: thin solid #ced3d8;
+                      border-radius: 5px;
+                      padding: 7px 10px;
+                      font-size: 14px;
+                      width: 100%;
+                    "
+                    v-model="edittedNoti.Title"
+                    type="text"
+                    placeholder="Nhập nội dung"
+                  />
+                </div>
+                
                 <div
                   class="font-13 font-weight mb-2 flex-column text-title-name"
                 >
@@ -39,12 +60,13 @@
                     placeholder="Nhập nội dung"
                     class="form-control text-area-right"
                     rows="3"
+                    v-model="edittedNoti.Content"
                   ></textarea>
                 </div>
                 <div>
-                  <div class="text-title-name">Ngày gửi</div>
+                  <div class="text-title-name" style="margin-top: 26px; margin-bottom: 8px;">Ngày gửi</div>
 
-                  <div style="width: 250px">
+                  <div style="width: 250px; ">
                     <v-menu
                       v-model="menu2"
                       :close-on-content-click="false"
@@ -77,7 +99,8 @@
                   </div>
                 </div>
                 <div>
-                  <div class="text-title-name">Giờ gửi thông báo/lời chúc</div>
+                  <div class="text-title-name" style="margin-top: 24px; margin-bottom: 8px;">
+                    Giờ gửi thông báo/lời chúc</div>
 
                   <div>
                     <v-dialog v-model="showPopupPicker" persistent width="300">
@@ -117,8 +140,30 @@
                       <v-radio label="Gửi ngay" value="3"></v-radio>
                     </v-radio-group>
                   </div>
-                  <div class="date-send-noti">{{ dateSendNotiString }}</div>
+                  <div class="date-send-noti" style="margin-top: 8px;" >{{ dateSendNotiString }}</div>
                 </div>
+
+                <v-checkbox
+                  v-model="IsPushToWeb"
+                  :label="`Điều hướng thông báo tới website`"
+                  style="margin-top: 24px; margin-bottom: 8px;"
+                ></v-checkbox>
+
+                <input 
+                      style="
+                      border: thin solid #ced3d8;
+                      border-radius: 5px;
+                      padding: 7px 10px;
+                      font-size: 14px;
+                      width: 50%;
+                    "
+                    type="text"
+                    placeholder="Nhập đường dẫn/URL đến website"
+                    v-bind:disabled="!IsPushToWeb"
+                    v-model="edittedNoti.ImageLink"
+                    v-bind:class="{ 'disabled-input': !IsPushToWeb }"
+                  />
+
               </v-card-text>
               <v-card-actions class="footer">
                 <v-spacer></v-spacer>
@@ -138,7 +183,7 @@
                 </button>
                 <button
                   class="button-noti backgroud-button"
-                  @click="showPopupAddNoti = false"
+                  @click="pushNotification()"
                 >
                   Áp dụng
                 </button>
@@ -168,11 +213,14 @@
 </template>
 
 <script>
+
+import apiClient from '../services/APIClient';
 export default {
   name: "NotificationsView",
 
   data: () => ({
     showPopupAddNoti: false,
+    IsPushToWeb: false,
     headers: [
       {
         text: "STT",
@@ -184,21 +232,27 @@ export default {
         text: "Ngày diễn ra sự kiện",
         align: "center",
         sortable: false,
-        value: "StartDate",
+        value: "Date",
       },
       {
         text: "Giờ gửi thông báo",
         align: "center",
         sortable: false,
-        value: "StartSendNoti",
+        value: "Hour",
       },
       {
         text: "Nội dung thông báo",
         align: "center",
         sortable: false,
-        value: "dataNoti",
+        value: "Content",
       },
 
+      // {
+      //   text: "Sự kiện",
+      //   align: "center",
+      //   sortable: false,
+      //   value: "EventTitle",
+      // },
       {
         text: "",
         align: "center",
@@ -212,65 +266,15 @@ export default {
         StartDate: 159,
         StartSendNoti: 6.0,
         dataNoti: 24,
-      },
-      {
-        STT: "2",
-        StartDate: 237,
-        StartSendNoti: 9.0,
-        dataNoti: 37,
-      },
-      {
-        STT: "3",
-        StartDate: 262,
-        StartSendNoti: 16.0,
-        dataNoti: 23,
-      },
-      {
-        STT: "4",
-        StartDate: 305,
-        StartSendNoti: 3.7,
-        dataNoti: 67,
-      },
-      {
-        STT: "5",
-        StartDate: 356,
-        StartSendNoti: 16.0,
-        dataNoti: 49,
-      },
-      {
-        STT: "6",
-        StartDate: 375,
-        StartSendNoti: 0.0,
-        dataNoti: 94,
-      },
-      {
-        STT: "7",
-        StartDate: 392,
-        StartSendNoti: 0.2,
-        dataNoti: 98,
-      },
-      {
-        STT: "8",
-        StartDate: 408,
-        StartSendNoti: 3.2,
-        dataNoti: 87,
-      },
-      {
-        STT: "9",
-        StartDate: 452,
-        StartSendNoti: 25.0,
-        dataNoti: 51,
-      },
-      {
-        STT: "10",
-        StartDate: 518,
-        StartSendNoti: 26.0,
-        dataNoti: 65,
-      },
+      }
     ],
-    // - new Date().getTimezoneOffset() * 60000)
-    //   .toISOString()
-    //   .substr(0, 10)
+    edittedNoti: {
+      Title: "",
+      Content: "",
+      Topic: "",
+      ScheduleAt: null,
+      ImageLink: ""
+    },
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
@@ -322,15 +326,13 @@ export default {
     },
   },
   created: function () {
-    // `this` points to the vm instance
-    // console.log("a is: " + this.a);
-    // this.dateSendNotiString = this.computedDateSendNoti(this.date);
+    this.initialize();
   },
   methods: {
     editItem(item) {
-       this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      this.user = this.editedItem;
+      this.edittedNoti = this.editedItem;
       // call service
       this.showPopupAddNoti = true;
     },
@@ -342,6 +344,48 @@ export default {
     },
     initialize() {
       // call serive
+      const me = this;
+      const param = {
+        PageSize: 100,
+        PageIndex: 1
+      };
+
+      apiClient.post("Notification/GetNotification", param).then(res => {
+        if (res.Data && res.Success){
+          me.desserts = res.Data;
+          me.desserts.forEach((x, index) => {
+            const time = new Date(x.ScheduleAt);
+            x.STT = index + 1;
+            x.Hour = time.getHours() + ":" + time.getMinutes();
+            x.Date = time.toLocaleDateString();
+            return x;
+          })
+        }
+      });
+    },
+    pushNotification(){
+      const me = this;
+      const param = {
+        Title: me.edittedNoti.Title,
+        Content: me.edittedNoti.Content,
+        Topic: 'news',
+        ScheduleAt: me.mydate,
+        ImageLink: me.edittedNoti.ImageLink,
+        SendNow: me.typeDateSend === 3
+      };
+
+      apiClient.post("Notification/SendNotify", param).then(res => {
+        if (res.Data && res.Success){
+
+          me.showPopupAddNoti = false;
+          me.initialize();
+        }
+        else {
+          alert("Lỗi xảy ra từ Server vui lòng thử lại sau");
+        }
+      });
+
+      
     },
     getHeaderDateFormat(isoDate) {
       var arrDate = isoDate.split("-");
@@ -439,6 +483,9 @@ export default {
     position: absolute;
     right: 0;
   }
+}
+.disabled-input{
+  background: #f5f5f5
 }
 .date-send-noti {
   background: #f5f5f5;

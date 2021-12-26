@@ -18,7 +18,6 @@
       <v-list-item-avatar v-if="item.avatar">
         <v-img :src="item.avatar" />
       </v-list-item-avatar>
-
       <v-list-item-content v-if="item.title">
         <v-list-item-title v-text="item.title" />
       </v-list-item-content>

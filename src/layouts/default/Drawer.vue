@@ -2,7 +2,7 @@
   <v-navigation-drawer
     id="default-drawer"
     v-model="drawer"
-    :dark="dark"
+    dark="#F0F0F0"
     :right="$vuetify.rtl"
     :src="drawerImage ? image : ''"
     :mini-variant.sync="mini"

@@ -11,7 +11,7 @@
         :key="`group-${i}`"
         :item="item"
       />
-
+  
       <default-list-item
         v-else
         :key="`item-${i}`"
