@@ -8,6 +8,16 @@
           <!-- <button type="button" class="btn btn-danger btn-save">
             Tạo thông báo
           </button> -->
+        <v-select
+          :items="notiType"
+          filled
+          v-on:change="initialize"
+          label="Chọn loại thông báo sẽ hiển thị"
+          v-model="NotiTypeToGetData"
+          item-text="text"
+          item-value="value"
+          style="width: 400px;"
+          ></v-select>
           <v-dialog v-model="showPopupAddNoti" persistent width="600">
             <template v-slot:activator="{ on, attrs }">
               <!-- <v-btn color="primary" dark v-bind="attrs" v-on="on">
@@ -24,29 +34,29 @@
               </button>
             </template>
             <v-card>
-              <v-card-title class="text-h5"> {{formTitle}} </v-card-title>
+              <v-card-title class="text-h5"> {{ formTitle }} </v-card-title>
               <v-card-text>
-                <div class="font-13 font-weight mb-2 flex-column text-title-name">
+                <div
+                  class="font-13 font-weight mb-2 flex-column text-title-name"
+                >
                   Tiêu đề thông báo/Lời chúc
                 </div>
-                <div
-                  style="width: 100%; "
-                  class="mb-3 flex-1-0-auto"
-                >
-                  <input 
-                      style="
+                <div style="width: 100%" class="mb-3 flex-1-0-auto">
+                  <input
+                    style="
                       border: thin solid #ced3d8;
                       border-radius: 5px;
                       padding: 7px 10px;
                       font-size: 14px;
                       width: 100%;
                     "
+                    :disabled="NotiTypeToGetData == 0"
                     v-model="edittedNoti.Title"
                     type="text"
                     placeholder="Nhập nội dung"
                   />
                 </div>
-                
+
                 <div
                   class="font-13 font-weight mb-2 flex-column text-title-name"
                 >
@@ -64,9 +74,14 @@
                   ></textarea>
                 </div>
                 <div>
-                  <div class="text-title-name" style="margin-top: 26px; margin-bottom: 8px;">Ngày gửi</div>
+                  <div
+                    class="text-title-name"
+                    style="margin-top: 26px; margin-bottom: 8px"
+                  >
+                    Ngày gửi
+                  </div>
 
-                  <div style="width: 250px; ">
+                  <div style="width: 250px">
                     <v-menu
                       v-model="menu2"
                       :close-on-content-click="false"
@@ -99,8 +114,12 @@
                   </div>
                 </div>
                 <div>
-                  <div class="text-title-name" style="margin-top: 24px; margin-bottom: 8px;">
-                    Giờ gửi thông báo/lời chúc</div>
+                  <div
+                    class="text-title-name"
+                    style="margin-top: 24px; margin-bottom: 8px"
+                  >
+                    Giờ gửi thông báo/lời chúc
+                  </div>
 
                   <div>
                     <v-dialog v-model="showPopupPicker" persistent width="300">
@@ -140,30 +159,31 @@
                       <v-radio label="Gửi ngay" value="3"></v-radio>
                     </v-radio-group>
                   </div>
-                  <div class="date-send-noti" style="margin-top: 8px;" >{{ dateSendNotiString }}</div>
+                  <div class="date-send-noti" style="margin-top: 8px">
+                    {{ dateSendNotiString }}
+                  </div>
                 </div>
 
                 <v-checkbox
                   v-model="IsPushToWeb"
                   :label="`Điều hướng thông báo tới website`"
-                  style="margin-top: 24px; margin-bottom: 8px;"
+                  style="margin-top: 24px; margin-bottom: 8px"
                 ></v-checkbox>
 
-                <input 
-                      style="
-                      border: thin solid #ced3d8;
-                      border-radius: 5px;
-                      padding: 7px 10px;
-                      font-size: 14px;
-                      width: 50%;
-                    "
-                    type="text"
-                    placeholder="Nhập đường dẫn/URL đến website"
-                    v-bind:disabled="!IsPushToWeb"
-                    v-model="edittedNoti.ImageLink"
-                    v-bind:class="{ 'disabled-input': !IsPushToWeb }"
-                  />
-
+                <input
+                  style="
+                    border: thin solid #ced3d8;
+                    border-radius: 5px;
+                    padding: 7px 10px;
+                    font-size: 14px;
+                    width: 50%;
+                  "
+                  type="text"
+                  placeholder="Nhập đường dẫn/URL đến website"
+                  v-bind:disabled="!IsPushToWeb"
+                  v-model="edittedNoti.ImageLink"
+                  v-bind:class="{ 'disabled-input': !IsPushToWeb }"
+                />
               </v-card-text>
               <v-card-actions class="footer">
                 <v-spacer></v-spacer>
@@ -194,7 +214,7 @@
         </div>
       </div>
       <div class="custom-1 flex-1-1-auto mt-4 table-noti">
-        <v-data-table :headers="headers" :items="desserts" hide-default-footer>
+        <v-data-table :headers="headers" :items="desserts" >
           <template v-slot:item.actions="{ item }">
             <!-- @click="editItem(item)" -->
             <v-icon small class="mr-2" @click="editItem(item)">
@@ -213,8 +233,7 @@
 </template>
 
 <script>
-
-import apiClient from '../services/APIClient';
+import apiClient from "../services/APIClient";
 export default {
   name: "NotificationsView",
 
@@ -227,26 +246,36 @@ export default {
         align: "center",
         sortable: false,
         value: "STT",
+        width: "2%" 
       },
       {
         text: "Ngày diễn ra sự kiện",
         align: "center",
         sortable: false,
         value: "Date",
+        width: "15%" 
       },
       {
-        text: "Giờ gửi thông báo",
+        text: "Giờ",
         align: "center",
         sortable: false,
         value: "Hour",
+        width: "5%" 
+      },
+      {
+        text: "Sự kiện/Tiêu đề",
+        align: "center",
+        sortable: false,
+        value: "Title",
+        width: "28%" 
       },
       {
         text: "Nội dung thông báo",
         align: "center",
         sortable: false,
         value: "Content",
+        width: "40%" 
       },
-
       // {
       //   text: "Sự kiện",
       //   align: "center",
@@ -258,6 +287,7 @@ export default {
         align: "center",
         sortable: false,
         value: "actions",
+        width: "10%" 
       },
     ],
     desserts: [
@@ -266,14 +296,15 @@ export default {
         StartDate: 159,
         StartSendNoti: 6.0,
         dataNoti: 24,
-      }
+      },
     ],
     edittedNoti: {
+      ID: 0,
       Title: "",
       Content: "",
       Topic: "",
       ScheduleAt: null,
-      ImageLink: ""
+      ImageLink: "",
     },
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
@@ -283,6 +314,17 @@ export default {
     modal: false,
     menu2: false,
     showChooseTime: false,
+    NotiTypeToGetData: 1,
+    notiType: [
+      {
+        text: "Thông báo theo sự kiện",
+        value: 0,
+      },
+      {
+        text: "Thông báo thường",
+        value: 1,
+      },
+    ],
     typeDateSend: "1",
     items: [
       { title: "Click Me" },
@@ -300,7 +342,7 @@ export default {
       StartDate: "",
       StartSendNoti: "",
       dataNoti: "",
-    },
+    }
   }),
 
   computed: {
@@ -335,6 +377,7 @@ export default {
       this.edittedNoti = this.editedItem;
       // call service
       this.showPopupAddNoti = true;
+      this.date = this.edittedNoti.ScheduleAt;
     },
 
     deleteItem(item) {
@@ -347,11 +390,14 @@ export default {
       const me = this;
       const param = {
         PageSize: 100,
-        PageIndex: 1
+        PageIndex: 1,
+        CustomParam: {
+          NotificationType: me.NotiTypeToGetData,
+        },
       };
 
-      apiClient.post("Notification/GetNotification", param).then(res => {
-        if (res.Data && res.Success){
+      apiClient.post("Notification/GetNotification", param).then((res) => {
+        if (res.Data && res.Success) {
           me.desserts = res.Data;
           me.desserts.forEach((x, index) => {
             const time = new Date(x.ScheduleAt);
@@ -359,33 +405,33 @@ export default {
             x.Hour = time.getHours() + ":" + time.getMinutes();
             x.Date = time.toLocaleDateString();
             return x;
-          })
+          });
         }
       });
     },
-    pushNotification(){
+    pushNotification() {
       const me = this;
+
       const param = {
+        ID: me.edittedNoti.ID,
         Title: me.edittedNoti.Title,
         Content: me.edittedNoti.Content,
-        Topic: 'news',
+        Topic: "news",
         ScheduleAt: me.mydate,
         ImageLink: me.edittedNoti.ImageLink,
-        SendNow: me.typeDateSend === 3
+        SendNow: me.typeDateSend === 3,
+        State: me.editedIndex === -1 ? 1 : 2, // 1 = insert, 2 = update
+        NotiType: me.NotiTypeToGetData
       };
 
-      apiClient.post("Notification/SendNotify", param).then(res => {
-        if (res.Data && res.Success){
-
+      apiClient.post("Notification/SendNotify", param).then((res) => {
+        if (res.Data && res.Success) {
           me.showPopupAddNoti = false;
           me.initialize();
-        }
-        else {
+        } else {
           alert("Lỗi xảy ra từ Server vui lòng thử lại sau");
         }
       });
-
-      
     },
     getHeaderDateFormat(isoDate) {
       var arrDate = isoDate.split("-");
@@ -430,6 +476,8 @@ export default {
         this.dateSendNotiString = this.computedDateSendNoti();
       }
       // this.dateSendNoti =
+
+      console.log("sendnoti");
     },
   },
 };
@@ -484,8 +532,8 @@ export default {
     right: 0;
   }
 }
-.disabled-input{
-  background: #f5f5f5
+.disabled-input {
+  background: #f5f5f5;
 }
 .date-send-noti {
   background: #f5f5f5;
@@ -495,7 +543,7 @@ export default {
   padding: 9px 12px;
   color: #000000;
 }
-.v-btn__content{
+.v-btn__content {
   font-size: 12px;
 }
 </style>
