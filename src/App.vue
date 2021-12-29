@@ -18,7 +18,7 @@ export default {
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
     ],
-  },
+  }
 };
 </script>
 <style lang="scss">
@@ -165,5 +165,17 @@ export default {
 .v-image__image.v-image__image--preload.v-image__image--cover{
   background-image:none !important;
   background-color: #F0F0F0;
+}
+.font-weight{
+  font-weight: 600;
+}
+.button-detail{
+      background: #FFFFFF;
+    border: 1px solid #9E0C10;
+    box-sizing: border-box;
+    width: 78px;
+    height: 32px;
+    border-radius: 6px;
+    color: #9E0C10;
 }
 </style>

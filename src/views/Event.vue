@@ -30,7 +30,16 @@
       <div class="container-event d-flex">
         <div class="col-4">
           <!-- <v-select :items="items" v-model="select"></v-select> -->
-          <div style="height: 72px"></div>
+          <div style="height: 72px">
+            <v-select
+              :items="items"
+              v-model="selectYear"
+              label="Solo field"
+              dense
+              v-on:change="changeYear()"
+              solo
+            ></v-select>
+          </div>
           <lunar-calendar
             :first-day-of-week="parseInt(firstDayOfWeek)"
             :disable-days-before-today="disableDaysBeforeToday"
@@ -40,6 +49,7 @@
             :lang="dateLangValue"
             :date-lang="dateLangValue"
             :custom-cells="customCells"
+            @nextMonth="getEventToMonth"
             @change="onChange"
           />
         </div>
@@ -59,12 +69,17 @@
               </div>
               <div>
                 <!-- <button>Lưu</button> -->
-                <button type="button" class="btn btn-danger btn-save">
+                <button
+                  type="button"
+                  class="btn btn-danger btn-save"
+                  @click="saveEventDay()"
+                >
                   Lưu
                 </button>
               </div>
             </div>
-            <div class="mt-4 flex-1-1-auto" v-if="checkHasData">
+            <!-- v-if="checkHasData" -->
+            <div class="mt-4 flex-1-1-auto">
               <div class="custom-1 d-flex flex-column" style="height: 55%">
                 <div class="font-weight font-18 mb-2">Chi tiết ngày</div>
                 <div class="d-flex" style="height: 80%">
@@ -82,6 +97,7 @@
                     </div> -->
                       <image-uploader
                         :preview="true"
+                        :scaleRatio="1"
                         :debug="1"
                         :autoRotate="true"
                         :maxWidth="750"
@@ -99,12 +115,13 @@
                         </label>
                       </image-uploader>
                     </div>
-                    <!-- {{event.CoverImage == ''}} -->
+                    <!-- {{event.CoverImage == ''}} getImgUrl('cover_2')"-->
                     <img
+                      id="img-event"
                       class="flex-1-1-auto"
-                      v-bind:src="
+                      :src="
                         event.CoverImage == ''
-                          ? 'https://dongnaiart.edu.vn/wp-content/uploads/meo_chup_anh_dep_1-1.jpg'
+                          ? event.CoverImageFake
                           : event.CoverImage
                       "
                       style="
@@ -121,14 +138,21 @@
                     </div>
                     <div
                       style="width: 100%; height: calc(100% - 20px)"
-                      class="flex-1-0-auto"
+                      class="flex-1-0-auto tip-vueti"
                     >
-                      <textarea
+                      <!-- <textarea
                         placeholder="Nhập nội dung"
                         class="form-control text-area-right"
                         rows="3"
                         v-model="event.Quote"
-                      ></textarea>
+                      ></textarea> -->
+                      <tiptap-vuetify
+                        v-model="event.Quote"
+                        style="height: 100%"
+                        placeholder="Write something …"
+                      />
+                      <!-- <editable v-model="event.Quote"></editable> -->
+                      <!-- <div contenteditable="true" v-model="event.Quote"></div> -->
                     </div>
                   </div>
                 </div>
@@ -149,7 +173,7 @@
                     align-center
                     custom-event-to-day
                     d-flex
-                    justify-space-between
+                    justify-space-between mb-3
                   "
                   style="height: 60px"
                   v-for="item of listEventToDay"
@@ -165,7 +189,7 @@
                 </div>
               </div>
             </div>
-            <div
+            <!-- <div
               class="custom-2 d-flex flex-1 flex-column mt-4"
               v-if="!checkHasData"
             >
@@ -182,7 +206,7 @@
               >
                 <div class="fit-content mb-4">Không có sự kiện trong ngày</div>
               </div>
-            </div>
+            </div> -->
           </div>
           <div
             class="d-flex flex-column title-menuright"
@@ -280,6 +304,9 @@
                     </image-uploader>
                   </div>
                   <!-- {{event.CoverImage == ''}} -->
+                  <!-- event.CoverImage == ''
+                        ? 'https://dongnaiart.edu.vn/wp-content/uploads/meo_chup_anh_dep_1-1.jpg'
+                        : event.CoverImage -->
                   <img
                     class="flex-1-1-auto"
                     v-bind:src="
@@ -376,6 +403,7 @@ import {
   Image,
 } from "tiptap-vuetify";
 import lunarCalendar from "vue-lunar-calendar";
+import Quotes from "../models/const/quotes";
 import moment from "moment";
 import ImageUploader from "vue-image-upload-resize";
 import "moment-lunar";
@@ -418,10 +446,17 @@ export default {
       disableDaysBeforeToday: false,
       defaultDate: today.format("YYYY-MM-DD"),
       dateLangValue: "vi",
+      quotes: Quotes.Data,
       customCells: [
         {
           days: [
-           
+            // this.formatDate(today.add(1, "days")),
+            // this.formatDate(today.add(1, "days")),
+            "2022-01-03",
+            "2022-01-03",
+            "2022-01-03",
+            "2022-01-03",
+            "2022-01-03",
           ],
           customCellClass: "111",
           groupName: "111",
@@ -432,7 +467,7 @@ export default {
           groupName: "22222",
         },
       ],
-      items: ["2021", "2022"],
+      items: ["2021", "2022", "2023", "2024", "2025"],
       select: "2021",
       event: {
         Content: "",
@@ -457,6 +492,8 @@ export default {
       showDetailEvent: false,
       currentEvent: {},
       arrEvents: [],
+      textOKE: "~@/assets/Cover/cover_2.png",
+      selectYear: "2021",
     };
   },
   computed: {
@@ -465,6 +502,87 @@ export default {
     },
   },
   methods: {
+    changeYear() {
+      console.log(1);
+      if (this.tabActive == 2) this.getListEvent();
+      // this.defaultDate = "2022-6-29";
+      let arr = this.defaultDate.split("-");
+      this.defaultDate = `${this.selectYear}-${arr[1]}-${arr[2]}`;
+      var a = 1;
+      this.getEventToMonth(new Date(this.defaultDate));
+    },
+    getBase64Image(img) {
+      var canvas = document.createElement("canvas");
+      var ctx = canvas.getContext("2d");
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      // canvas.height = canvas.width * (img.height / img.width);
+
+      // step 1 - resize to 50%
+      var oc = document.createElement("canvas"),
+        octx = oc.getContext("2d");
+
+      oc.width = 750;
+      oc.height = 600;
+      octx.drawImage(img, 0, 0, oc.width, oc.height);
+
+      // step 2
+      octx.drawImage(oc, 0, 0, oc.width * 0.5, oc.height * 0.5);
+
+      // // step 3, resize to final size
+      ctx.drawImage(
+        oc,
+        0,
+        0,
+        oc.width * 0.5,
+        oc.height * 0.5,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+      // var ctx = canvas.getContext("2d");
+      // ctx.width = 750;
+      // ctx.height = 600;
+      // ctx.drawImage(img, 0, 0, 750, 600);
+
+      // ctx.drawImage(img, 0, 0);
+      var dataURL = canvas.toDataURL("image/png");
+      return dataURL;
+    },
+
+    saveEventDay() {
+      if (this.event) {
+        if (this.event.ID) {
+          this.event.State = 2;
+        } else {
+          this.event.State = 1;
+          var base64 = this.getBase64Image(
+            document.getElementById("img-event")
+          );
+          this.event.CoverImage = base64;
+        }
+        apiClient.post(`event`, this.event).then((response) => {
+          if (response.Data && response.Success) {
+            if (this.event.ID) {
+              
+              alert("Cập nhật dữ liệu thành công ");
+
+            } else {
+              this.getEventToMonth(new Date(this.defaultDate));
+              alert("Thêm sự kiện thành công thành công ");
+            }
+          } else {
+            alert("Cập nhật dữ liệu thất bại ");
+          }
+        });
+      }
+    },
+    getImgUrl(pet) {
+      var images = require.context("../assets/Cover/", false, /\.png$/);
+      return images("./" + pet + ".png");
+    },
     showDetailEventFn(event) {
       const me = this;
       if (event) {
@@ -523,78 +641,80 @@ export default {
     },
 
     getListEvent() {
-      console.log(1);
       const me = this;
       let month = this.solarDate.getMonth() + 1;
-      apiClient.post(`event/GetByMonth/${month} `).then((response) => {
-        if (response.Data && response.Success) {
-          me.tabActive = 2;
-          let datas = response.Data;
+      apiClient
+        .post(`event/GetByMonth/${this.selectYear} `)
+        .then((response) => {
+          if (response.Data && response.Success) {
+            me.tabActive = 2;
+            let datas = response.Data;
 
-          datas.forEach((element) => {
-            // new Date(element.Year).getFullYear()
-            let y = element.Year;
-            let d = new Date(element.DateEvent).getDate();
-            let m = element.Month - 1;
-            // new Date(element.Month).getMonth()
-            if (element.EventType == 1) {
-              // part date year
-              //part date month
-              // let d = date ngay
-              // lay ra du lieu bao gom duong , nam duong , thang duong
-              element.FullDaySolar = this.formatSolar(d, m, y);
-              var arrDate = element.FullDaySolar.split("/");
-              element.DaySolar = +arrDate[0];
-              element.MonthSolar = +arrDate[1];
-              element.YearSolar = +arrDate[2];
-              element.DateLunar = `${d}/${m}/${y}`;
-            } else if (element.EventType == 2) {
-              element.YearSolar = y;
-              element.MonthSolar = m + 1;
-              element.DaySolar = d;
-              element.DateLunar = this.formatLunar(d, m, y);
-            }
-          });
-          // lay ra năm không trùng
-          let listYears = datas
-            .map((e) => e.YearSolar)
-            .filter(me.onlyUnique)
-            .filter((e) => e != null && e != undefined)
-            .sort();
-          me.arrEvents = [];
+            datas.forEach((element) => {
+              // new Date(element.Year).getFullYear()
+              let y = element.Year;
+              let d = new Date(element.DateEvent).getDate();
+              let m = element.Month - 1;
+              // new Date(element.Month).getMonth()
+              if (element.EventType == 1) {
+                // part date year
+                //part date month
+                // let d = date ngay
+                // lay ra du lieu bao gom duong , nam duong , thang duong
+                element.FullDaySolar = this.formatSolar(d, m, y);
+                var arrDate = element.FullDaySolar.split("/");
+                element.DaySolar = +arrDate[0];
+                element.MonthSolar = +arrDate[1];
+                element.YearSolar = +arrDate[2];
+                element.DateLunar = `${d}/${m + 1}/${y}`;
+              } else if (element.EventType == 2) {
+                element.YearSolar = y;
+                element.MonthSolar = m + 1;
+                element.DaySolar = d;
+                element.DateLunar = this.formatLunar(d, m, y);
+              }
+            });
+            // lay ra năm không trùng
+            let listYears = datas
+              .map((e) => e.YearSolar)
+              .filter(me.onlyUnique)
+              .filter((e) => e != null && e != undefined)
+              .sort();
+            me.arrEvents = [];
 
-          listYears.forEach((year) => {
-            let yearS = [];
-            // lấy ra tháng của năm đó
-            var listMonth = datas
-              .filter((e) => e.YearSolar == year)
-              .map((e) => e.MonthSolar)
-              .filter(me.onlyUnique);
-            listMonth.forEach((month) => {
-              // push hết sự kiện của tháng đó vào
-              let monthS = {};
-              let eventMonth = datas.filter(
-                (e) => e.MonthSolar == month && e.YearSolar == year
-              );
-              monthS.month = month;
-              monthS.DataEvent = eventMonth;
-              yearS.push(monthS);
+            listYears.forEach((year) => {
+              let yearS = [];
+              // lấy ra tháng của năm đó
+              var listMonth = datas
+                .filter((e) => e.YearSolar == year)
+                .map((e) => e.MonthSolar)
+                .filter(me.onlyUnique);
+              listMonth.forEach((month) => {
+                // push hết sự kiện của tháng đó vào
+                let monthS = {};
+                let eventMonth = datas.filter(
+                  (e) => e.MonthSolar == month && e.YearSolar == year
+                );
+                monthS.month = month;
+                monthS.DataEvent = eventMonth;
+                yearS.push(monthS);
+              });
+              yearS = yearS.sort((a, b) => a.month - b.month);
+              me.arrEvents.push({
+                Year: year,
+                DataMonth: yearS,
+              });
             });
-            yearS = yearS.sort((a, b) => a.month - b.month);
-            me.arrEvents.push({
-              Year: year,
-              DataMonth: yearS,
-            });
-          });
-          var a = 1;
-          console.log(me.arrEvents);
-          // tao 1 array
-          // for qua list tren push het year ko trung lap vao
-          // sort year do be toi lon
-          // for qua list year filter het thang thuoc year do xong map vao
-          //for qua month push het event thuoc month do vao
-        }
-      });
+            var a = 1;
+            me.arrEvents = me.arrEvents.filter((e) => e.Year == +me.selectYear);
+            console.log(me.arrEvents);
+            // tao 1 array
+            // for qua list tren push het year ko trung lap vao
+            // sort year do be toi lon
+            // for qua list year filter het thang thuoc year do xong map vao
+            //for qua month push het event thuoc month do vao
+          }
+        });
     },
     clickShowDetail(e) {
       this.currentEvent = e;
@@ -615,18 +735,27 @@ export default {
       // console.log("11",moment().year(2021).month(11).date(24).lunar().format('YYYY-MM-DD'));
       // console.log("22",moment().year(2021).month(10).date(21).solar().format('YYYY-MM-DD'));
 
-      if (solarDate) this.solarDate = solarDate._d;
+      if (solarDate) {
+        this.solarDate = solarDate._d;
+        this.defaultDate = solarDate.format("YYYY-MM-DD");
+      }
 
       this.event.DateEvent = this.solarDate.toISOString();
       this.lunarDate = lunarDate;
       this.solarDateConvert = formatDate(this.solarDate);
       this.lunarDateConvert = formatDate(this.lunarDate);
-      // this.isLunarChecked = isLunarChecked;
-      // this.inputDate = this.solarDate;
 
+      let solarSV = this.solarDate.setTime(
+        this.solarDate.getTime() + 7 * 60 * 60 * 1000
+      );
+      let lunarSV = this.lunarDate._d.setTime(
+        lunarDate._d.getTime() + 7 * 60 * 60 * 1000
+      );
+
+      var a = Date.parse(this.solarDate);
       const eventTime = {
-        LunarDate: this.lunarDate.toISOString(),
-        SolarDate: this.solarDate.toISOString(),
+        LunarDate: new Date(lunarSV).toISOString(),
+        SolarDate: new Date(solarSV).toISOString(),
       };
 
       apiClient.post(`event/GetByDate`, eventTime).then((response) => {
@@ -639,6 +768,22 @@ export default {
             this.checkHasData = true;
           } else {
             this.checkHasData = false;
+            // thêm luồng ở đây
+            this.event = {
+              Content: "",
+              CoverImage: "",
+              CoverImageFake: this.getRandomBase64Image(this.solarDate),
+              Quote: this.getRandomQuote(this.solarDate),
+              DateEvent: new Date(
+                Date.now() - new Date().getTimezoneOffset() * 60000
+              )
+                .toISOString()
+                .substr(0, 10),
+              EventType: 1,
+              Title: "",
+              HasLayer: false,
+            };
+            var a = 1;
           }
         }
       });
@@ -681,6 +826,126 @@ export default {
       }
       this.dayName = day_name;
     },
+    getEventToMonth(day = new Date()) {
+      const me = this;
+      // let dateToday = this.today.format("DD/MM/YYYY");
+      let dataToMonth = day.getMonth() + 1;
+      var check = this.selectYear == `${day.getFullYear()}`;
+      if (!check) {
+        this.selectYear = `${day.getFullYear()}`;
+      }
+      if (this.tabActive == 2 && !check) {
+        this.getListEvent();
+      }
+
+      apiClient
+        .post(`event/GetByMonth/${this.selectYear} `)
+        .then((response) => {
+          if (response.Data && response.Success) {
+            let datas = response.Data;
+
+            datas.forEach((element) => {
+              // new Date(element.Year).getFullYear()
+              let y = element.Year;
+              let d = new Date(element.DateEvent).getDate();
+              let m = element.Month - 1;
+              // new Date(element.Month).getMonth()
+              if (element.EventType == 1) {
+                // part date year
+                //part date month
+                // let d = date ngay
+                // lay ra du lieu bao gom duong , nam duong , thang duong
+                element.FullDaySolar = this.formatSolar(d, m, y);
+                var arrDate = element.FullDaySolar.split("/");
+                element.DaySolar = +arrDate[0];
+                element.MonthSolar = +arrDate[1];
+                element.YearSolar = +arrDate[2];
+                element.DateLunar = `${d}/${m}/${y}`;
+              } else if (element.EventType == 2) {
+                element.YearSolar = y;
+                element.MonthSolar = m + 1;
+                element.DaySolar = d;
+                element.DateLunar = this.formatLunar(d, m, y);
+                element.FullDaySolar = `${d}/${m}/${y}`;
+              }
+            });
+            // lay ra năm không trùng
+            let listYears = datas
+              .map((e) => e.YearSolar)
+              .filter(me.onlyUnique)
+              .filter((e) => e != null && e != undefined)
+              .sort();
+            let arrEvents = [];
+
+            listYears.forEach((year) => {
+              let yearS = [];
+              // lấy ra tháng của năm đó
+              var listMonth = datas
+                .filter((e) => e.YearSolar == year)
+                .map((e) => e.MonthSolar)
+                .filter(me.onlyUnique);
+              listMonth.forEach((month) => {
+                // push hết sự kiện của tháng đó vào
+                let monthS = {};
+                let eventMonth = datas.filter(
+                  (e) => e.MonthSolar == month && e.YearSolar == year
+                );
+                monthS.month = month;
+                monthS.DataEvent = eventMonth;
+                yearS.push(monthS);
+              });
+              yearS = yearS.sort((a, b) => a.month - b.month);
+              arrEvents.push({
+                Year: year,
+                DataMonth: yearS,
+              });
+            });
+            var dataYear = arrEvents.find(
+              (data) => data.Year == +me.selectYear
+            );
+            if (dataYear) {
+              var dataMonth = dataYear.DataMonth.find(
+                (e) => e.month == dataToMonth
+              );
+              if (dataMonth) {
+                let eventsMonth = dataMonth.DataEvent.map((e) =>
+                  this.partDate(e.FullDaySolar)
+                );
+                me.customCells[0].days = eventsMonth;
+                me.customCells = JSON.parse(JSON.stringify(me.customCells));
+                var a = 1;
+              }
+            }
+          }
+        });
+    },
+    partDate(data) {
+      let arrDate = data.split("/");
+      let element = {};
+      element.DaySolar = arrDate[0];
+      element.MonthSolar = arrDate[1];
+      element.YearSolar = +arrDate[2];
+      return `${element.YearSolar}-${element.MonthSolar}-${element.DaySolar}`;
+    },
+    getRandomQuote: function (date) {
+      var date = new Date(date);
+      var start = new Date(date.getFullYear(), 0, 0);
+      var diff = date - start;
+      var oneDay = 1000 * 60 * 60 * 24;
+      let dayOfYear = Math.floor(diff / oneDay);
+      return `<p> ${this.quotes[dayOfYear % 142].Content.replaceAll(
+        "\n",
+        "<br>"
+      )}</p>`;
+    },
+    getRandomBase64Image: function (date) {
+      var date = new Date(date);
+      var start = new Date(date.getFullYear(), 0, 0);
+      var diff = date - start;
+      var oneDay = 1000 * 60 * 60 * 24;
+      let dayOfYear = Math.floor(diff / oneDay) % 156;
+      return this.getImgUrl(`cover_${dayOfYear}`);
+    },
   },
   mounted() {
     this.customLumna();
@@ -688,6 +953,7 @@ export default {
   created() {
     // console.log(this.defaultDate);
     this.convertDayDisplay(new Date().getDay());
+    this.getEventToMonth();
   },
 };
 </script>
@@ -878,5 +1144,12 @@ label.v-label.theme--light {
   border-radius: 8px;
   width: 100%;
   padding: 16px;
+}
+.tip-vueti {
+  .v-card.v-sheet.theme--light {
+    height: 100%;
+    overflow-y: auto;
+    font-size: 15px;
+  }
 }
 </style>

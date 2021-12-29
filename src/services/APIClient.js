@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import Router from 'vue-router'
 const apiClient = axios.create({
   baseURL: process.env.VUE_APP_BACKEND_API,
   timeout: process.env.VUE_APP_TIME_OUT,
@@ -9,7 +9,6 @@ const apiClient = axios.create({
     'Content-Type': 'application/json',
   },
 })
-
 apiClient.interceptors.response.use(function(response) {
   const data = response.data
   if (data.status && data.status !== 200) {
@@ -18,6 +17,9 @@ apiClient.interceptors.response.use(function(response) {
     error.data = data.data
     throw error
   }
+  // else {
+  //   window.location.href = "/components/texteditor/";
+  // }
   return data
 }, function(error) {
   return Promise.reject(error)

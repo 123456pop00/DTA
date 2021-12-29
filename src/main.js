@@ -38,6 +38,7 @@ Vue.use(TiptapVuetifyPlugin, {
 
 
 
+
 sync(store, router)
 
 new Vue({

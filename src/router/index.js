@@ -18,6 +18,16 @@ const router = new Router({
 
     return { x: 0, y: 0 }
   },
+  // beforeRouteEnter: (to, from, next) => {
+  //   // ...
+  //   console.log("abc: ",to.path);
+  //   // if(1){
+  //   //   console.log("999");
+  //   //   next({name: "TextEditor"});
+  //   // }else {
+  //   //   next()
+  //   // }
+  // },
   routes: [
     layout('Default', [
       route('Event', 'components/event'),
@@ -44,7 +54,27 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  console.log("to.path: ", to.path);
+  if(to.path == "/components/event/"){
+    // return next({name: 'TextEditor'});
+  }
   return to.path.endsWith('/') ? next() : next(trailingSlash(to.path))
 })
+
+// router.beforeEach((to, from, next) => {
+//   // ...
+//   // console.log("to",to);
+//   // console.log("from",from);
+//   // console.log("next",next);
+//   // co quyen
+//   console.log("abc: ",to.path);
+//   if(1){
+//     console.log("999");
+//     next({name: "TextEditor"});
+//   }else {
+//     next()
+//   }
+//   //ko quyen
+// })
 
 export default router
