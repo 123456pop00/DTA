@@ -101,7 +101,7 @@
           <div class="font-weight-500 font-14">
             Các thông báo/lời chúc gửi KH
           </div>
-          <button class="button-detail1">Quản lý thông báo</button>
+          <button class="button-detail1" @click="opentNoti" >Quản lý thông báo</button>
         </div>
       </div>
       <!-- bên phải -->
@@ -149,7 +149,6 @@ import {
   History,
   Image,
 } from "tiptap-vuetify";
-import axios from "axios";
 import Quotes from "../models/const/quotes";
 import ImageUploader from "vue-image-upload-resize";
 import apiClient from "../services/APIClient";
@@ -237,7 +236,10 @@ export default {
     emitBack() {
       this.$emit("back-event", true);
     },
-
+    opentNoti(){
+      // this.window.location.href = window.location.origin + "/maps/google/"
+      this.$router.push('/maps/google/');
+    },
     sendData12: function () {
       console.log("senddata");
       // if (!this.event.CoverImage) {
