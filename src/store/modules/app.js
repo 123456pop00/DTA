@@ -47,7 +47,7 @@ const state = {
     {
       title: 'Quản lý user',
       icon: '3',
-      to: '/maps/google/',
+      to: '/component/user/',
     },
     // {
     //   title: 'texteditor',
