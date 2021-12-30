@@ -2,13 +2,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import { trailingSlash } from '@/util/helpers'
+
 import {
   layout,
   route,
 } from '@/util/routes'
 
 Vue.use(Router)
-
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -18,6 +18,7 @@ const router = new Router({
 
     return { x: 0, y: 0 }
   },
+  
   // beforeRouteEnter: (to, from, next) => {
   //   // ...
   //   console.log("abc: ",to.path);
@@ -49,7 +50,15 @@ const router = new Router({
 
       // Maps
       route('Google Maps', null, 'component/user'),
+      // route('Login1', null, 'component/Login'),
     ]),
+
+    // {
+    //   path: '/login',
+    //   name: 'login',
+    //   component: () => import( '../views/Login.vue')
+    // },
+    { path: '/login',   component: () => import( '../views/login.vue') }
   ],
 })
 
