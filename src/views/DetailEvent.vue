@@ -103,6 +103,9 @@
           </div>
           <button class="button-detail1" @click="opentNoti" >Quản lý thông báo</button>
         </div>
+        <div>
+          {{event.Quote}}
+        </div>
       </div>
       <!-- bên phải -->
       <div style="width: 65%; padding: 16px">
@@ -238,7 +241,7 @@ export default {
     },
     opentNoti(){
       // this.window.location.href = window.location.origin + "/maps/google/"
-      this.$router.push('/maps/google/');
+      this.$router.push('/components/notifications/');
     },
     sendData12: function () {
       console.log("senddata");
