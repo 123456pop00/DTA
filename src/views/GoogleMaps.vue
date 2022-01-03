@@ -294,7 +294,7 @@ export default {
       apiClient.post("user/Delete", me.editedItem).then(res => {
         if (res.Success){
           me.initialize();
-          this.closeDelete();
+          me.closeDelete();
         }
       })
       

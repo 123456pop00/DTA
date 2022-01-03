@@ -571,7 +571,7 @@ export default {
 
             } else {
               this.getEventToMonth(new Date(this.defaultDate));
-              alert("Thêm sự kiện thành công thành công ");
+              alert("Thêm sự kiện thành công");
             }
           } else {
             alert("Cập nhật dữ liệu thất bại ");
@@ -611,6 +611,7 @@ export default {
               element.YearSolar = y;
               element.MonthSolar = m + 1;
               element.DaySolar = d;
+              element.FullDaySolar = `${d}/${m+1}/${y}`;
               element.DateLunar = this.formatLunar(d, m, y);
             }
             me.currentEvent = element;
@@ -695,6 +696,9 @@ export default {
                 let eventMonth = datas.filter(
                   (e) => e.MonthSolar == month && e.YearSolar == year
                 );
+                eventMonth = eventMonth.sort(function(a,b){
+                  return a.DaySolar - b.DaySolar;
+                });
                 monthS.month = month;
                 monthS.DataEvent = eventMonth;
                 yearS.push(monthS);
@@ -743,7 +747,7 @@ export default {
       this.event.DateEvent = this.solarDate.toISOString();
       this.lunarDate = lunarDate;
       this.solarDateConvert = formatDate(this.solarDate);
-      this.lunarDateConvert = formatDate(this.lunarDate);
+      this.lunarDateConvert = formatDate(this.lunarDate);      
 
       let solarSV = this.solarDate.setTime(
         this.solarDate.getTime() + 7 * 60 * 60 * 1000
@@ -753,6 +757,8 @@ export default {
       );
 
       var a = Date.parse(this.solarDate);
+      this.convertDayDisplay(this.solarDate.getDay());
+
       const eventTime = {
         LunarDate: new Date(lunarSV).toISOString(),
         SolarDate: new Date(solarSV).toISOString(),
@@ -819,7 +825,7 @@ export default {
           day_name = "Thứ năm";
           break;
         case 5:
-          day_name = "Thứ sau";
+          day_name = "Thứ sáu";
           break;
         case 6:
           day_name = "Thứ bảy";

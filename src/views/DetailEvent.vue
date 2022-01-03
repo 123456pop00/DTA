@@ -45,7 +45,7 @@
           </div>
           <div>
             <div class="font-14 font-size: font-weight-black mb-2 mt-5">
-              <label>Ngày diễn ra(Dương lịch)</label>
+              <label>Ngày diễn ra (Dương lịch)</label>
             </div>
             <div
               class="text-day-lunar d-flex justify-space-between text-day-lunar"
