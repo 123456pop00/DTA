@@ -157,7 +157,6 @@ export default {
       BulletList,
       OrderedList,
       Bold,
-      Link,
       Code,
       HorizontalRule,
       Paragraph,

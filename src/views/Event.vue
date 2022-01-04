@@ -149,7 +149,7 @@
                       <tiptap-vuetify
                         v-model="event.Quote"
                         style="height: 100%"
-                        placeholder="Write something …"
+                        :extensions="extensions2"
                       />
                       <!-- <editable v-model="event.Quote"></editable> -->
                       <!-- <div contenteditable="true" v-model="event.Quote"></div> -->
@@ -435,11 +435,17 @@ export default {
         BulletList,
         OrderedList,
         Bold,
-        Link,
         Code,
         HorizontalRule,
         Paragraph,
         HardBreak,
+      ],
+      extensions2: [
+        History,
+        Blockquote,
+        Underline,
+        Italic,
+        Bold,
       ],
       firstDayOfWeek: 1,
       tabActive: 1,
@@ -939,10 +945,7 @@ export default {
       var diff = date - start;
       var oneDay = 1000 * 60 * 60 * 24;
       let dayOfYear = Math.floor(diff / oneDay);
-      return `<p> ${this.quotes[dayOfYear % 142].Content.replaceAll(
-        "\n",
-        "<br>"
-      )}</p>`;
+      return this.quotes[dayOfYear % 142].Content;
     },
     getRandomBase64Image: function (date) {
       var date = new Date(date);

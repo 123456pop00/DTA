@@ -2,712 +2,712 @@ const quotes =[
     {
       ID: 1,
       Content:
-        "Nó mắng tôi, đánh tôi,\nNó thắng tôi, cướp tôi,\nKhông ôm hiềm hận ấy,\nHận thù được tự nguôi.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Nó mắng tôi, đánh tôi,</p><p>Nó thắng tôi, cướp tôi,</p><p>Không ôm hiềm hận ấy,</p><p>Hận thù được tự nguôi.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 2,
       Content:
-        "Với hận diệt hận thù,\nĐời này không có được.\nKhông hận diệt hận thù,\nLà định luật ngàn thu.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Với hận diệt hận thù,</p><p>Đời này không có được.</p><p>Không hận diệt hận thù,</p><p>Là định luật ngàn thu.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 3,
       Content:
-        "Và người khác không biết,\nChúng ta đây bị hại.\nChỗ ấy, ai biết được\nTranh luận được lắng êm.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Và người khác không biết,</p><p>Chúng ta đây bị hại.</p><p>Chỗ ấy, ai biết được</p><p>Tranh luận được lắng êm.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 4,
       Content:
-        "Ai mặc áo cà-sa,\nTâm chưa rời uế trược,\nKhông tự chế, không thực,\nKhông xứng áo cà-sa.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Ai mặc áo cà-sa,</p><p>Tâm chưa rời uế trược,</p><p>Không tự chế, không thực,</p><p>Không xứng áo cà-sa.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 5,
       Content:
-        "Ai rời bỏ uế trược,\nGiới luật khéo nghiêm trì,\nTự chế, sống chơn thực,\nThật xứng áo cà sa.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Ai rời bỏ uế trược,</p><p>Giới luật khéo nghiêm trì,</p><p>Tự chế, sống chơn thực,</p><p>Thật xứng áo cà sa.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 6,
       Content:
-        "Không chân, tưởng chân thật,\nChân thật, thấy không chân:\nHọ không đạt chân thật,\nDo tà tư, tà hạnh.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Không chân, tưởng chân thật,</p><p>Chân thật, thấy không chân:</p><p>Họ không đạt chân thật,</p><p>Do tà tư, tà hạnh.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 7,
       Content:
-        "Chân thật, biết chân thật,\nKhông chân, biết không chân.\nHọ đạt được chân thật,\nDo chánh tư, chánh hạnh.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Chân thật, biết chân thật,</p><p>Không chân, biết không chân.</p><p>Họ đạt được chân thật,</p><p>Do chánh tư, chánh hạnh.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 8,
       Content:
-        "Như ngôi nhà vụng lợp,\nMưa liền xâm nhập vào.\nCũng vậy tâm không tu,\nTham dục liền xâm nhập.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Như ngôi nhà vụng lợp,</p><p>Mưa liền xâm nhập vào.</p><p>Cũng vậy tâm không tu,</p><p>Tham dục liền xâm nhập.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 9,
       Content:
-        "Như ngôi nhà khéo lợp,\nMưa không xâm nhập vào,\nCũng vậy tâm khéo tu,\nTham dục không xâm nhập.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Như ngôi nhà khéo lợp,</p><p>Mưa không xâm nhập vào,</p><p>Cũng vậy tâm khéo tu,</p><p>Tham dục không xâm nhập.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 10,
       Content:
-        "Nay sầu, đời sau sầu,\nKẻ ác, hai đời sầu,\nNó sầu, nó ưu não,\nThấy nghiệp uế mình làm.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Nay sầu, đời sau sầu,</p><p>Kẻ ác, hai đời sầu,</p><p>Nó sầu, nó ưu não,</p><p>Thấy nghiệp uế mình làm.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 11,
       Content:
-        "Nay vui, đời sau vui,\nLàm phước, hai đời vui.\nNgười ấy vui, an vui,\nThấy nghiệp tịnh mình làm.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Nay vui, đời sau vui,</p><p>Làm phước, hai đời vui.</p><p>Người ấy vui, an vui,</p><p>Thấy nghiệp tịnh mình làm.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 12,
       Content:
-        "Nay than, đời sau than,\nKẻ ác, hai đời than,\nThan rằng : Ta làm ác\nĐọa cõi dữ, than hơn”.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Nay than, đời sau than,</p><p>Kẻ ác, hai đời than,</p><p>Than rằng : Ta làm ác</p><p>Đọa cõi dữ, than hơn”.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 13,
       Content:
-        "Nay sướng, đời sau sướng,\nLàm phước, hai đời sướng.\nNó sướng : Ta làm thiện,\nSanh cõi lành, sướng hơn”.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Nay sướng, đời sau sướng,</p><p>Làm phước, hai đời sướng.</p><p>Nó sướng : Ta làm thiện,</p><p>Sanh cõi lành, sướng hơn”.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 14,
       Content:
-        "Nếu người nói nhiều kinh,\nKhông hành trì, phóng dật,\nNhư kẻ chăn bò người,\nKhông phần Sa môn hạnh.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Nếu người nói nhiều kinh,</p><p>Không hành trì, phóng dật,</p><p>Như kẻ chăn bò người,</p><p>Không phần Sa môn hạnh.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 15,
       Content:
-        "Từ bỏ tham, sân, si,\nTĩnh giác, tâm giải thoát,\nKhông chấp thủ hai đời,\nDự phần Sa môn hạnh.\n\nTrích Kinh Pháp Cú (Phẩm Song Yếu)",
+        "<p>Từ bỏ tham, sân, si,</p><p>Tĩnh giác, tâm giải thoát,</p><p>Không chấp thủ hai đời,</p><p>Dự phần Sa môn hạnh.</p><p>Trích Kinh Pháp Cú (Phẩm Song Yếu)</p>",
     },
     {
       ID: 16,
       Content:
-        "Không phóng dật, đường sống,\nPhóng dật là đường chết.\nKhông phóng dật, không chết,\nPhóng dật như chết rồi.\n\nTrích Kinh Pháp Cú (Phẩm Phóng Dật)",
+        "<p>Không phóng dật, đường sống,</p><p>Phóng dật là đường chết.</p><p>Không phóng dật, không chết,</p><p>Phóng dật như chết rồi.</p><p>Trích Kinh Pháp Cú (Phẩm Phóng Dật)</p>",
     },
     {
       ID: 17,
       Content:
-        " Biết rõ sai biệt ấy,\nNgười trí không phóng dật,\nHoan hỷ, không phóng dật,\nAn vui hạnh bậc Thánh.\n\nTrích Kinh Pháp Cú (Phẩm Phóng Dật)",
+        "<p> Biết rõ sai biệt ấy,</p><p>Người trí không phóng dật,</p><p>Hoan hỷ, không phóng dật,</p><p>An vui hạnh bậc Thánh.</p><p>Trích Kinh Pháp Cú (Phẩm Phóng Dật)</p>",
     },
     {
       ID: 18,
       Content:
-        "Người hằng tu thiền định,\nThường kiên trì tinh tấn.\nBậc trí hưởng Niết Bàn,\nÁch an tịnh vô thượng.\n\nTrích Kinh Pháp Cú (Phẩm Phóng Dật)",
+        "<p>Người hằng tu thiền định,</p><p>Thường kiên trì tinh tấn.</p><p>Bậc trí hưởng Niết Bàn,</p><p>Ách an tịnh vô thượng.</p><p>Trích Kinh Pháp Cú (Phẩm Phóng Dật)</p>",
     },
     {
       ID: 19,
       Content:
-        "Nỗ lực, không phóng dật,\nTự điều, khéo chế ngự.\nBậc trí xây hòn đảo,\nNước lụt khó ngập tràn.\n\nTrích Kinh Pháp Cú (Phẩm Phóng Dật)",
+        "<p>Nỗ lực, không phóng dật,</p><p>Tự điều, khéo chế ngự.</p><p>Bậc trí xây hòn đảo,</p><p>Nước lụt khó ngập tràn.</p><p>Trích Kinh Pháp Cú (Phẩm Phóng Dật)</p>",
     },
     {
       ID: 20,
       Content:
-        "Họ ngu si thiểu trí,\nChuyên sống đời phóng dật.\nNgười trí, không phóng dật,\nNhư giữ tài sản quý.\n\nTrích Kinh Pháp Cú (Phẩm Phóng Dật)",
+        "<p>Họ ngu si thiểu trí,</p><p>Chuyên sống đời phóng dật.</p><p>Người trí, không phóng dật,</p><p>Như giữ tài sản quý.</p><p>Trích Kinh Pháp Cú (Phẩm Phóng Dật)</p>",
     },
     {
       ID: 21,
       Content:
-        "Chớ sống đời phóng dật,\nChớ mê say dục lạc.\nKhông phóng dật, thiền định,\nĐạt được an lạc lớn.\n\nTrích Kinh Pháp Cú (Phẩm Phóng Dật)",
+        "<p>Chớ sống đời phóng dật,</p><p>Chớ mê say dục lạc.</p><p>Không phóng dật, thiền định,</p><p>Đạt được an lạc lớn.</p><p>Trích Kinh Pháp Cú (Phẩm Phóng Dật)</p>",
     },
     {
       ID: 22,
       Content:
-        "Tinh cần giữa phóng dật,\nTỉnh thức giữa quần mê.\nNgười trí như ngựa phi,\nBỏ sau con ngựa hèn.\n\nTrích Kinh Pháp Cú (Phẩm Phóng Dật)",
+        "<p>Tinh cần giữa phóng dật,</p><p>Tỉnh thức giữa quần mê.</p><p>Người trí như ngựa phi,</p><p>Bỏ sau con ngựa hèn.</p><p>Trích Kinh Pháp Cú (Phẩm Phóng Dật)</p>",
     },
     {
       ID: 23,
       Content:
-        "Đế Thích không phóng dật,\nĐạt ngôi vị Thiên chủ.\nKhông phóng dật, được khen,\nPhóng dật, thường bị trách.\n\nTrích Kinh Pháp Cú (Phẩm Phóng Dật)",
+        "<p>Đế Thích không phóng dật,</p><p>Đạt ngôi vị Thiên chủ.</p><p>Không phóng dật, được khen,</p><p>Phóng dật, thường bị trách.</p><p>Trích Kinh Pháp Cú (Phẩm Phóng Dật)</p>",
     },
     {
       ID: 24,
       Content:
-        "Vui thích không phóng dật,\nTỷ kheo sợ phóng dật,\nBước tới như lửa hừng,\nThiêu kiết sử lớn nhỏ.\n\nTrích Kinh Pháp Cú (Phẩm Phóng Dật)",
+        "<p>Vui thích không phóng dật,</p><p>Tỷ kheo sợ phóng dật,</p><p>Bước tới như lửa hừng,</p><p>Thiêu kiết sử lớn nhỏ.</p><p>Trích Kinh Pháp Cú (Phẩm Phóng Dật)</p>",
     },
     {
       ID: 25,
       Content:
-        "Vui thích không phóng dật,\nTỷ kheo sợ phóng dật,\nKhông thể bị thối đọa,\nNhất định gần Niết Bàn.\n\nTrích Kinh Pháp Cú (Phẩm Phóng Dật)",
+        "<p>Vui thích không phóng dật,</p><p>Tỷ kheo sợ phóng dật,</p><p>Không thể bị thối đọa,</p><p>Nhất định gần Niết Bàn.</p><p>Trích Kinh Pháp Cú (Phẩm Phóng Dật)</p>",
     },
     {
       ID: 26,
       Content:
-        "Tâm hoảng hốt giao động,\nKhó hộ trì, khó nhiếp,\nNgười trí làm tâm thẳng,\nNhư thợ tên, làm tên.\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p>Tâm hoảng hốt giao động,</p><p>Khó hộ trì, khó nhiếp,</p><p>Người trí làm tâm thẳng,</p><p>Như thợ tên, làm tên.</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 27,
       Content:
-        "Như cá quăng lên bờ,\nVất ra ngoài thủy giới,\nTâm này vũng vẫy mạnh,\nHãy đoạn thế lực Ma\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p>Như cá quăng lên bờ,</p><p>Vất ra ngoài thủy giới,</p><p>Tâm này vũng vẫy mạnh,</p><p>Hãy đoạn thế lực Ma</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 28,
       Content:
-        "Khó nắm giữ, khinh động,\nTheo các dục quay cuồng.\nLành thay, điều phục tâm,\nTâm điều, an lạc đến.\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p>Khó nắm giữ, khinh động,</p><p>Theo các dục quay cuồng.</p><p>Lành thay, điều phục tâm,</p><p>Tâm điều, an lạc đến.</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 29,
       Content:
-        "Tâm khó thấy, tế nhị,\nTheo các dục quay cuồng.\nNgười trí phòng hộ tâm,\nTâm hộ, an lạc đến.\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p>Tâm khó thấy, tế nhị,</p><p>Theo các dục quay cuồng.</p><p>Người trí phòng hộ tâm,</p><p>Tâm hộ, an lạc đến.</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 30,
       Content:
-        "Chạy xa, sống một mình,\nKhông thân, ẩn hang sâu\nAi điều phục được tâm,\nThoát khỏi Ma trói buộc\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p>Chạy xa, sống một mình,</p><p>Không thân, ẩn hang sâu</p><p>Ai điều phục được tâm,</p><p>Thoát khỏi Ma trói buộc</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 31,
       Content:
-        "Ai tâm không an trú,\nKhông biết chân diệu pháp,\nTịnh tín bị rúng động,\nTrí tuệ không viên thành.\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p>Ai tâm không an trú,</p><p>Không biết chân diệu pháp,</p><p>Tịnh tín bị rúng động,</p><p>Trí tuệ không viên thành.</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 32,
       Content:
-        "Tâm không đầy tràn dục,\nTâm không hận công phá,\nĐoạn tuyệt mọi thiện ác,\nKẻ tỉnh không sợ hãi,\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p>Tâm không đầy tràn dục,</p><p>Tâm không hận công phá,</p><p>Đoạn tuyệt mọi thiện ác,</p><p>Kẻ tỉnh không sợ hãi,</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 33,
       Content:
-        "Biết thân như đồ gốm,\nTrú tâm như thành trì,\nChống ma với gươm trí,\nGiữ chiến thắng không tham\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p>Biết thân như đồ gốm,</p><p>Trú tâm như thành trì,</p><p>Chống ma với gươm trí,</p><p>Giữ chiến thắng không tham</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 34,
       Content:
-        "Không bao lâu thân này,\nSẽ nằm dài trên đất,\nBị vất bỏ, vô thức,\nNhư khúc cây vô dụng.\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p>Không bao lâu thân này,</p><p>Sẽ nằm dài trên đất,</p><p>Bị vất bỏ, vô thức,</p><p>Như khúc cây vô dụng.</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 35,
       Content:
-        " Kẻ thù hại kẻ thù,\nOan gia hại oan gia,\nKhông bằng tâm hướng tà,\nGây ác cho tự thân.\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p> Kẻ thù hại kẻ thù,</p><p>Oan gia hại oan gia,</p><p>Không bằng tâm hướng tà,</p><p>Gây ác cho tự thân.</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 36,
       Content:
-        "Điều mẹ, cha, bà con,\nKhông có thể làm được,\nTâm hướng chánh làm được,\nLàm được tốt đẹp hơn.\n\nTrích Kinh Pháp Cú (Phẩm Tâm)",
+        "<p>Điều mẹ, cha, bà con,</p><p>Không có thể làm được,</p><p>Tâm hướng chánh làm được,</p><p>Làm được tốt đẹp hơn.</p><p>Trích Kinh Pháp Cú (Phẩm Tâm)</p>",
     },
     {
       ID: 37,
       Content:
-        "Ai chinh phục đất này,\nDạ-ma thiên giới này,\nAi khéo giảng Pháp cú,\nNhư người khéo hái hoa .\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Ai chinh phục đất này,</p><p>Dạ-ma thiên giới này,</p><p>Ai khéo giảng Pháp cú,</p><p>Như người khéo hái hoa .</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 38,
       Content:
-        "Hữu học chinh phục đất,\nDạ-ma thiên giới này,\nHữu học giảng Pháp cú,\nNhư người khéo hái hoa.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Hữu học chinh phục đất,</p><p>Dạ-ma thiên giới này,</p><p>Hữu học giảng Pháp cú,</p><p>Như người khéo hái hoa.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 39,
       Content:
-        "Biết thân như bọt nước,\nNgộ thân là như huyễn,\nBẻ tên hoa của Ma,\nVượt tầm mắt Thần chết.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Biết thân như bọt nước,</p><p>Ngộ thân là như huyễn,</p><p>Bẻ tên hoa của Ma,</p><p>Vượt tầm mắt Thần chết.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 40,
       Content:
-        "Người nhặt các loại hoa,\nÝ đắm say, tham nhiễm,\nBị Thần chết mang đi,\nNhư lụt trôi làng ngủ.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Người nhặt các loại hoa,</p><p>Ý đắm say, tham nhiễm,</p><p>Bị Thần chết mang đi,</p><p>Như lụt trôi làng ngủ.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 41,
       Content:
-        "Như ong đến với hoa,\nKhông hại sắc và hương,\nChe chở hoa, lấy nhụy.\nBậc Thánh đi vào làng.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Như ong đến với hoa,</p><p>Không hại sắc và hương,</p><p>Che chở hoa, lấy nhụy.</p><p>Bậc Thánh đi vào làng.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 42,
       Content:
-        "Không nên nhìn lỗi người,\nNgười làm hay không làm.\nNên nhìn tự chính mình.\nCó làm hay không làm.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Không nên nhìn lỗi người,</p><p>Người làm hay không làm.</p><p>Nên nhìn tự chính mình.</p><p>Có làm hay không làm.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 43,
       Content:
-        "Như bông hoa tươi đẹp,\nCó sắc nhưng không hương.\nCũng vậy, lời khéo nói,\nKhông làm, không kết quả.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Như bông hoa tươi đẹp,</p><p>Có sắc nhưng không hương.</p><p>Cũng vậy, lời khéo nói,</p><p>Không làm, không kết quả.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 44,
       Content:
-        "Như bông hoa tươi đẹp,\nCó sắc lại thêm hương,\nCũng vậy, lời khéo nói,\nCó làm, có kết quả.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Như bông hoa tươi đẹp,</p><p>Có sắc lại thêm hương,</p><p>Cũng vậy, lời khéo nói,</p><p>Có làm, có kết quả.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 45,
       Content:
-        "Như từ một đống hoa,\nNhiều tràng hoa được làm.\nCũng vậy, thân sanh tử,\nLàm được nhiều việc lành.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Như từ một đống hoa,</p><p>Nhiều tràng hoa được làm.</p><p>Cũng vậy, thân sanh tử,</p><p>Làm được nhiều việc lành.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 46,
       Content:
-        "Hoa chiên đàn, già la,\nHoa sen, hoa vũ quý,\nGiữa những hương hoa ấy,\nGiới hương là vô thượng.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Hoa chiên đàn, già la,</p><p>Hoa sen, hoa vũ quý,</p><p>Giữa những hương hoa ấy,</p><p>Giới hương là vô thượng.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 47,
       Content:
-        "Ít giá trị hương này,\nHương già la, chiên đàn,\nChỉ hương người đức hạnh,\nTối thượng tỏa Thiên giới.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Ít giá trị hương này,</p><p>Hương già la, chiên đàn,</p><p>Chỉ hương người đức hạnh,</p><p>Tối thượng tỏa Thiên giới.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 48,
       Content:
-        "Những ai có giới hạnh,\nAn trú không phóng dật,\nChánh trí, chơn giải thoát,\nÁc ma không thấy đường.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Những ai có giới hạnh,</p><p>An trú không phóng dật,</p><p>Chánh trí, chơn giải thoát,</p><p>Ác ma không thấy đường.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 49,
       Content:
-        "Như giữa đống rác nhớp,\nQuăng bỏ trên đường lớn,\nChỗ ấy hoa sen nở,\nThơm sạch, đẹp ý người.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Như giữa đống rác nhớp,</p><p>Quăng bỏ trên đường lớn,</p><p>Chỗ ấy hoa sen nở,</p><p>Thơm sạch, đẹp ý người.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 50,
       Content:
-        "Cũng vậy giữa quần sanh,\nUế nhiễm, mù, phàm tục,\nĐệ tử bậc Chánh Giác,\nSáng ngời với Tuệ Trí.\n\nTrích Kinh Pháp Cú (Phẩm Hoa)",
+        "<p>Cũng vậy giữa quần sanh,</p><p>Uế nhiễm, mù, phàm tục,</p><p>Đệ tử bậc Chánh Giác,</p><p>Sáng ngời với Tuệ Trí.</p><p>Trích Kinh Pháp Cú (Phẩm Hoa)</p>",
     },
     {
       ID: 51,
       Content:
-        "Đêm dài cho kẻ thức,\nĐường dài cho kẻ mệt,\nLuân hồi dài, kẻ ngu,\nKhông biết chơn diệu pháp.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Đêm dài cho kẻ thức,</p><p>Đường dài cho kẻ mệt,</p><p>Luân hồi dài, kẻ ngu,</p><p>Không biết chơn diệu pháp.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 52,
       Content:
-        "Tìm không được bạn đường,\nHơn mình hay bằng mình,\nThà quyết sống một mình,\nKhông bè bạn kẻ ngu.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Tìm không được bạn đường,</p><p>Hơn mình hay bằng mình,</p><p>Thà quyết sống một mình,</p><p>Không bè bạn kẻ ngu.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 53,
       Content:
-        "Con tôi, tài sản tôi,\nNgười ngu sanh ưu não,\nTự ta, ta không có,\nCon đâu, tài sản đâu.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Con tôi, tài sản tôi,</p><p>Người ngu sanh ưu não,</p><p>Tự ta, ta không có,</p><p>Con đâu, tài sản đâu.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 54,
       Content:
-        "Người ngu nghĩ mình ngu,\nNhờ vậy thành có trí.\nNgười ngu tưởng có trí,\nThật xứng gọi chí ngu.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Người ngu nghĩ mình ngu,</p><p>Nhờ vậy thành có trí.</p><p>Người ngu tưởng có trí,</p><p>Thật xứng gọi chí ngu.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 55,
       Content:
-        "Người ngu, dầu trọn đời,\nThân cận người có trí,\nKhông biết được Chánh pháp,\nNhư muỗng với vị canh.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Người ngu, dầu trọn đời,</p><p>Thân cận người có trí,</p><p>Không biết được Chánh pháp,</p><p>Như muỗng với vị canh.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 56,
       Content:
-        "Người trí, dầu một khắc,\nThân cận người có trí,\nBiết ngay chân diệu pháp,\nNhư lưỡi với vị canh.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Người trí, dầu một khắc,</p><p>Thân cận người có trí,</p><p>Biết ngay chân diệu pháp,</p><p>Như lưỡi với vị canh.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 57,
       Content:
-        "Người ngu si thiếu trí,\nTự ngã thành kẻ thù.\nLàm các nghiệp không thiện,\nPhải chịu quả đắng cay.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Người ngu si thiếu trí,</p><p>Tự ngã thành kẻ thù.</p><p>Làm các nghiệp không thiện,</p><p>Phải chịu quả đắng cay.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 58,
       Content:
-        "Nghiệp làm không chánh thiện,\nLàm rồi sanh ăn năn,\nMặt nhuốm lệ, khóc than,\nLãnh chịu quả dị thục.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Nghiệp làm không chánh thiện,</p><p>Làm rồi sanh ăn năn,</p><p>Mặt nhuốm lệ, khóc than,</p><p>Lãnh chịu quả dị thục.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 59,
       Content:
-        "Và nghiệp làm chánh thiện,\nLàm rồi không ăn năn,\nHoan hỷ, ý đẹp lòng,\nHưởng thọ quả dị thục.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Và nghiệp làm chánh thiện,</p><p>Làm rồi không ăn năn,</p><p>Hoan hỷ, ý đẹp lòng,</p><p>Hưởng thọ quả dị thục.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 60,
       Content:
-        "Người ngu nghĩ là ngọt,\nKhi ác chưa chín muồi,\nÁc nghiệp chín muồi rồi,\nNgười ngu chịu khổ đau.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Người ngu nghĩ là ngọt,</p><p>Khi ác chưa chín muồi,</p><p>Ác nghiệp chín muồi rồi,</p><p>Người ngu chịu khổ đau.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 61,
       Content:
-        "Tháng tháng với ngọn cỏ,\nNgười ngu có ăn uống\nKhông bằng phần mười sáu\nNgười hiểu pháp hữu vi.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Tháng tháng với ngọn cỏ,</p><p>Người ngu có ăn uống</p><p>Không bằng phần mười sáu</p><p>Người hiểu pháp hữu vi.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 62,
       Content:
-        "Nghiệp ác đã được làm,\nNhư sữa, không đông ngay,\nCháy ngầm theo kẻ ngu,\nNhư lửa tro che đậy.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Nghiệp ác đã được làm,</p><p>Như sữa, không đông ngay,</p><p>Cháy ngầm theo kẻ ngu,</p><p>Như lửa tro che đậy.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 63,
       Content:
-        "Tự nó chịu bất hạnh,\nKhi danh đến kẻ ngu.\nVận may bị tổn hại,\nĐầu nó bị nát tan.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Tự nó chịu bất hạnh,</p><p>Khi danh đến kẻ ngu.</p><p>Vận may bị tổn hại,</p><p>Đầu nó bị nát tan.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 64,
       Content:
-        "Ưa danh không tương xứng,\nMuốn ngồi trước tỷ kheo,\nƯa quyền tại tịnh xá,\nMuốn mọi người lễ kính.\n\nTrích Kinh Pháp Cú (Phẩm Ngu)",
+        "<p>Ưa danh không tương xứng,</p><p>Muốn ngồi trước tỷ kheo,</p><p>Ưa quyền tại tịnh xá,</p><p>Muốn mọi người lễ kính.</p><p>Trích Kinh Pháp Cú (Phẩm Ngu)</p>",
     },
     {
       ID: 65,
       Content:
-        "Những người hay khuyên dạy,\nNgăn người khác làm ác,\nĐược người hiền kính yêu,\nBị người ác không thích.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Những người hay khuyên dạy,</p><p>Ngăn người khác làm ác,</p><p>Được người hiền kính yêu,</p><p>Bị người ác không thích.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 66,
       Content:
-        "Chớ thân với bạn ác,\nChớ thân kẻ tiểu nhân.\nHãy thân người bạn lành,\nHãy thân bậc thượng nhân.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Chớ thân với bạn ác,</p><p>Chớ thân kẻ tiểu nhân.</p><p>Hãy thân người bạn lành,</p><p>Hãy thân bậc thượng nhân.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 67,
       Content:
-        "Pháp hỷ đem an lạc,\nVới tâm tư thuần tịnh,\nNgười trí thường hoan hỷ,\nVới pháp bậc Thánh thuyết.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Pháp hỷ đem an lạc,</p><p>Với tâm tư thuần tịnh,</p><p>Người trí thường hoan hỷ,</p><p>Với pháp bậc Thánh thuyết.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 68,
       Content:
-        "\nNgười trị thủy dẫn nước,\nKẻ làm tên nắn tên,\nNgười thợ mộc uốn gỗ,\nBậc trí nhiếp tự thân.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p></p><p>Người trị thủy dẫn nước,</p><p>Kẻ làm tên nắn tên,</p><p>Người thợ mộc uốn gỗ,</p><p>Bậc trí nhiếp tự thân.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 69,
       Content:
-        "Như đá tảng kiên cố,\nKhông gió nào dao động,\nCũng vậy, giữa khen chê,\nNgười trí không giao động.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Như đá tảng kiên cố,</p><p>Không gió nào dao động,</p><p>Cũng vậy, giữa khen chê,</p><p>Người trí không giao động.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 70,
       Content:
-        "Như hồ nước sâu thẳm,\nTrong sáng, không khuấy đục,\nCũng vậy, nghe chánh pháp,\nNgười trí hưởng tịnh lạc.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Như hồ nước sâu thẳm,</p><p>Trong sáng, không khuấy đục,</p><p>Cũng vậy, nghe chánh pháp,</p><p>Người trí hưởng tịnh lạc.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 71,
       Content:
-        "Người hiền bỏ tất cả,\nNgười lành không bàn dục,\nDầu cảm thọ lạc khổ,\nBậc trí không vui buồn.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Người hiền bỏ tất cả,</p><p>Người lành không bàn dục,</p><p>Dầu cảm thọ lạc khổ,</p><p>Bậc trí không vui buồn.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 72,
       Content:
-        "Ít người giữa nhân loại,\nĐến được bờ bên kia\nCòn số người còn lại,\nXuôi ngược chạy bờ này.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Ít người giữa nhân loại,</p><p>Đến được bờ bên kia</p><p>Còn số người còn lại,</p><p>Xuôi ngược chạy bờ này.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 73,
       Content:
-        "Hãy cầu vui Niết Bàn,\nBỏ dục, không sở hữu,\nKẻ trí tự rửa sạch,\nCấu uế từ nội tâm.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Hãy cầu vui Niết Bàn,</p><p>Bỏ dục, không sở hữu,</p><p>Kẻ trí tự rửa sạch,</p><p>Cấu uế từ nội tâm.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 74,
       Content:
-        "Đích đã đến, không sầu,\nGiải thoát ngoài tất cả,\nĐoạn trừ mọi buộc ràng,\nVị ấy không nhiệt não.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Đích đã đến, không sầu,</p><p>Giải thoát ngoài tất cả,</p><p>Đoạn trừ mọi buộc ràng,</p><p>Vị ấy không nhiệt não.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 75,
       Content:
-        "Tự sách tấn, chánh niệm,\nKhông thích cư xá nào,\nNhư ngỗng trời rời ao,\nBỏ sau mọi trú ẩn.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Tự sách tấn, chánh niệm,</p><p>Không thích cư xá nào,</p><p>Như ngỗng trời rời ao,</p><p>Bỏ sau mọi trú ẩn.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 76,
       Content:
-        "Ai nhiếp phục các căn,\nNhư đánh xe điều ngự,\nMạn trừ, lậu hoặc dứt,\nNgười vậy, Chư Thiên mến.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Ai nhiếp phục các căn,</p><p>Như đánh xe điều ngự,</p><p>Mạn trừ, lậu hoặc dứt,</p><p>Người vậy, Chư Thiên mến.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 77,
       Content:
-        "Như đất, không hiềm hận,\nNhư cột trụ, kiên trì,\nNhư hồ, không bùn nhơ,\nKhông luân hồi, vị ấy.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Như đất, không hiềm hận,</p><p>Như cột trụ, kiên trì,</p><p>Như hồ, không bùn nhơ,</p><p>Không luân hồi, vị ấy.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 78,
       Content:
-        "Người tâm ý an tịnh,\nLời an, nghiệp cũng an,\nChánh trí, chơn giải thoát,\nTịnh lạc là vị ấy.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Người tâm ý an tịnh,</p><p>Lời an, nghiệp cũng an,</p><p>Chánh trí, chơn giải thoát,</p><p>Tịnh lạc là vị ấy.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 79,
       Content:
-        "Không tin, hiểu vô vi.\nNgười cắt mọi hệ lụy\nCơ hội tận, xã ly\nVị ấy thật tối thượng.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Không tin, hiểu vô vi.</p><p>Người cắt mọi hệ lụy</p><p>Cơ hội tận, xã ly</p><p>Vị ấy thật tối thượng.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 80,
       Content:
-        "Làng mạc hay rừng núi\nThung lũng hay đồi cao,\nLa Hán trú chỗ nào,\nĐất ấy thật khả ái.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Làng mạc hay rừng núi</p><p>Thung lũng hay đồi cao,</p><p>La Hán trú chỗ nào,</p><p>Đất ấy thật khả ái.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 81,
       Content:
-        "Khả ái thay núi rừng,\nChỗ người phàm không ưa,\nVị ly tham ưa thích,\nVì không tìm dục lạc.\n\nTrích Kinh Pháp Cú (Phẩm Hiền Trí)",
+        "<p>Khả ái thay núi rừng,</p><p>Chỗ người phàm không ưa,</p><p>Vị ly tham ưa thích,</p><p>Vì không tìm dục lạc.</p><p>Trích Kinh Pháp Cú (Phẩm Hiền Trí)</p>",
     },
     {
       ID: 82,
       Content:
-        "Dầu nói ngàn ngàn lời,\nNhưng không gì lợi ích ,\nTốt hơn một câu nghĩa,\nNghe xong, được tịnh lạc.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Dầu nói ngàn ngàn lời,</p><p>Nhưng không gì lợi ích ,</p><p>Tốt hơn một câu nghĩa,</p><p>Nghe xong, được tịnh lạc.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 83,
       Content:
-        " Dầu nói ngàn câu kệ\nNhưng không gì lợi ích,\nTốt hơn nói một câu,\nNghe xong, được tịnh lạc.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p> Dầu nói ngàn câu kệ</p><p>Nhưng không gì lợi ích,</p><p>Tốt hơn nói một câu,</p><p>Nghe xong, được tịnh lạc.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 84,
       Content:
-        "Dầu tại bãi chiến trường\nThắng ngàn ngàn quân địch,\nTự thắng mình tốt hơn,\nThật chiến thắng tối thượng.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Dầu tại bãi chiến trường</p><p>Thắng ngàn ngàn quân địch,</p><p>Tự thắng mình tốt hơn,</p><p>Thật chiến thắng tối thượng.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 85,
       Content:
-        "Tự thắng, tốt đẹp hơn,\nHơn chiến thắng người khác.\nNgười khéo điều phục mình,\nThường sống tự chế ngự.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Tự thắng, tốt đẹp hơn,</p><p>Hơn chiến thắng người khác.</p><p>Người khéo điều phục mình,</p><p>Thường sống tự chế ngự.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 86,
       Content:
-        "Dầu Thiên Thần, Thát Bà,\nDầu Ma vương, Phạm Thiên\nKhông ai chiến thắng nổi,\nNgười tự thắng như vậy.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Dầu Thiên Thần, Thát Bà,</p><p>Dầu Ma vương, Phạm Thiên</p><p>Không ai chiến thắng nổi,</p><p>Người tự thắng như vậy.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 87,
       Content:
-        "Suốt năm cúng tế vật,\nĐể cầu phước ở đời.\nKhông bằng một phần tư\nKính lễ bậc chánh trực.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Suốt năm cúng tế vật,</p><p>Để cầu phước ở đời.</p><p>Không bằng một phần tư</p><p>Kính lễ bậc chánh trực.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 88,
       Content:
-        "Thường tôn trọng, kính lễ\nBậc kỳ lão trưởng thượng,\nBốn pháp được tăng trưởng:\nThọ, sắc, lạc, sức mạnh.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Thường tôn trọng, kính lễ</p><p>Bậc kỳ lão trưởng thượng,</p><p>Bốn pháp được tăng trưởng:</p><p>Thọ, sắc, lạc, sức mạnh.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 89,
       Content:
-        "Dầu sống một trăm năm\nÁc giới, không thiền định,\nKhông bằng sống một ngày,\nTrì giới, tu thiền định.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Dầu sống một trăm năm</p><p>Ác giới, không thiền định,</p><p>Không bằng sống một ngày,</p><p>Trì giới, tu thiền định.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 90,
       Content:
-        "Ai sống một trăm năm,\nÁc tuệ, không thiền định.\nTốt hơn sống một ngày,\nCó tuệ, tu thiền định.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Ai sống một trăm năm,</p><p>Ác tuệ, không thiền định.</p><p>Tốt hơn sống một ngày,</p><p>Có tuệ, tu thiền định.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 91,
       Content:
-        "Ai sống một trăm năm,\nLười nhác không tinh tấn,\nTốt hơn sống một ngày\nTinh tấn tận sức mình.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Ai sống một trăm năm,</p><p>Lười nhác không tinh tấn,</p><p>Tốt hơn sống một ngày</p><p>Tinh tấn tận sức mình.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 92,
       Content:
-        "Ai sống một trăm năm,\nKhông thấy pháp sinh diệt,\nTốt hơn sống một ngày,\nThấy được pháp sinh diệt.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Ai sống một trăm năm,</p><p>Không thấy pháp sinh diệt,</p><p>Tốt hơn sống một ngày,</p><p>Thấy được pháp sinh diệt.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 93,
       Content:
-        "Ai sống một trăm năm,\nKhông thấy câu bất tử,\nTốt hơn sống một ngày,\nThấy được câu bất tử.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p>Ai sống một trăm năm,</p><p>Không thấy câu bất tử,</p><p>Tốt hơn sống một ngày,</p><p>Thấy được câu bất tử.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 94,
       Content:
-        "\nAi sống một trăm năm,\nKhông thấy pháp tối thượng,\nTốt hơn sống một ngày,\nThấy được pháp tối thượng.\n\nTrích Kinh Pháp Cú (Phẩm Ngàn)",
+        "<p></p><p>Ai sống một trăm năm,</p><p>Không thấy pháp tối thượng,</p><p>Tốt hơn sống một ngày,</p><p>Thấy được pháp tối thượng.</p><p>Trích Kinh Pháp Cú (Phẩm Ngàn)</p>",
     },
     {
       ID: 95,
       Content:
-        "Hãy gấp làm điều lành,\nNgăn tâm làm điều ác.\nAi chậm làm việc lành,\nÝ ưa thích việc ác.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Hãy gấp làm điều lành,</p><p>Ngăn tâm làm điều ác.</p><p>Ai chậm làm việc lành,</p><p>Ý ưa thích việc ác.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 96,
       Content:
-        "Nếu người làm điều ác,\nChớ tiếp tục làm thêm.\nChớ ước muốn điều ác,\nChứa ác, tất chịu khổ.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Nếu người làm điều ác,</p><p>Chớ tiếp tục làm thêm.</p><p>Chớ ước muốn điều ác,</p><p>Chứa ác, tất chịu khổ.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 97,
       Content:
-        "Nếu người làm điều thiện,\nNên tiếp tục làm thêm.\nHãy ước muốn điều thiện,\nChứa thiện, được an lạc.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Nếu người làm điều thiện,</p><p>Nên tiếp tục làm thêm.</p><p>Hãy ước muốn điều thiện,</p><p>Chứa thiện, được an lạc.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 98,
       Content:
-        "Người ác thấy là hiền.\nKhi ác chưa chín muồi,\nKhi ác nghiệp chín muồi,\nNgười ác mới thấy ác.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Người ác thấy là hiền.</p><p>Khi ác chưa chín muồi,</p><p>Khi ác nghiệp chín muồi,</p><p>Người ác mới thấy ác.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 99,
       Content:
-        "Người hiền thấy là ác,\nKhi thiện chưa chín muồi.\nKhi thiện được chín muồi,\nNgười hiền thấy là thiện.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Người hiền thấy là ác,</p><p>Khi thiện chưa chín muồi.</p><p>Khi thiện được chín muồi,</p><p>Người hiền thấy là thiện.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 100,
       Content:
-        "Ít bạn đường, nhiều tiền,\nNgười buôn tránh đường hiểm.\nMuốn sống, tránh thuốc độc,\nHãy tránh ác như vậy.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Ít bạn đường, nhiều tiền,</p><p>Người buôn tránh đường hiểm.</p><p>Muốn sống, tránh thuốc độc,</p><p>Hãy tránh ác như vậy.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 101,
       Content:
-        "Bàn tay không thương tích,\nCó thể cầm thuốc độc.\nKhông thương tích, tránh độc,\nKhông làm, không có ác.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Bàn tay không thương tích,</p><p>Có thể cầm thuốc độc.</p><p>Không thương tích, tránh độc,</p><p>Không làm, không có ác.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 102,
       Content:
-        "Hại người không ác tâm,\nNgười thanh tịnh, không uế,\nTội ác đến kẻ ngu,\nNhư ngược gió tung bụi.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Hại người không ác tâm,</p><p>Người thanh tịnh, không uế,</p><p>Tội ác đến kẻ ngu,</p><p>Như ngược gió tung bụi.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 103,
       Content:
-        "Một số sinh bào thai,\nKẻ ác sinh địa ngục,\nNgười thiện lên cõi trời,\nVô lậu chứng Niết Bàn.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Một số sinh bào thai,</p><p>Kẻ ác sinh địa ngục,</p><p>Người thiện lên cõi trời,</p><p>Vô lậu chứng Niết Bàn.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 104,
       Content:
-        "Không trên trời, giữa biển,\nKhông lánh vào động núi,\nKhông chỗ nào trên đời,\nTrốn được quả ác nghiệp.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Không trên trời, giữa biển,</p><p>Không lánh vào động núi,</p><p>Không chỗ nào trên đời,</p><p>Trốn được quả ác nghiệp.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 105,
       Content:
-        "Không trên trời, giữa biển,\nKhông lánh vào động núi,\nKhông chỗ nào trên đời,\nTrốn khỏi tay thần chết.\n\nTrích Kinh Pháp Cú (Phẩm Ác)",
+        "<p>Không trên trời, giữa biển,</p><p>Không lánh vào động núi,</p><p>Không chỗ nào trên đời,</p><p>Trốn khỏi tay thần chết.</p><p>Trích Kinh Pháp Cú (Phẩm Ác)</p>",
     },
     {
       ID: 106,
       Content:
-        "Mọi người sợ hình phạt,\nMọi người sợ tử vong.\nLấy mình làm ví dụ\nKhông giết, không bảo giết.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Mọi người sợ hình phạt,</p><p>Mọi người sợ tử vong.</p><p>Lấy mình làm ví dụ</p><p>Không giết, không bảo giết.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 107,
       Content:
-        "Mọi người sợ hình phạt,\nMọi người thích sống còn,\nLấy mình làm ví dụ,\nKhông giết, không bảo giết.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Mọi người sợ hình phạt,</p><p>Mọi người thích sống còn,</p><p>Lấy mình làm ví dụ,</p><p>Không giết, không bảo giết.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 108,
       Content:
-        "Chúng sanh cầu an lạc,\nAi dùng trượng hại người,\nĐể tìm lạc cho mình,\nĐời sau không được lạc.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Chúng sanh cầu an lạc,</p><p>Ai dùng trượng hại người,</p><p>Để tìm lạc cho mình,</p><p>Đời sau không được lạc.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 109,
       Content:
-        "Chúng sanh cầu an lạc,\nKhông dùng trượng hại người,\nĐể tìm lạc cho mình,\nĐời sau được hưởng lạc.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Chúng sanh cầu an lạc,</p><p>Không dùng trượng hại người,</p><p>Để tìm lạc cho mình,</p><p>Đời sau được hưởng lạc.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 110,
       Content:
-        "Chớ nói lời ác độc,\nNói ác, bị nói lại,\nKhổ thay lời phẩn nộ,\nĐao trượng phản chạm mình.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Chớ nói lời ác độc,</p><p>Nói ác, bị nói lại,</p><p>Khổ thay lời phẩn nộ,</p><p>Đao trượng phản chạm mình.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 111,
       Content:
-        "Người ngu làm điều ác,\nKhông ý thức việc làm.\nDo tự nghiệp, người ngu\nBị nung nấu, như lửa.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Người ngu làm điều ác,</p><p>Không ý thức việc làm.</p><p>Do tự nghiệp, người ngu</p><p>Bị nung nấu, như lửa.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 112,
       Content:
-        "Dùng trượng phạt không trượng,\nLàm ác người không ác.\nTrong mười loại khổ đau,\nChịu gấp một loại khổ.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Dùng trượng phạt không trượng,</p><p>Làm ác người không ác.</p><p>Trong mười loại khổ đau,</p><p>Chịu gấp một loại khổ.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 113,
       Content:
-        "Hoặc khổ thọ khốc liệt,\nThân thể bị thương vong,\nHoặc thọ bệnh kịch liệt,\nHay loạn ý tán tâm.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Hoặc khổ thọ khốc liệt,</p><p>Thân thể bị thương vong,</p><p>Hoặc thọ bệnh kịch liệt,</p><p>Hay loạn ý tán tâm.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 114,
       Content:
-        "Hoặc tai họa từ vua,\nHay bị vu trọng tội,\nBà con phải ly tán,\nTài sản bị nát tan.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Hoặc tai họa từ vua,</p><p>Hay bị vu trọng tội,</p><p>Bà con phải ly tán,</p><p>Tài sản bị nát tan.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 115,
       Content:
-        "Hoặc phòng ốc nhà cửa\nBị hỏa tai thiêu đốt.\nKhi thân hoại mạng chung,\nÁc tuệ sanh địa ngục.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Hoặc phòng ốc nhà cửa</p><p>Bị hỏa tai thiêu đốt.</p><p>Khi thân hoại mạng chung,</p><p>Ác tuệ sanh địa ngục.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 116,
       Content:
-        "Thật khó tìm ở đời,\nNgười biết thẹn, tự chế,\nBiết tránh né chỉ trích\nNhư ngựa hiền tránh roi.\n\nTrích Kinh Pháp Cú (Phẩm Hình Phạt)",
+        "<p>Thật khó tìm ở đời,</p><p>Người biết thẹn, tự chế,</p><p>Biết tránh né chỉ trích</p><p>Như ngựa hiền tránh roi.</p><p>Trích Kinh Pháp Cú (Phẩm Hình Phạt)</p>",
     },
     {
       ID: 117,
       Content:
-        "Cười gì, hân hoan gì,\nKhi đời mãi bị thiêu ?\nBị tối tăm bao trùm,\nSao không tìm ngọn đèn ?\n\nTrích Kinh Pháp Cú (Phẩm Già)",
+        "<p>Cười gì, hân hoan gì,</p><p>Khi đời mãi bị thiêu ?</p><p>Bị tối tăm bao trùm,</p><p>Sao không tìm ngọn đèn ?</p><p>Trích Kinh Pháp Cú (Phẩm Già)</p>",
     },
     {
       ID: 118,
       Content:
-        "Hãy xem bong bóng đẹp,\nChỗ chất chứa vết thương,\nBệnh hoạn nhiều suy tư,\nThật không gì trường cửu.\n\nTrích Kinh Pháp Cú (Phẩm Già)",
+        "<p>Hãy xem bong bóng đẹp,</p><p>Chỗ chất chứa vết thương,</p><p>Bệnh hoạn nhiều suy tư,</p><p>Thật không gì trường cửu.</p><p>Trích Kinh Pháp Cú (Phẩm Già)</p>",
     },
     {
       ID: 119,
       Content:
-        "Sắc này bị suy già,\nỔ tật bệnh, mỏng manh,\nNhóm bất tịnh, đỗ vỡ,\nChết chấm dứt mạng sống.\n\nTrích Kinh Pháp Cú (Phẩm Già)",
+        "<p>Sắc này bị suy già,</p><p>Ổ tật bệnh, mỏng manh,</p><p>Nhóm bất tịnh, đỗ vỡ,</p><p>Chết chấm dứt mạng sống.</p><p>Trích Kinh Pháp Cú (Phẩm Già)</p>",
     },
     {
       ID: 120,
       Content:
-        "Như trái bầu mùa thu,\nBị vất bỏ quăng đi,\nNhóm xương trắng bồ câu,\nThấy chúng còn vui gì ?\n\nTrích Kinh Pháp Cú (Phẩm Già)",
+        "<p>Như trái bầu mùa thu,</p><p>Bị vất bỏ quăng đi,</p><p>Nhóm xương trắng bồ câu,</p><p>Thấy chúng còn vui gì ?</p><p>Trích Kinh Pháp Cú (Phẩm Già)</p>",
     },
     {
       ID: 121,
       Content:
-        "Thành này làm bằng xương,\nQuét tô bằng thịt máu,\nỞ đây già và chết,\nMạn, lừa đảo chất chứa.\n\nTrích Kinh Pháp Cú (Phẩm Già)",
+        "<p>Thành này làm bằng xương,</p><p>Quét tô bằng thịt máu,</p><p>Ở đây già và chết,</p><p>Mạn, lừa đảo chất chứa.</p><p>Trích Kinh Pháp Cú (Phẩm Già)</p>",
     },
     {
       ID: 122,
       Content:
-        "Người ít nghe kém học,\nLớn già như trâu đực.\nThịt nó tuy lớn lên,\nNhưng tuệ không tăng trưởng.\n\nTrích Kinh Pháp Cú (Phẩm Già)",
+        "<p>Người ít nghe kém học,</p><p>Lớn già như trâu đực.</p><p>Thịt nó tuy lớn lên,</p><p>Nhưng tuệ không tăng trưởng.</p><p>Trích Kinh Pháp Cú (Phẩm Già)</p>",
     },
     {
       ID: 123,
       Content:
-        "Lang thang bao kiếp sống\nTa tìm nhưng chẳng gặp,\nNgười xây dựng nhà này,\nKhổ thay, phải tái sanh.\n\nTrích Kinh Pháp Cú (Phẩm Già)",
+        "<p>Lang thang bao kiếp sống</p><p>Ta tìm nhưng chẳng gặp,</p><p>Người xây dựng nhà này,</p><p>Khổ thay, phải tái sanh.</p><p>Trích Kinh Pháp Cú (Phẩm Già)</p>",
     },
     {
       ID: 124,
       Content:
-        "Lúc trẻ, không Phạm hạnh,\nKhông tìm kiếm bạc tiền.\nNhư cò già bên ao,\nỦ rũ, không tôm cá.\n\nTrích Kinh Pháp Cú (Phẩm Già)",
+        "<p>Lúc trẻ, không Phạm hạnh,</p><p>Không tìm kiếm bạc tiền.</p><p>Như cò già bên ao,</p><p>Ủ rũ, không tôm cá.</p><p>Trích Kinh Pháp Cú (Phẩm Già)</p>",
     },
     {
       ID: 125,
       Content:
-        "Lúc trẻ không phạm hạnh,\nKhông tìm kiếm bạc tiền,\nNhư cây cung bị gẫy,\nThở than những ngày qua.\n\nTrích Kinh Pháp Cú (Phẩm Già)",
+        "<p>Lúc trẻ không phạm hạnh,</p><p>Không tìm kiếm bạc tiền,</p><p>Như cây cung bị gẫy,</p><p>Thở than những ngày qua.</p><p>Trích Kinh Pháp Cú (Phẩm Già)</p>",
     },
     {
       ID: 126,
       Content:
-        "Nếu biết yêu tự ngã,\nPhải khéo bảo vệ mình,\nNgười trí trong ba canh,\nPhải luôn luôn tỉnh thức.\n\nTrích Kinh Pháp Cú (Phẩm Tự Ngã)",
+        "<p>Nếu biết yêu tự ngã,</p><p>Phải khéo bảo vệ mình,</p><p>Người trí trong ba canh,</p><p>Phải luôn luôn tỉnh thức.</p><p>Trích Kinh Pháp Cú (Phẩm Tự Ngã)</p>",
     },
     {
       ID: 127,
       Content:
-        "Trước hết tự đặt mình,\nVào những gì thích đáng.\nSau mới giáo hóa người,\nNgười trí khỏi bị nhiễm.\n\nTrích Kinh Pháp Cú (Phẩm Tự Ngã)",
+        "<p>Trước hết tự đặt mình,</p><p>Vào những gì thích đáng.</p><p>Sau mới giáo hóa người,</p><p>Người trí khỏi bị nhiễm.</p><p>Trích Kinh Pháp Cú (Phẩm Tự Ngã)</p>",
     },
     {
       ID: 128,
       Content:
-        "Hãy tự làm cho mình,\nNhư điều mình dạy người.\nKhéo tự điều, điều người,\nKhó thay, tự điều phục !\n\nTrích Kinh Pháp Cú (Phẩm Tự Ngã)",
+        "<p>Hãy tự làm cho mình,</p><p>Như điều mình dạy người.</p><p>Khéo tự điều, điều người,</p><p>Khó thay, tự điều phục !</p><p>Trích Kinh Pháp Cú (Phẩm Tự Ngã)</p>",
     },
     {
       ID: 129,
       Content:
-        "Tự mình y chỉ mình,\nNào có y chỉ khác.\nNhờ khéo điều phục mình,\nĐược y chỉ khó được.\n\nTrích Kinh Pháp Cú (Phẩm Tự Ngã)",
+        "<p>Tự mình y chỉ mình,</p><p>Nào có y chỉ khác.</p><p>Nhờ khéo điều phục mình,</p><p>Được y chỉ khó được.</p><p>Trích Kinh Pháp Cú (Phẩm Tự Ngã)</p>",
     },
     {
       ID: 130,
       Content:
-        "Điều ác tự mình làm,\nTự mình sanh, mình tạo.\nNghiền nát kẻ ngu si,\nNhư kim cương, ngọc báu.\n\nTrích Kinh Pháp Cú (Phẩm Tự Ngã)",
+        "<p>Điều ác tự mình làm,</p><p>Tự mình sanh, mình tạo.</p><p>Nghiền nát kẻ ngu si,</p><p>Như kim cương, ngọc báu.</p><p>Trích Kinh Pháp Cú (Phẩm Tự Ngã)</p>",
     },
     {
       ID: 131,
       Content:
-        "Phá giới quá trầm trọng,\nNhư dây leo bám cây\nGieo hại cho tự thân,\nNhư kẻ thù mong ước.\n\nTrích Kinh Pháp Cú (Phẩm Tự Ngã)",
+        "<p>Phá giới quá trầm trọng,</p><p>Như dây leo bám cây</p><p>Gieo hại cho tự thân,</p><p>Như kẻ thù mong ước.</p><p>Trích Kinh Pháp Cú (Phẩm Tự Ngã)</p>",
     },
     {
       ID: 132,
       Content:
-        "Dễ làm, các điều ác,\nDễ làm tự hại mình.\nCòn việc lành, việc tốt,\nThật tối thượng khó làm.\n\nTrích Kinh Pháp Cú (Phẩm Tự Ngã)",
+        "<p>Dễ làm, các điều ác,</p><p>Dễ làm tự hại mình.</p><p>Còn việc lành, việc tốt,</p><p>Thật tối thượng khó làm.</p><p>Trích Kinh Pháp Cú (Phẩm Tự Ngã)</p>",
     },
     {
       ID: 133,
       Content:
-        "Chớ có theo pháp hạ liệt,\nChớ sống mặc, buông lung,\nChớ tin theo tà kiến,\nChớ tăng trưởng tục trần.\n\nTrích Kinh Pháp Cú (Phẩm Tự Ngã)",
+        "<p>Chớ có theo pháp hạ liệt,</p><p>Chớ sống mặc, buông lung,</p><p>Chớ tin theo tà kiến,</p><p>Chớ tăng trưởng tục trần.</p><p>Trích Kinh Pháp Cú (Phẩm Tự Ngã)</p>",
     },
     {
       ID: 134,
       Content:
-        "Dầu lợi người bao nhiêu,\nChớ quên phần tư lợi\nNhờ thắng tri tư lợi,\nHãy chuyên tâm lợi mình.\n\nTrích Kinh Pháp Cú (Phẩm Thế Gian)",
+        "<p>Dầu lợi người bao nhiêu,</p><p>Chớ quên phần tư lợi</p><p>Nhờ thắng tri tư lợi,</p><p>Hãy chuyên tâm lợi mình.</p><p>Trích Kinh Pháp Cú (Phẩm Thế Gian)</p>",
     },
     {
       ID: 135,
       Content:
-        "Nỗ lực, chớ phóng dật !\nHãy sống theo chánh hạnh,\nNgười chánh hạnh hưởng lạc,\nCả đời này, đời sau.\n\nTrích Kinh Pháp Cú (Phẩm Thế Gian)",
+        "<p>Nỗ lực, chớ phóng dật !</p><p>Hãy sống theo chánh hạnh,</p><p>Người chánh hạnh hưởng lạc,</p><p>Cả đời này, đời sau.</p><p>Trích Kinh Pháp Cú (Phẩm Thế Gian)</p>",
     },
     {
       ID: 136,
       Content:
-        "Hãy khéo sống chánh hạnh,\nChớ sống theo tà hạnh !\nNgười chánh hạnh hưởng lạc,\nCả đời này, đời sau.\n\nTrích Kinh Pháp Cú (Phẩm Thế Gian)",
+        "<p>Hãy khéo sống chánh hạnh,</p><p>Chớ sống theo tà hạnh !</p><p>Người chánh hạnh hưởng lạc,</p><p>Cả đời này, đời sau.</p><p>Trích Kinh Pháp Cú (Phẩm Thế Gian)</p>",
     },
     {
       ID: 137,
       Content:
-        "Hãy nhìn như bọt nước,\nHãy nhìn như cảnh huyển !\nQuán nhìn đời như vậy,\nThần chết không bắt gặp.\n\nTrích Kinh Pháp Cú (Phẩm Thế Gian)",
+        "<p>Hãy nhìn như bọt nước,</p><p>Hãy nhìn như cảnh huyển !</p><p>Quán nhìn đời như vậy,</p><p>Thần chết không bắt gặp.</p><p>Trích Kinh Pháp Cú (Phẩm Thế Gian)</p>",
     },
     {
       ID: 138,
       Content:
-        "Hãy đến nhìn đời này,\nNhư xe vua lộng lẫy,\nNgười ngu mới tham đắm,\nKẻ trí nào đắm say.\n\nTrích Kinh Pháp Cú (Phẩm Thế Gian)",
+        "<p>Hãy đến nhìn đời này,</p><p>Như xe vua lộng lẫy,</p><p>Người ngu mới tham đắm,</p><p>Kẻ trí nào đắm say.</p><p>Trích Kinh Pháp Cú (Phẩm Thế Gian)</p>",
     },
     {
       ID: 139,
       Content:
-        "Ai sống trước buông lung,\nSau sống không phóng dật,\nChói sáng rực đời này.\nNhư trăng thoát mây che.\n\nTrích Kinh Pháp Cú (Phẩm Thế Gian)",
+        "<p>Ai sống trước buông lung,</p><p>Sau sống không phóng dật,</p><p>Chói sáng rực đời này.</p><p>Như trăng thoát mây che.</p><p>Trích Kinh Pháp Cú (Phẩm Thế Gian)</p>",
     },
     {
       ID: 140,
       Content:
-        "Ai dùng các hạnh lành,\nLàm xóa mờ nghiệp ác,\nChói sáng rực đời này,\nNhư trăng thoát mây che.\n\nTrích Kinh Pháp Cú (Phẩm Thế Gian)",
+        "<p>Ai dùng các hạnh lành,</p><p>Làm xóa mờ nghiệp ác,</p><p>Chói sáng rực đời này,</p><p>Như trăng thoát mây che.</p><p>Trích Kinh Pháp Cú (Phẩm Thế Gian)</p>",
     },
     {
       ID: 141,
       Content:
-        "Đời này thật mù quáng,\nÍt kẻ thấy rõ ràng.\nNhư chim thoát khỏi lưới,\nRất ít đi thiên giới.\n\nTrích Kinh Pháp Cú (Phẩm Thế Gian)",
+        "<p>Đời này thật mù quáng,</p><p>Ít kẻ thấy rõ ràng.</p><p>Như chim thoát khỏi lưới,</p><p>Rất ít đi thiên giới.</p><p>Trích Kinh Pháp Cú (Phẩm Thế Gian)</p>",
     },
     {
       ID: 142,
       Content:
-        "Như chim thiên nga bay,\nThần thông liệng giữa trời,\nChiến thắng Ma, Ma quân,\nKẻ trí thoát đời này.\n\nTrích Kinh Pháp Cú (Phẩm Thế Gian)",
+        "<p>Như chim thiên nga bay,</p><p>Thần thông liệng giữa trời,</p><p>Chiến thắng Ma, Ma quân,</p><p>Kẻ trí thoát đời này.</p><p>Trích Kinh Pháp Cú (Phẩm Thế Gian)</p>",
     },
   ]
 

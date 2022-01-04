@@ -113,12 +113,13 @@
           <div class="font-14 font-size: font-weight-black mb-2 mt-3">
             <label for="name">Bài thơ - Danh ngôn - Phật giáo</label>
           </div>
-          <textarea
+          <tiptap-vuetify
             placeholder="Nhập nội dung"
             class="form-control text-area-right"
             rows="8"
             v-model="event.Quote"
-          ></textarea>
+            :extensions="extensions2"
+          ></tiptap-vuetify>
         </div>
         <div class="font-14 font-size: font-weight-black mb-2 mt-3">
           <label for="name">Nội dung sự kiện</label>
@@ -187,11 +188,17 @@ export default {
       BulletList,
       OrderedList,
       Bold,
-      Link,
       Code,
       HorizontalRule,
       Paragraph,
       HardBreak,
+    ],
+    extensions2: [
+      History,
+      Blockquote,
+      Underline,
+      Italic,
+      Bold,
     ],
     dayOfYear: 1,
     quotes: Quotes.Data,
