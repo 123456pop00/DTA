@@ -8,15 +8,15 @@
           <!-- <button type="button" class="btn btn-danger btn-save">
             Tạo thông báo
           </button> -->
-        <v-select
-          :items="notiType"
-          filled
-          v-on:change="initialize"
-          label="Chọn loại thông báo sẽ hiển thị"
-          v-model="NotiTypeToGetData"
-          item-text="text"
-          item-value="value"
-          style="width: 400px;"
+          <v-select
+            :items="notiType"
+            filled
+            v-on:change="initialize"
+            label="Chọn loại thông báo sẽ hiển thị"
+            v-model="NotiTypeToGetData"
+            item-text="text"
+            item-value="value"
+            style="width: 400px"
           ></v-select>
           <v-dialog v-model="showPopupAddNoti" persistent width="600">
             <template v-slot:activator="{ on, attrs }">
@@ -128,7 +128,6 @@
                           <v-time-picker
                             v-model="picker"
                             scrollable
-
                           ></v-time-picker>
                         </div>
                         <v-card-actions>
@@ -150,16 +149,17 @@
                       </v-card>
                     </v-dialog>
 
-                    <v-radio-group
-                      v-model="typeDateSend"
-                      row
-                    >
+                    <v-radio-group v-model="typeDateSend" row>
                       <v-radio label="Mặc định" value="1"></v-radio>
                       <v-radio label="Tùy chỉnh" value="2"> </v-radio>
                       <v-radio label="Gửi ngay" value="3"></v-radio>
                     </v-radio-group>
                   </div>
-                  <div class="date-send-noti" style="margin-top: 8px" @click="showTimePicker()">
+                  <div
+                    class="date-send-noti"
+                    style="margin-top: 8px"
+                    @click="showTimePicker()"
+                  >
                     {{ dateSendNotiString }}
                   </div>
                 </div>
@@ -212,33 +212,33 @@
             </v-card>
           </v-dialog>
           <v-dialog v-model="dialogDelete" max-width="530px">
-                <v-card>
-                  <v-card-title class="text-h5"
-                    >Bạn có chắc chắn muốn xóa thông báo này ?</v-card-title
-                  >
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <button
-                      class="button-noti mr-3"
-                      style="color: #9e0c10; border: 1px solid #d9d9d9"
-                      @click="closeDelete"
-                    >
-                      Hủy
-                    </button>
-                    <button
-                      class="button-noti backgroud-button"
-                      @click="deleteItemConfirm"
-                    >
-                      Đồng ý
-                    </button>
-                    <v-spacer></v-spacer>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
+            <v-card>
+              <v-card-title class="text-h5"
+                >Bạn có chắc chắn muốn xóa thông báo này ?</v-card-title
+              >
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <button
+                  class="button-noti mr-3"
+                  style="color: #9e0c10; border: 1px solid #d9d9d9"
+                  @click="closeDelete"
+                >
+                  Hủy
+                </button>
+                <button
+                  class="button-noti backgroud-button"
+                  @click="deleteItemConfirm"
+                >
+                  Đồng ý
+                </button>
+                <v-spacer></v-spacer>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </div>
       </div>
       <div class="custom-1 flex-1-1-auto mt-4 table-noti">
-        <v-data-table :headers="headers" :items="desserts" >
+        <v-data-table :headers="headers" :items="desserts">
           <template v-slot:item.actions="{ item }">
             <!-- @click="editItem(item)" -->
             <v-icon small class="mr-2" @click="editItem(item)">
@@ -272,35 +272,35 @@ export default {
         align: "center",
         sortable: false,
         value: "STT",
-        width: "2%" 
+        width: "2%",
       },
       {
         text: "Ngày diễn ra sự kiện",
         align: "center",
         sortable: false,
         value: "Date",
-        width: "15%" 
+        width: "15%",
       },
       {
         text: "Giờ",
         align: "center",
         sortable: false,
         value: "Hour",
-        width: "5%" 
+        width: "5%",
       },
       {
         text: "Sự kiện/Tiêu đề",
         align: "center",
         sortable: false,
         value: "Title",
-        width: "28%" 
+        width: "28%",
       },
       {
         text: "Nội dung thông báo",
         align: "center",
         sortable: false,
         value: "Content",
-        width: "40%" 
+        width: "40%",
       },
       // {
       //   text: "Sự kiện",
@@ -313,7 +313,7 @@ export default {
         align: "center",
         sortable: false,
         value: "actions",
-        width: "10%" 
+        width: "10%",
       },
     ],
     desserts: [
@@ -368,7 +368,7 @@ export default {
       StartDate: "",
       StartSendNoti: "",
       dataNoti: "",
-    }
+    },
   }),
 
   computed: {
@@ -376,26 +376,23 @@ export default {
       return this.editedIndex === -1 ? "Tạo thông báo" : "Sửa thông báo";
     },
     computedDateFormatted() {
-      if (this.editedIndex != -1 ) {
-          if (+this.typeDateSend == 1) {
-            var date = new Date(this.date);
-            date.setHours(7);
-            date.setMinutes(0);
-            date.setSeconds(0);
-            date.setMilliseconds(0);
-            this.mydate = date;
-            // date = this.date.toISOString().substr(0, 10);
-          }
-        else if (+this.typeDateSend == 2) {
+      if (this.editedIndex != -1) {
+        if (+this.typeDateSend == 1) {
+          var date = new Date(this.date);
+          date.setHours(7);
+          date.setMinutes(0);
+          date.setSeconds(0);
+          date.setMilliseconds(0);
+          this.mydate = date;
+          // date = this.date.toISOString().substr(0, 10);
+        } else if (+this.typeDateSend == 2) {
           this.mydate = new Date(this.date);
-        }
-        else {
+        } else {
           this.mydate = new Date();
         }
-      }
-      else {
+      } else {
         var date = new Date();
-        if (+this.typeDateSend == 1) {            
+        if (+this.typeDateSend == 1) {
           date.setHours(7);
           date.setMinutes(0);
           date.setSeconds(0);
@@ -404,7 +401,7 @@ export default {
 
         this.mydate = date;
       }
-      
+
       this.dateSendNotiString = this.computedDateSendNoti();
       return this.formatDate(this.mydate);
     },
@@ -425,8 +422,10 @@ export default {
       });
     },
     editItem(item) {
-
-      if (new Date(item.ScheduleAt) < new Date() && this.NotiTypeToGetData == 1){
+      if (
+        new Date(item.ScheduleAt) < new Date() &&
+        this.NotiTypeToGetData == 1
+      ) {
         alert("Bạn không thể chỉnh sửa thông báo đã thực hiện bắn");
         return;
       }
@@ -438,7 +437,8 @@ export default {
       this.showPopupAddNoti = true;
       this.date = this.edittedNoti.ScheduleAt;
       this.typeDateSend = "2";
-      this.IsPushToWeb = this.edittedNoti.ImageLink != null && this.edittedNoti.ImageLink != "";
+      this.IsPushToWeb =
+        this.edittedNoti.ImageLink != null && this.edittedNoti.ImageLink != "";
     },
 
     deleteItem(item) {
@@ -462,9 +462,13 @@ export default {
           me.desserts = res.Data;
           me.desserts.forEach((x, index) => {
             const time = new Date(x.ScheduleAt);
+            let timePart = time.setTime(
+              time.getTime() - 7 * 60 * 60 * 1000
+            );
+            var  a  = new Date(timePart);
             x.STT = index + 1;
-            x.Hour = time.getHours() + ":" + time.getMinutes();
-            x.Date = time.toLocaleDateString();
+            x.Hour = a.getHours() + ":" + a.getMinutes();
+            x.Date = a.toLocaleDateString();
             return x;
           });
         }
@@ -482,7 +486,7 @@ export default {
         ImageLink: me.edittedNoti.ImageLink,
         SendNow: me.typeDateSend == 3,
         State: me.editedIndex === -1 ? 1 : 2, // 1 = insert, 2 = update
-        NotiType: me.NotiTypeToGetData
+        NotiType: me.NotiTypeToGetData,
       };
 
       apiClient.post("Notification/SendNotify", param).then((res) => {
@@ -503,9 +507,9 @@ export default {
 
     computedDateSendNoti() {
       if (this.mydate) {
-        return `${this.mydate.getHours()}:${+this.mydate.getMinutes()}${
+        return `${this.mydate.getHours()}:${
           this.mydate.getMinutes() <= 9 ? "0" : ""
-        }`;
+        }${this.mydate.getMinutes()}`;
       }
       return null;
     },
@@ -523,7 +527,7 @@ export default {
       if (!date) return null;
 
       var month = date.getUTCMonth() + 1; //months from 1-12.
-      var day = date.getUTCDate();
+      var day = date.getDate();
       var year = date.getUTCFullYear();
       return `${day}/${month}/${year}`;
       // return `1`;
@@ -553,18 +557,17 @@ export default {
     },
     deleteItemConfirm() {
       const me = this;
-      
-      const param = {
-        ID: me.editedItem.ID
-      }
 
-      apiClient.post("Notification/Delete", me.editedItem).then(res => {
-        if (res.Success){
+      const param = {
+        ID: me.editedItem.ID,
+      };
+
+      apiClient.post("Notification/Delete", me.editedItem).then((res) => {
+        if (res.Success) {
           me.initialize();
           me.closeDelete();
         }
-      })
-      
+      });
     },
   },
   watch: {
@@ -644,7 +647,7 @@ export default {
 .v-btn__content {
   font-size: 12px;
 }
-.v-time-picker-title{
-      color: black;
+.v-time-picker-title {
+  color: black;
 }
 </style>
