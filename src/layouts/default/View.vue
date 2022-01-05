@@ -1,13 +1,39 @@
 <template>
   <v-main>
-    <div class="title">Ứng dụng lịch</div>
+    <div class="d-flex justify-space-between title">
+      <div>Ứng dụng lịch</div>
+      <div class="font-14 font-weight-medium d-flex" style="color: black">
+        <div class="mr-3">Chào mừng {{ user }}</div>
+        <div class="cursor-pointer" @click="logout()">Đăng xuất</div>
+      </div>
+    </div>
     <router-view :key="$route.path" />
   </v-main>
 </template>
 
 <script>
+import workLocalStorage from "../../common/workLocalStorage";
 export default {
   name: "DefaultView",
+  data: () => ({
+    user: "Bạn",
+  }),
+  created: function () {
+    var DataUser = workLocalStorage("DataUser");
+    if (DataUser.data()) {
+      this.user = DataUser.get("FullName") ? DataUser.get("FullName") : "Bạn";
+    }
+  },
+  methods: {
+    logout() {
+      var DataUser = workLocalStorage("DataUser");
+      DataUser.removeKey("DataUser");
+      window.location.href = "/login/";
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 200);
+    },
+  },
 };
 </script>
 <style scoped lang="scss">
