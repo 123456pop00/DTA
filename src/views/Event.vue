@@ -446,6 +446,7 @@ export default {
         Underline,
         Italic,
         Bold,
+        HardBreak
       ],
       firstDayOfWeek: 1,
       tabActive: 1,
@@ -747,26 +748,27 @@ export default {
     onChange(solarDate, lunarDate, isLunarChecked) {
       // console.log("11",moment().year(2021).month(11).date(24).lunar().format('YYYY-MM-DD'));
       // console.log("22",moment().year(2021).month(10).date(21).solar().format('YYYY-MM-DD'));
+      const me = this;
 
       if (solarDate) {
-        this.solarDate = solarDate._d;
-        this.defaultDate = solarDate.format("YYYY-MM-DD");
+        me.solarDate = solarDate._d;
+        me.defaultDate = solarDate.format("YYYY-MM-DD");
       }
 
-      this.event.DateEvent = this.solarDate.toISOString();
-      this.lunarDate = lunarDate;
-      this.solarDateConvert = formatDate(this.solarDate);
-      this.lunarDateConvert = formatDate(this.lunarDate);      
+      me.event.DateEvent = me.solarDate.toISOString();
+      me.lunarDate = lunarDate;
+      me.solarDateConvert = formatDate(me.solarDate);
+      me.lunarDateConvert = formatDate(me.lunarDate);      
 
-      let solarSV = this.solarDate.setTime(
-        this.solarDate.getTime() + 7 * 60 * 60 * 1000
+      let solarSV = me.solarDate.setTime(
+        me.solarDate.getTime() + 7 * 60 * 60 * 1000
       );
-      let lunarSV = this.lunarDate._d.setTime(
+      let lunarSV = me.lunarDate._d.setTime(
         lunarDate._d.getTime() + 7 * 60 * 60 * 1000
       );
 
-      var a = Date.parse(this.solarDate);
-      this.convertDayDisplay(this.solarDate.getDay());
+      var a = Date.parse(me.solarDate);
+      me.convertDayDisplay(me.solarDate.getDay());
 
       const eventTime = {
         LunarDate: new Date(lunarSV).toISOString(),
@@ -775,19 +777,19 @@ export default {
 
       apiClient.post(`event/GetByDate`, eventTime).then((response) => {
         if (response.Data && response.Success) {
-          this.listEventToDay = response.Data;
+          me.listEventToDay = response.Data;
 
-          if (this.listEventToDay && this.listEventToDay.length > 0) {
-            this.event = this.listEventToDay[0];
-            this.checkHasData = true;
+          if (me.listEventToDay && me.listEventToDay.length > 0) {
+            me.event = me.listEventToDay[0];
+            me.checkHasData = true;
           } else {
-            this.checkHasData = false;
+            me.checkHasData = false;
             // thêm luồng ở đây
-            this.event = {
+            me.event = {
               Content: "",
               CoverImage: "",
-              CoverImageFake: this.getRandomBase64Image(this.solarDate),
-              Quote: this.getRandomQuote(this.solarDate),
+              CoverImageFake: me.getRandomBase64Image(me.solarDate),
+              Quote: me.getRandomQuote(me.solarDate),
               DateEvent: new Date(
                 Date.now() - new Date().getTimezoneOffset() * 60000
               )
