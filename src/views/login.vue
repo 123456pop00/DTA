@@ -1,6 +1,5 @@
 <template>
   <div>
-    loading
     <div class="login" v-bind:class="{ loading: doLoading, active: active }">
       <form action="" class="form">
         <h2>Đăng nhập</h2>
@@ -27,7 +26,7 @@
             name="password"
             formControlName="Password"
             v-model="password"
-          />
+            />
           <!-- *ngIf="!loginForm.get('Password')?.errors?.required && loginForm.get('Password')?.touched" -->
           <svg v-if="password != ''">
             <use href="#svg-check" />
@@ -44,7 +43,7 @@
       </form>
       <div></div>
       <!-- *ngIf="loginDone" -->
-      <div class="finished">
+      <div class="finished" v-if="active">
         <svg>
           <use href="#svg-check" />
         </svg>
@@ -52,7 +51,7 @@
     </div>
 
     <!-- //--- ## SVG SYMBOLS ############# -->
-    <svg style="display: none">
+    <svg   v-if="active">
       <symbol id="svg-check" viewBox="0 0 130.2 130.2">
         <polyline points="100.2,40.2 51.5,88.8 29.8,67.5 " />
       </symbol>
@@ -62,6 +61,7 @@
 
 <script>
 import apiClient from "../services/APIClient";
+import workLocalStorage from "../common/workLocalStorage";
 export default {
   name: "Login",
 
@@ -88,9 +88,19 @@ export default {
       let obj = {Email : this.user,password : this.password};
       apiClient.post(`/Login/Login`, obj).then((response) => {
         if (response.Data && response.Success) {
-          alert("Cập nhật dữ liệu thành công ");
+          var tokenWorkLocal = workLocalStorage("DataUser");
+          tokenWorkLocal.setData(response.Data);
+          this.$router.push("/components/event");
+          // tokenWorkLocal.setData()
+          this.showErr = false;
+          this.doLoading = false;
+          this.active = true;
+
+          // alert("Cập nhật dữ liệu thành công ");
         } else {
-          alert("Cập nhật dữ liệu thất bại ");
+          this.showErr = true;
+          this.doLoading = false;
+          // alert("Cập nhật dữ liệu thất bại ");
         }
       });
     },

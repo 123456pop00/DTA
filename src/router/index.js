@@ -1,8 +1,9 @@
-// Imports
+
+
 import Vue from 'vue'
 import Router from 'vue-router'
 import { trailingSlash } from '@/util/helpers'
-
+import { workLocalStorage } from '../common/workLocalStorage'
 import {
   layout,
   route,
@@ -18,7 +19,7 @@ const router = new Router({
 
     return { x: 0, y: 0 }
   },
-  
+
   // beforeRouteEnter: (to, from, next) => {
   //   // ...
   //   console.log("abc: ",to.path);
@@ -58,14 +59,14 @@ const router = new Router({
     //   name: 'login',
     //   component: () => import( '../views/Login.vue')
     // },
-    { path: '/login',   component: () => import( '../views/login.vue') }
+    { path: '/login', name: 'login', component: () => import('../views/login.vue') }
   ],
 })
 
 router.beforeEach((to, from, next) => {
-  console.log("to.path: ", to.path);
-  if(to.path == "/components/event/"){
-    // return next({name: 'TextEditor'});
+  var tokenWorkLocal = workLocalStorage("DataUser");
+  if (!tokenWorkLocal.data()  && to.path != "/login/") {
+    return next({ path: '/login/' });
   }
   return to.path.endsWith('/') ? next() : next(trailingSlash(to.path))
 })

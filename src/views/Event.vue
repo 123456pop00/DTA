@@ -80,7 +80,7 @@
             </div>
             <!-- v-if="checkHasData" -->
             <div class="mt-4 flex-1-1-auto">
-              <div class="custom-1 d-flex flex-column" style="height: 55%">
+              <div class="custom-1 d-flex flex-column"  >
                 <div class="font-weight font-18 mb-2">Chi tiết ngày</div>
                 <div class="d-flex" style="height: 80%">
                   <div class="col-6 d-flex flex-column pr-3">
@@ -127,7 +127,7 @@
                       style="
                         width: 100%;
                         border-radius: 10px;
-                        height: calc(100% - 20px);
+                        height: 400px;
                       "
                       alt=""
                     />
@@ -559,12 +559,14 @@ export default {
     },
 
     saveEventDay() {
+      
       if (this.event) {
         if (this.event.ID) {
           this.event.State = 2;
         } else {
           this.event.State = 1;
           this.event.EventType = 2;
+          this.event.DateEvent = this.solarDate.toISOString();
           var base64 = this.getBase64Image(
             document.getElementById("img-event")
           );
@@ -807,7 +809,7 @@ export default {
     setImage: function (file) {
       this.event.CoverImage = file;
       // this.hasImage = true;
-      console.log("Data con cu buuuuuuuuuuuuuuuuuuuuuuu" , this.event.CoverImage == file );
+      // console.log("Data con cu buuuuuuuuuuuuuuuuuuuuuuu" , this.event.CoverImage == file );
       // console.log(  this.event.CoverImage );
       // this.image = file;
     },
@@ -1012,7 +1014,7 @@ custom user color
 }
 
 .container-event {
-  overflow-y: hidden;
+  overflow-y: auto;
   height: 100%;
   height: calc(100vh - 110px);
 }

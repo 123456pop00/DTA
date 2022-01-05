@@ -104,7 +104,10 @@
             Quản lý thông báo
           </button>
         </div>
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column mt-3">
+          <div class="oke-number1" :title="event.ContentPush">
+            {{ event.ContentPush }}
+          </div>
           <!-- <div v-for="item of listTitleEvent" :key="item">
             {{ item }}
           </div> -->
@@ -231,6 +234,8 @@ export default {
   }),
   created: function () {
     this.initialize();
+    // console.log(this.event);
+    this.event.ContentPush = this.event.ContentPush.replaceAll('"', "");
   },
   methods: {
     save() {
@@ -309,23 +314,7 @@ export default {
         this.quotes[this.dayOfYear % 142].Content.replaceAll("\n", "<br>") +
         "<p>";
     },
-    initialize() {
-      // call serive
-      const me = this;
-      const param = {
-        PageSize: 100,
-        PageIndex: 1,
-        CustomParam: {
-          NotificationType: 1,
-        },
-      };
-
-      apiClient.post("Notification/GetNotification", param).then((res) => {
-        if (res.Data && res.Success) {
-          me.listTitleEvent = res.Data.map((e) => e.Title);
-        }
-      });
-    },
+    initialize() {},
   },
 };
 </script>
@@ -391,5 +380,16 @@ a {
   .tiptap-vuetify-editor__content {
     height: 400px;
   }
+}
+.oke-number1 {
+  height: 40px;
+  background: #f0f0f0;
+  border-radius: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-items: center;
+  padding: 9px;
+  font-size: 14px;
 }
 </style>
