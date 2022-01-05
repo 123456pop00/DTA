@@ -29,6 +29,10 @@ apiClient.interceptors.response.use(function(response) {
   if (data.ResultCode && data.ResultCode == 401 ) {
     dataUser.removeKey("DataUser");
     window.location.href = "/login/";
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 200);
+    // window.location.reload(true);
     // const error = new Error(data.message || data.data)
     // error.status = data.status
     // error.data = data.data

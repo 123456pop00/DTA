@@ -26,7 +26,7 @@
             name="password"
             formControlName="Password"
             v-model="password"
-            />
+          />
           <!-- *ngIf="!loginForm.get('Password')?.errors?.required && loginForm.get('Password')?.touched" -->
           <svg v-if="password != ''">
             <use href="#svg-check" />
@@ -51,7 +51,7 @@
     </div>
 
     <!-- //--- ## SVG SYMBOLS ############# -->
-    <svg   v-if="active">
+    <svg v-if="active">
       <symbol id="svg-check" viewBox="0 0 130.2 130.2">
         <polyline points="100.2,40.2 51.5,88.8 29.8,67.5 " />
       </symbol>
@@ -85,17 +85,20 @@ export default {
         return;
       }
       this.doLoading = true;
-      let obj = {Email : this.user,password : this.password};
+      let obj = { Email: this.user, password: this.password };
       apiClient.post(`/Login/Login`, obj).then((response) => {
         if (response.Data && response.Success) {
           var tokenWorkLocal = workLocalStorage("DataUser");
           tokenWorkLocal.setData(response.Data);
           this.$router.push("/components/event");
+
           // tokenWorkLocal.setData()
           this.showErr = false;
           this.doLoading = false;
           this.active = true;
-
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 200);
           // alert("Cập nhật dữ liệu thành công ");
         } else {
           this.showErr = true;
