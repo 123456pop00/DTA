@@ -211,6 +211,30 @@
               <div></div>
             </v-card>
           </v-dialog>
+          <v-dialog v-model="dialogDelete" max-width="530px">
+                <v-card>
+                  <v-card-title class="text-h5"
+                    >Bạn có chắc chắn muốn xóa thông báo này ?</v-card-title
+                  >
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <button
+                      class="button-noti mr-3"
+                      style="color: #9e0c10; border: 1px solid #d9d9d9"
+                      @click="closeDelete"
+                    >
+                      Hủy
+                    </button>
+                    <button
+                      class="button-noti backgroud-button"
+                      @click="deleteItemConfirm"
+                    >
+                      Đồng ý
+                    </button>
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
         </div>
       </div>
       <div class="custom-1 flex-1-1-auto mt-4 table-noti">
@@ -240,6 +264,8 @@ export default {
   data: () => ({
     showPopupAddNoti: false,
     IsPushToWeb: false,
+    dialog: false,
+    dialogDelete: false,
     headers: [
       {
         text: "STT",
@@ -391,7 +417,20 @@ export default {
     this.initialize();
   },
   methods: {
+    close() {
+      this.dialog = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
+    },
     editItem(item) {
+
+      if (new Date(item.ScheduleAt) < new Date() && this.NotiTypeToGetData == 1){
+        alert("Bạn không thể chỉnh sửa thông báo đã thực hiện bắn");
+        return;
+      }
+
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.edittedNoti = this.editedItem;
@@ -454,8 +493,7 @@ export default {
           alert("Lỗi xảy ra từ Server vui lòng thử lại sau");
         }
       });
-
-      
+      this.close();
     },
     getHeaderDateFormat(isoDate) {
       var arrDate = isoDate.split("-");
@@ -505,6 +543,36 @@ export default {
       // this.dateSendNoti =
 
       console.log("sendnoti");
+    },
+    closeDelete() {
+      this.dialogDelete = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
+    },
+    deleteItemConfirm() {
+      const me = this;
+      
+      const param = {
+        ID: me.editedItem.ID
+      }
+
+      apiClient.post("Notification/Delete", me.editedItem).then(res => {
+        if (res.Success){
+          me.initialize();
+          me.closeDelete();
+        }
+      })
+      
+    },
+  },
+  watch: {
+    dialog(val) {
+      val || this.close();
+    },
+    dialogDelete(val) {
+      val || this.closeDelete();
     },
   },
 };

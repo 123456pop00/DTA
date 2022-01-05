@@ -196,7 +196,7 @@ export default {
       Paragraph,
       HardBreak,
     ],
-    extensions2: [History, Blockquote, Underline, Italic, Bold],
+    extensions2: [History, Blockquote, Underline, Italic, Bold, HardBreak],
     dayOfYear: 1,
     quotes: Quotes.Data,
     eventTypeData: [
@@ -304,10 +304,7 @@ export default {
       var diff = date - start;
       var oneDay = 1000 * 60 * 60 * 24;
       this.dayOfYear = Math.floor(diff / oneDay);
-      this.event.Quote =
-        "<p>" +
-        this.quotes[this.dayOfYear % 142].Content.replaceAll("\n", "<br>") +
-        "<p>";
+      this.event.Quote = this.quotes[this.dayOfYear % 142];
     },
     initialize() {
       // call serive
