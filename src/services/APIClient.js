@@ -1,5 +1,6 @@
 import axios from 'axios'
-import Router from 'vue-router'
+import Router from 'vue-router';
+var a = 1;
 const apiClient = axios.create({
   baseURL: process.env.VUE_APP_BACKEND_API,
   timeout: process.env.VUE_APP_TIME_OUT,
@@ -7,6 +8,7 @@ const apiClient = axios.create({
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
+    'OKE' : a
   },
 })
 apiClient.interceptors.response.use(function(response) {

@@ -86,7 +86,7 @@ export default {
       }
       this.doLoading = true;
       let obj = {Email : this.user,password : this.password};
-      apiClient.post(`/Login/Login`, this.event).then((response) => {
+      apiClient.post(`/Login/Login`, obj).then((response) => {
         if (response.Data && response.Success) {
           alert("Cập nhật dữ liệu thành công ");
         } else {

@@ -12,9 +12,8 @@
           position-relative
         "
         style="width: 100%; padding: 6px 0px"
-       
       >
-        <div  @click="emitBack()">
+        <div @click="emitBack()">
           <i class="fas fa-arrow-left mr-3"></i>
           Chi tiết sự kiện
         </div>
@@ -73,7 +72,7 @@
               :maxWidth="750"
               :maxHeight="600"
               outputFormat="string"
-              @input="setImage"
+              @input="setImage1"
             >
               <label
                 for="fileInput"
@@ -98,13 +97,17 @@
           />
         </div>
         <div class="align-center d-flex justify-space-between mt-4">
-          <div class="font-weight-500 font-14">
+          <div class="font-14 font-weight-500 font-weight-bold">
             Các thông báo/lời chúc gửi KH
           </div>
-          <button class="button-detail1" @click="opentNoti" >Quản lý thông báo</button>
+          <button class="button-detail1 color-button-add" @click="opentNoti">
+            Quản lý thông báo
+          </button>
         </div>
-        <div>
-          {{event.Quote}}
+        <div class="d-flex flex-column">
+          <!-- <div v-for="item of listTitleEvent" :key="item">
+            {{ item }}
+          </div> -->
         </div>
       </div>
       <!-- bên phải -->
@@ -193,13 +196,7 @@ export default {
       Paragraph,
       HardBreak,
     ],
-    extensions2: [
-      History,
-      Blockquote,
-      Underline,
-      Italic,
-      Bold,
-    ],
+    extensions2: [History, Blockquote, Underline, Italic, Bold],
     dayOfYear: 1,
     quotes: Quotes.Data,
     eventTypeData: [
@@ -216,6 +213,7 @@ export default {
         value: 2,
       },
     ],
+    listTitleEvent: [],
     repeatEventType: [
       {
         text: "Không lặp",
@@ -231,24 +229,26 @@ export default {
       },
     ],
   }),
+  created: function () {
+    this.initialize();
+  },
   methods: {
     save() {
-        this.event.State  = 2;
-        apiClient.post(`event`, this.event).then((response) => {
+      this.event.State = 2;
+      apiClient.post(`event`, this.event).then((response) => {
         if (response.Data && response.Success) {
           alert("Cập nhật dữ liệu thành công ");
-        }else{
+        } else {
           alert("Cập nhật dữ liệu thất bại ");
-
         }
       });
     },
     emitBack() {
       this.$emit("back-event", true);
     },
-    opentNoti(){
+    opentNoti() {
       // this.window.location.href = window.location.origin + "/maps/google/"
-      this.$router.push('/components/notifications/');
+      this.$router.push("/components/notifications/");
     },
     sendData12: function () {
       console.log("senddata");
@@ -284,7 +284,7 @@ export default {
 
       this.dayOfYear = this.dayOfYear === 157 ? 157 : this.dayOfYear % 157;
     },
-    setImage: function (file) {
+    setImage1: function (file) {
       this.event.CoverImage = file;
       // this.hasImage = true;
       console.log(file);
@@ -308,6 +308,23 @@ export default {
         "<p>" +
         this.quotes[this.dayOfYear % 142].Content.replaceAll("\n", "<br>") +
         "<p>";
+    },
+    initialize() {
+      // call serive
+      const me = this;
+      const param = {
+        PageSize: 100,
+        PageIndex: 1,
+        CustomParam: {
+          NotificationType: 1,
+        },
+      };
+
+      apiClient.post("Notification/GetNotification", param).then((res) => {
+        if (res.Data && res.Success) {
+          me.listTitleEvent = res.Data.map((e) => e.Title);
+        }
+      });
     },
   },
 };
@@ -360,6 +377,13 @@ a {
   height: 40px;
   padding: 9px 10px;
   font-size: 15px;
+}
+.color-button-add {
+  height: 32px;
+  padding: 0px 10px;
+  border: 1px solid #9e0c10;
+  border-radius: 6px;
+  color: #9e0c10;
 }
 </style>
 <style lang="scss" >

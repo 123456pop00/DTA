@@ -546,4 +546,7 @@ export default {
 .v-btn__content {
   font-size: 12px;
 }
+.v-time-picker-title{
+      color: black;
+}
 </style>

@@ -1,12 +1,12 @@
 <template>
   <div id="event-view">
-    <div v-show="showDetailEvent">
+    <div v-show="showDetailEvent" v-if="showDetailEvent">
       <DetailEvent
         :event="currentEvent"
         @back-event="showDetailEvent = false"
       ></DetailEvent>
     </div>
-    <div v-show="!showDetailEvent">
+    <div v-show="!showDetailEvent" v-if="!showDetailEvent">
       <div class="title-event">
         <div
           class="mr-4 cursor-pointer position-relative"
@@ -564,6 +564,7 @@ export default {
           this.event.State = 2;
         } else {
           this.event.State = 1;
+          this.event.EventType = 2;
           var base64 = this.getBase64Image(
             document.getElementById("img-event")
           );
@@ -776,7 +777,6 @@ export default {
 
           if (this.listEventToDay && this.listEventToDay.length > 0) {
             this.event = this.listEventToDay[0];
-            console.log(this.event.HasLayer);
             this.checkHasData = true;
           } else {
             this.checkHasData = false;
@@ -791,9 +791,9 @@ export default {
               )
                 .toISOString()
                 .substr(0, 10),
-              EventType: 1,
+              EventType: 2,
               Title: "",
-              HasLayer: false,
+              HasLayer: true,
             };
             var a = 1;
           }
@@ -807,7 +807,8 @@ export default {
     setImage: function (file) {
       this.event.CoverImage = file;
       // this.hasImage = true;
-      console.log(file);
+      console.log("Data con cu buuuuuuuuuuuuuuuuuuuuuuu" , this.event.CoverImage == file );
+      // console.log(  this.event.CoverImage );
       // this.image = file;
     },
     convertDayDisplay(current_day) {
@@ -1161,4 +1162,5 @@ label.v-label.theme--light {
     font-size: 15px;
   }
 }
+
 </style>
