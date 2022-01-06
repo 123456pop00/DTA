@@ -28,7 +28,7 @@ export default {
     logout() {
       var DataUser = workLocalStorage("DataUser");
       DataUser.removeKey("DataUser");
-      window.location.href = "/login/";
+      window.location.href = "/";
       setTimeout(() => {
         window.location.reload(true);
       }, 200);

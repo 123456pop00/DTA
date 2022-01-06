@@ -566,7 +566,7 @@ export default {
           this.event.State = 2;
         } else {
           this.event.State = 1;
-          this.event.EventType = 2;
+          this.event.EventType = 0;
           this.event.DateEvent = this.solarDate.toISOString();
           var base64 = this.getBase64Image(
             document.getElementById("img-event")
@@ -946,10 +946,13 @@ export default {
     },
     getRandomQuote: function (date) {
       var date = new Date(date);
-      var start = new Date(date.getFullYear(), 0, 0);
+      var start = new Date(date.getFullYear(), 0, 1);
       var diff = date - start;
       var oneDay = 1000 * 60 * 60 * 24;
       let dayOfYear = Math.floor(diff / oneDay);
+      if (dayOfYear == 142){
+        return this.quotes[142-1].Content;
+      }
       return this.quotes[dayOfYear % 142].Content;
     },
     getRandomBase64Image: function (date) {
@@ -957,7 +960,7 @@ export default {
       var start = new Date(date.getFullYear(), 0, 0);
       var diff = date - start;
       var oneDay = 1000 * 60 * 60 * 24;
-      let dayOfYear = Math.floor(diff / oneDay) % 156;
+      let dayOfYear = Math.floor(diff / oneDay) % 147;
       return this.getImgUrl(`cover_${dayOfYear}`);
     },
   },

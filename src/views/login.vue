@@ -90,7 +90,7 @@ export default {
         if (response.Data && response.Success) {
           var tokenWorkLocal = workLocalStorage("DataUser");
           tokenWorkLocal.setData(response.Data);
-          this.$router.push("/components/event");
+          this.$router.push("/");
 
           // tokenWorkLocal.setData()
           this.showErr = false;
