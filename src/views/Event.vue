@@ -454,6 +454,7 @@ export default {
       defaultDate: today.format("YYYY-MM-DD"),
       dateLangValue: "vi",
       quotes: Quotes.Data,
+      checkLoadingData : false,
       customCells: [
         {
           days: [
@@ -746,12 +747,12 @@ export default {
       return date.format("YYYY-MM-DD");
     },
     onChange(solarDate, lunarDate, isLunarChecked) {
-      // console.log("11",moment().year(2021).month(11).date(24).lunar().format('YYYY-MM-DD'));
-      // console.log("22",moment().year(2021).month(10).date(21).solar().format('YYYY-MM-DD'));
+      // if(this.checkLoadingData) return;
+      // this.checkLoadingData = true;
       const me = this;
 
       if (solarDate) {
-        me.solarDate = solarDate._d;
+        me.solarDate = new Date(JSON.parse(JSON.stringify(solarDate._d)));
         me.defaultDate = solarDate.format("YYYY-MM-DD");
       }
 
@@ -777,11 +778,13 @@ export default {
 
       apiClient.post(`event/GetByDate`, eventTime).then((response) => {
         if (response.Data && response.Success) {
+          
           me.listEventToDay = response.Data;
 
           if (me.listEventToDay && me.listEventToDay.length > 0) {
             me.event = me.listEventToDay[0];
             me.checkHasData = true;
+            this.checkLoadingData = false;
           } else {
             me.checkHasData = false;
             // thêm luồng ở đây
@@ -799,6 +802,7 @@ export default {
               Title: "",
               HasLayer: true,
             };
+             this.checkLoadingData = false;
             var a = 1;
           }
         }

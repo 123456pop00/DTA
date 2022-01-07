@@ -461,11 +461,17 @@ export default {
         if (res.Data && res.Success) {
           me.desserts = res.Data;
           me.desserts.forEach((x, index) => {
+            var  a  = new Date();
             const time = new Date(x.ScheduleAt);
             let timePart = time.setTime(
               time.getTime() - 7 * 60 * 60 * 1000
             );
-            var  a  = new Date(timePart);
+            let e;
+            if(me.NotiTypeToGetData == 0){
+              a  = new Date(timePart);
+            } else {
+              a = time;
+            }
             x.STT = index + 1;
             x.Hour = a.getHours() + ":" + a.getMinutes();
             x.Date = a.toLocaleDateString();
