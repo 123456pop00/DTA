@@ -24,13 +24,14 @@
                 Open Dialog
               </v-btn> -->
               <button
+                v-show="NotiTypeToGetData == 1"
                 type="button"
                 class="btn btn-danger btn-save"
                 v-bind="attrs"
                 v-on="on"
                 @click="showAddNoti()"
               >
-                Tạo thông báo
+                Tạo thông báo 2
               </button>
             </template>
             <v-card>
