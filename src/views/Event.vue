@@ -561,7 +561,7 @@ export default {
     },
 
     saveEventDay() {
-      
+      const me = this;
       if (this.event) {
         if (this.event.ID) {
           this.event.State = 2;
@@ -576,11 +576,13 @@ export default {
         }
         apiClient.post(`event`, this.event).then((response) => {
           if (response.Data && response.Success) {
+            console.log(me.event);
             if (this.event.ID) {
               
               alert("Cập nhật dữ liệu thành công ");
 
             } else {
+              me.event.ID = response.Data[0].ID;
               this.getEventToMonth(new Date(this.defaultDate));
               alert("Thêm sự kiện thành công");
             }
