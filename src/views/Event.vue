@@ -1019,7 +1019,7 @@ export default {
     },
     getRandomBase64Image: function (date) {
       var date = new Date(date);
-      var start = new Date(date.getFullYear(), 0, 1);
+      var start = new Date(date.getFullYear(), 0, 0);
       var diff = date - start;
       var oneDay = 1000 * 60 * 60 * 24;
       let dayOfYear = Math.floor(diff / oneDay) % 146;
