@@ -31,7 +31,7 @@
                 v-on="on"
                 @click="showAddNoti()"
               >
-                Tạo thông báo 2
+                Tạo thông báo
               </button>
             </template>
             <v-card>
@@ -107,6 +107,7 @@
                       </template>
                       <v-date-picker
                         v-model="date"
+                        :disabled="typeDateSend != '2'"
                         :header-date-format="getHeaderDateFormat"
                         no-title
                         @input="menu2 = false"
@@ -377,31 +378,21 @@ export default {
       return this.editedIndex === -1 ? "Tạo thông báo" : "Sửa thông báo";
     },
     computedDateFormatted() {
-      if (this.editedIndex != -1) {
-        if (+this.typeDateSend == 1) {
-          var date = new Date(this.date);
-          date.setHours(7);
-          date.setMinutes(0);
-          date.setSeconds(0);
-          date.setMilliseconds(0);
-          this.mydate = date;
-          // date = this.date.toISOString().substr(0, 10);
-        } else if (+this.typeDateSend == 2) {
-          this.mydate = new Date(this.date);
-        } else {
-          this.mydate = new Date();
-        }
+      
+      if (+this.typeDateSend == 1) {
+        var tmp = new Date(this.date);
+        tmp.setHours(7);
+        tmp.setMinutes(0);
+        tmp.setSeconds(0);
+        tmp.setMilliseconds(0);
+        this.mydate = tmp;
+        // date = this.date.toISOString().substr(0, 10);
+      } else if (+this.typeDateSend == 2) {
+        this.mydate = new Date(this.date);
       } else {
-        var date = new Date();
-        if (+this.typeDateSend == 1) {
-          date.setHours(7);
-          date.setMinutes(0);
-          date.setSeconds(0);
-          date.setMilliseconds(0);
-        }
-
-        this.mydate = date;
+        this.mydate = new Date();
       }
+      
 
       this.dateSendNotiString = this.computedDateSendNoti();
       return this.formatDate(this.mydate);
@@ -540,7 +531,13 @@ export default {
       // return `1`;
     },
     showTimePicker() {
-      this.showPopupPicker = true;
+      if (this.typeDateSend == "2"){
+        this.showPopupPicker = true;
+      }
+      else {
+        this.showPopupPicker = false;
+      }
+      
     },
     chooseTimeFn() {
       this.showPopupPicker = false;

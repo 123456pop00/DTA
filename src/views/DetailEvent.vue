@@ -151,12 +151,20 @@
           <div class="font-14 font-weight-500 font-weight-bold">
             Các thông báo/lời chúc gửi KH
           </div>
-          <button class="button-detail1 color-button-add" @click="opentNoti">
+          <button v-if="mode != 1"  class="button-detail1 color-button-add" @click="opentNoti">
             Quản lý thông báo
           </button>
         </div>
         <div class="d-flex flex-column mt-3">
-          <div class="oke-number1" :title="eventUse.ContentPush">
+          <div v-if="mode == 1">
+            <v-textarea
+              outlined
+              name="input-7-4"
+              label="Nội dung thông báo"
+              v-model="event.ContentPush"
+            ></v-textarea>
+          </div>
+          <div v-if="mode != 1" class="oke-number1" :title="eventUse.ContentPush">
             {{ eventUse.ContentPush }}
           </div>
           <!-- <div v-for="item of listTitleEvent" :key="item">
@@ -418,8 +426,17 @@ export default {
         this.eventUse.EventType = 1;
       } else {
         this.eventUse.EventType = 2;
-
       }
+
+      if (this.mode == 1){
+        var tmp = new Date()
+        tmp.setHours(7);
+        tmp.setMinutes(0);
+        tmp.setSeconds(0);
+        tmp.setMilliseconds(0);
+        this.event.TimePush = tmp;
+      }
+
       this.event = JSON.parse(JSON.stringify(this.eventUse));
       apiClient.post(`event`, this.event).then((response) => {
         if (response.Data && response.Success) {
