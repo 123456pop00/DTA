@@ -39,8 +39,8 @@
             />
             <!-- v-model="user.Name" -->
           </div>
-          <div class="color-text font-italic mt-1" v-if="false">
-            Email sai định dạng
+          <div class="color-text font-italic mt-1" v-if="checkErroTitle">
+            Tên sự kiện sai định dạng
           </div>
           <div>
             <div class="font-14 font-size: font-weight-black mb-2 mt-5">
@@ -51,7 +51,7 @@
             <div class="d-flex justify-space-between text-day-lunar">
               <div v-if="mode == 2">{{ eventUse.textDayLunar }}</div>
               <i v-if="mode == 2" class="fas fa-calendar-week mt-1 mr-2"></i>
-              <div v-if="mode == 2">{{ eventUse.textDayLunar }}</div>
+              <!-- <div v-if="mode == 2">{{ eventUse.textDayLunar }}</div> -->
 
               <v-menu
                 v-if="mode == 1"
@@ -136,7 +136,7 @@
             </image-uploader>
           </div>
           <!-- {{event.CoverImage == ''}} -->
-          <img
+          <img  id="img-detail-event"
             class="flex-1-1-auto"
             v-bind:src="
               eventUse.CoverImage == ''
@@ -151,20 +151,12 @@
           <div class="font-14 font-weight-500 font-weight-bold">
             Các thông báo/lời chúc gửi KH
           </div>
-          <button v-if="mode != 1"  class="button-detail1 color-button-add" @click="opentNoti">
+          <button class="button-detail1 color-button-add" @click="opentNoti">
             Quản lý thông báo
           </button>
         </div>
         <div class="d-flex flex-column mt-3">
-          <div v-if="mode == 1">
-            <v-textarea
-              outlined
-              name="input-7-4"
-              label="Nội dung thông báo"
-              v-model="event.ContentPush"
-            ></v-textarea>
-          </div>
-          <div v-if="mode != 1" class="oke-number1" :title="eventUse.ContentPush">
+          <div class="oke-number1" :title="eventUse.ContentPush">
             {{ eventUse.ContentPush }}
           </div>
           <!-- <div v-for="item of listTitleEvent" :key="item">
@@ -401,6 +393,10 @@ export default {
       return this.getImgUrl(`cover_${dayOfYear}`);
     },
     save() {
+      if(!this.eventUse.Title || !this.eventUse.Title.trim() || !this.eventUse.textDayLunar || !this.eventUse.textDayLunar.trim()){
+        alert("Có trường dữ liệu chưa hợp lệ vui lòng kiểm tra");
+        return;
+      }
       const me = this;
       // const newDiv = document.createElement("div");
       const newDiv = $("<div></div>").html(this.event.Content);
@@ -422,21 +418,18 @@ export default {
       }
       
       this.eventUse.State = +this.mode;
-      if(this.checkEventLuna) {
-        this.eventUse.EventType = 1;
-      } else {
-        this.eventUse.EventType = 2;
-      }
+      if(this.mode == 1 ){
+        var base64 = this.getBase64ImageV2(
+            document.getElementById("img-detail-event")
+          );
+          this.eventUse.CoverImage = base64;
+        if(this.checkEventLuna) {
+          this.eventUse.EventType = 1;
+        } else {
+          this.eventUse.EventType = 2;
+        }
 
-      if (this.mode == 1){
-        var tmp = new Date()
-        tmp.setHours(7);
-        tmp.setMinutes(0);
-        tmp.setSeconds(0);
-        tmp.setMilliseconds(0);
-        this.event.TimePush = tmp;
       }
-
       this.event = JSON.parse(JSON.stringify(this.eventUse));
       apiClient.post(`event`, this.event).then((response) => {
         if (response.Data && response.Success) {
@@ -494,6 +487,34 @@ export default {
       canvas.width = 750;
       canvas.height = 600;
       canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+      var dataURL = canvas.toDataURL("image/png");
+      return dataURL;
+    },
+    getBase64ImageV2(img) {
+      var canvas = document.createElement("canvas");
+      var ctx = canvas.getContext("2d");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var oc = document.createElement("canvas"),
+        octx = oc.getContext("2d");
+
+      oc.width = 750;
+      oc.height = 600;
+      octx.drawImage(img, 0, 0, oc.width, oc.height);
+      octx.drawImage(oc, 0, 0, oc.width * 0.5, oc.height * 0.5);
+      ctx.drawImage(
+        oc,
+        0,
+        0,
+        oc.width * 0.5,
+        oc.height * 0.5,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+      // Resize the image
+      
       var dataURL = canvas.toDataURL("image/png");
       return dataURL;
     },

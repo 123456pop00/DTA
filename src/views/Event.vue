@@ -608,7 +608,7 @@ export default {
       // canvas.width = 750;
       // canvas.height = 600;
       // canvas.getContext("2d").drawImage(img, 0, 0, width, height);
-      // var dataURL = canvas.toDataURL("image/png");
+      var dataURL = canvas.toDataURL("image/png");
       return dataURL;
     },
 
