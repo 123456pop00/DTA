@@ -3,7 +3,7 @@
     <div v-show="showDetailEvent" v-if="showDetailEvent">
       <DetailEvent
         :event="currentEvent"
-        @back-event="showDetailEvent = false"
+        @back-event="showDetailEvent = false"  :mode="currentMode"
       ></DetailEvent>
     </div>
     <div v-show="!showDetailEvent" v-if="!showDetailEvent">
@@ -80,7 +80,7 @@
             </div>
             <!-- v-if="checkHasData" -->
             <div class="mt-4 flex-1-1-auto">
-              <div class="custom-1 d-flex flex-column"  >
+              <div class="custom-1 d-flex flex-column">
                 <div class="font-weight font-18 mb-2">Chi tiết ngày</div>
                 <div class="d-flex" style="height: 80%">
                   <div class="col-6 d-flex flex-column pr-3">
@@ -124,11 +124,7 @@
                           ? event.CoverImageFake
                           : event.CoverImage
                       "
-                      style="
-                        width: 100%;
-                        border-radius: 10px;
-                        height: 400px;
-                      "
+                      style="width: 100%; border-radius: 10px; height: 400px"
                       alt=""
                     />
                   </div>
@@ -173,7 +169,8 @@
                     align-center
                     custom-event-to-day
                     d-flex
-                    justify-space-between mb-3
+                    justify-space-between
+                    mb-3
                   "
                   style="height: 60px"
                   v-for="item of listEventToDay"
@@ -217,18 +214,18 @@
               <div class="text-day-solar">Danh sách sự kiện</div>
               <div>
                 <!-- <button>Lưu</button> -->
-                <!-- <button
+                <button
                   type="button"
                   class="btn btn-danger btn-save"
-                  @click="showDialogEvent = true"
+                  @click="createEvent()"
                 >
                   Tạo sự kiện
-                </button> -->
+                </button>
               </div>
             </div>
             <div class="custom-listevent flex-1-1-auto mt-4 overflow-y-auto">
               <div v-for="itemYear of arrEvents" :key="itemYear.month">
-                <div
+                <div  
                   v-for="itemMonth of itemYear.DataMonth"
                   :key="itemMonth.month"
                 >
@@ -248,11 +245,15 @@
                         <div>{{ event.Title }}</div>
                         <div>ÂL: {{ event.DateLunar }}</div>
                       </div>
-                      <div
-                        class="align-center d-flex cursor-pointer"
-                        @click="showDetailEventFn(event)"
-                      >
-                        <i class="far fa-edit"></i>
+                      <div class="align-center d-flex cursor-pointer">
+                        <i
+                          @click="showDetailEventFn(event)"
+                          class="far fa-edit"
+                        ></i>
+                        <i
+                          @click="deleteItem(event)"
+                          class="far fa-trash-alt ml-3"
+                        ></i>
                       </div>
                     </div>
                   </div>
@@ -380,6 +381,30 @@
         </v-card>
       </v-dialog>
     </div>
+    <v-dialog v-model="dialogDelete" max-width="530px">
+      <v-card>
+        <v-card-title class="text-h5"
+          >Bạn có chắc chắn muốn xóa sự kiện này ?</v-card-title
+        >
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <button
+            class="button-noti mr-3"
+            style="color: #9e0c10; border: 1px solid #d9d9d9"
+            @click="closeDelete"
+          >
+            Hủy
+          </button>
+          <button
+            class="button-noti backgroud-button"
+            @click="deleteItemConfirm"
+          >
+            Đồng ý
+          </button>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -440,21 +465,14 @@ export default {
         Paragraph,
         HardBreak,
       ],
-      extensions2: [
-        History,
-        Blockquote,
-        Underline,
-        Italic,
-        Bold,
-        HardBreak
-      ],
+      extensions2: [History, Blockquote, Underline, Italic, Bold, HardBreak],
       firstDayOfWeek: 1,
       tabActive: 1,
       disableDaysBeforeToday: false,
       defaultDate: today.format("YYYY-MM-DD"),
       dateLangValue: "vi",
       quotes: Quotes.Data,
-      checkLoadingData : false,
+      checkLoadingData: false,
       customCells: [
         {
           days: [
@@ -502,6 +520,9 @@ export default {
       arrEvents: [],
       textOKE: "~@/assets/Cover/cover_2.png",
       selectYear: "2021",
+      editedItem: {},
+      dialogDelete: false,
+      currentMode : 2
     };
   },
   computed: {
@@ -510,6 +531,30 @@ export default {
     },
   },
   methods: {
+    createEvent() {
+      this.showDetailEvent = true;
+      this.currentMode = 1;
+    },
+    deleteItemConfirm() {
+      const me = this;
+
+      me.editedItem.State = 3;
+      // debugger;
+      apiClient.post(`event`, me.editedItem).then((res) => {
+        if (res.Success) {
+          // me.initialize();
+          me.getListEvent();
+          me.closeDelete();
+        }
+      });
+    },
+    closeDelete() {
+      this.dialogDelete = false;
+      this.$nextTick(() => {
+        this.editedItem = {};
+        // this.editedIndex = -1;
+      });
+    },
     changeYear() {
       console.log(1);
       if (this.tabActive == 2) this.getListEvent();
@@ -524,10 +569,6 @@ export default {
       var ctx = canvas.getContext("2d");
       canvas.width = img.width;
       canvas.height = img.height;
-
-      // canvas.height = canvas.width * (img.height / img.width);
-
-      // step 1 - resize to 50%
       var oc = document.createElement("canvas"),
         octx = oc.getContext("2d");
 
@@ -535,10 +576,8 @@ export default {
       oc.height = 600;
       octx.drawImage(img, 0, 0, oc.width, oc.height);
 
-      // step 2
       octx.drawImage(oc, 0, 0, oc.width * 0.5, oc.height * 0.5);
 
-      // // step 3, resize to final size
       ctx.drawImage(
         oc,
         0,
@@ -550,18 +589,32 @@ export default {
         canvas.width,
         canvas.height
       );
-      // var ctx = canvas.getContext("2d");
-      // ctx.width = 750;
-      // ctx.height = 600;
-      // ctx.drawImage(img, 0, 0, 750, 600);
 
-      // ctx.drawImage(img, 0, 0);
-      var dataURL = canvas.toDataURL("image/png");
+      // var canvas = document.createElement("canvas"),
+      //   max_size = 1000,
+      //   width = img.width,
+      //   height = img.height;
+      // if (width > height) {
+      //   if (width > max_size) {
+      //     height *= max_size / width;
+      //     width = max_size;
+      //   }
+      // } else {
+      //   if (height > max_size) {
+      //     width *= max_size / height;
+      //     height = max_size;
+      //   }
+      // }
+      // canvas.width = 750;
+      // canvas.height = 600;
+      // canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+      // var dataURL = canvas.toDataURL("image/png");
       return dataURL;
     },
 
     saveEventDay() {
       const me = this;
+      // console.log(123123);
       if (this.event) {
         if (this.event.ID) {
           this.event.State = 2;
@@ -569,6 +622,7 @@ export default {
           this.event.State = 1;
           this.event.EventType = 0;
           this.event.DateEvent = this.solarDate.toISOString();
+          console.log(document.getElementById("img-event"));
           var base64 = this.getBase64Image(
             document.getElementById("img-event")
           );
@@ -578,9 +632,7 @@ export default {
           if (response.Data && response.Success) {
             console.log(me.event);
             if (this.event.ID) {
-              
               alert("Cập nhật dữ liệu thành công ");
-
             } else {
               me.event.ID = response.Data[0].ID;
               this.getEventToMonth(new Date(this.defaultDate));
@@ -598,6 +650,7 @@ export default {
     },
     showDetailEventFn(event) {
       const me = this;
+      this.currentMode = 2;
       if (event) {
         // gan thang event kia thanh
         apiClient.get(`event/getbyid/${event.ID}`).then((response) => {
@@ -624,7 +677,7 @@ export default {
               element.YearSolar = y;
               element.MonthSolar = m + 1;
               element.DaySolar = d;
-              element.FullDaySolar = `${d}/${m+1}/${y}`;
+              element.FullDaySolar = `${d}/${m + 1}/${y}`;
               element.DateLunar = this.formatLunar(d, m, y);
             }
             me.currentEvent = element;
@@ -633,6 +686,11 @@ export default {
           }
         });
       }
+    },
+    deleteItem(item) {
+      // this.editedIndex = this.desserts.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialogDelete = true;
     },
     formatLunar(d, m, y) {
       return moment().year(y).month(m).date(d).lunar().format("DD/MM/YYYY");
@@ -709,7 +767,7 @@ export default {
                 let eventMonth = datas.filter(
                   (e) => e.MonthSolar == month && e.YearSolar == year
                 );
-                eventMonth = eventMonth.sort(function(a,b){
+                eventMonth = eventMonth.sort(function (a, b) {
                   return a.DaySolar - b.DaySolar;
                 });
                 monthS.month = month;
@@ -761,7 +819,7 @@ export default {
       me.event.DateEvent = me.solarDate.toISOString();
       me.lunarDate = lunarDate;
       me.solarDateConvert = formatDate(me.solarDate);
-      me.lunarDateConvert = formatDate(me.lunarDate);      
+      me.lunarDateConvert = formatDate(me.lunarDate);
 
       let solarSV = me.solarDate.setTime(
         me.solarDate.getTime() + 7 * 60 * 60 * 1000
@@ -780,7 +838,6 @@ export default {
 
       apiClient.post(`event/GetByDate`, eventTime).then((response) => {
         if (response.Data && response.Success) {
-          
           me.listEventToDay = response.Data;
 
           if (me.listEventToDay && me.listEventToDay.length > 0) {
@@ -804,7 +861,7 @@ export default {
               Title: "",
               HasLayer: true,
             };
-             this.checkLoadingData = false;
+            this.checkLoadingData = false;
             var a = 1;
           }
         }
@@ -936,7 +993,6 @@ export default {
                 );
                 me.customCells[0].days = eventsMonth;
                 me.customCells = JSON.parse(JSON.stringify(me.customCells));
-                var a = 1;
               }
             }
           }
@@ -956,8 +1012,8 @@ export default {
       var diff = date - start;
       var oneDay = 1000 * 60 * 60 * 24;
       let dayOfYear = Math.floor(diff / oneDay);
-      if (dayOfYear == 142){
-        return this.quotes[142-1].Content;
+      if (dayOfYear == 142) {
+        return this.quotes[142 - 1].Content;
       }
       return this.quotes[dayOfYear % 142].Content;
     },
@@ -1175,5 +1231,4 @@ label.v-label.theme--light {
     font-size: 15px;
   }
 }
-
 </style>

@@ -133,10 +133,10 @@ export default {
 
 .text-area-right {
   width: 100%;
-  border: thin solid #ced3d8;
+  // border: thin solid #ced3d8;
   height: 100%;
   border-radius: 13px;
-  padding: 10px;
+  // padding: 10px;
 }
 .font-14 {
   font-size: 14px;

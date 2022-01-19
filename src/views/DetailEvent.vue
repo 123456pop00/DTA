@@ -34,7 +34,7 @@
               type="text"
               id="name"
               placeholder="Nhập tên sự kiện"
-              v-model="event.Title"
+              v-model="eventUse.Title"
               style="width: 100%"
             />
             <!-- v-model="user.Name" -->
@@ -44,14 +44,65 @@
           </div>
           <div>
             <div class="font-14 font-size: font-weight-black mb-2 mt-5">
-              <label>Ngày diễn ra (Dương lịch)</label>
+              <label v-if="mode == 2">Ngày diễn ra (Dương lịch)</label>
+              <label v-if="mode == 1">Ngày diễn ra </label>
             </div>
-            <div
-              class="text-day-lunar d-flex justify-space-between text-day-lunar"
-            >
-              <div>{{ event.textDayLunar }}</div>
-              <i class="fas fa-calendar-week mt-1 mr-2"></i>
+
+            <div class="d-flex justify-space-between text-day-lunar">
+              <div v-if="mode == 2">{{ eventUse.textDayLunar }}</div>
+              <i v-if="mode == 2" class="fas fa-calendar-week mt-1 mr-2"></i>
+              <div v-if="mode == 2">{{ eventUse.textDayLunar }}</div>
+
+              <v-menu
+                v-if="mode == 1"
+                v-model="showPickker"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                max-width="290px"
+                min-width="auto"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="eventUse.textDayLunar"
+                    persistent-hint
+                    prepend-icon="prepend"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <template #prepend>
+                      <v-icon right> mdi-calendar </v-icon>
+                    </template></v-text-field
+                  >
+                </template>
+                <!-- <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="event.textDayLunar"
+                    persistent-hint
+                    
+                    append-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                     </v-text-field
+                  > 
+                </template>-->
+                <!-- v-model="event.DateEvent" -->
+                <v-date-picker
+                  :header-date-format="getHeaderDateFormat"
+                  no-title
+                  @input="changeDateInsert()"
+                ></v-date-picker>
+              </v-menu>
             </div>
+            <v-checkbox
+              v-if="mode == 1"
+              v-model="checkEventLuna"
+              label="Sự kiện âm lịch"
+              style="margin-top: 24px; margin-bottom: 8px"
+            ></v-checkbox>
             <!-- v-model="user.Name" -->
           </div>
           <div
@@ -88,9 +139,9 @@
           <img
             class="flex-1-1-auto"
             v-bind:src="
-              event.CoverImage == ''
-                ? 'https://dongnaiart.edu.vn/wp-content/uploads/meo_chup_anh_dep_1-1.jpg'
-                : event.CoverImage
+              eventUse.CoverImage == ''
+                ? eventUse.CoverImageFake
+                : eventUse.CoverImage
             "
             style="width: 100%; border-radius: 10px; height: 375px"
             alt=""
@@ -105,8 +156,8 @@
           </button>
         </div>
         <div class="d-flex flex-column mt-3">
-          <div class="oke-number1" :title="event.ContentPush">
-            {{ event.ContentPush }}
+          <div class="oke-number1" :title="eventUse.ContentPush">
+            {{ eventUse.ContentPush }}
           </div>
           <!-- <div v-for="item of listTitleEvent" :key="item">
             {{ item }}
@@ -123,7 +174,7 @@
             placeholder="Nhập nội dung"
             class="form-control text-area-right"
             rows="8"
-            v-model="event.Quote"
+            v-model="eventUse.Quote"
             :extensions="extensions2"
           ></tiptap-vuetify>
         </div>
@@ -132,11 +183,15 @@
         </div>
         <tiptap-vuetify
           class="tip-tap-ok"
-          v-model="event.Content"
+          v-model="eventUse.Content"
           :extensions="extensions"
         />
       </div>
     </div>
+    <!-- <div style="height: 400px">
+      <img :src="ele1" alt="" />
+      <img :src="ele2" alt="" />
+    </div> -->
   </div>
 </template>
 
@@ -159,7 +214,9 @@ import {
   History,
   Image,
 } from "tiptap-vuetify";
+import formatDate from "../common/commonFn";
 import Quotes from "../models/const/quotes";
+import $ from "jquery";
 import ImageUploader from "vue-image-upload-resize";
 import apiClient from "../services/APIClient";
 export default {
@@ -167,6 +224,7 @@ export default {
   // specify TiptapVuetify component in "components"
   components: { TiptapVuetify, ImageUploader },
   props: {
+    mode: Number,
     event: {
       Content: "",
       CoverImage: "",
@@ -182,6 +240,7 @@ export default {
     },
   },
   data: () => ({
+    showPickker: false,
     extensions: [
       History,
       Image,
@@ -199,6 +258,7 @@ export default {
       Paragraph,
       HardBreak,
     ],
+    checkEventLuna: false,
     extensions2: [History, Blockquote, Underline, Italic, Bold, HardBreak],
     dayOfYear: 1,
     quotes: Quotes.Data,
@@ -231,22 +291,194 @@ export default {
         value: 3,
       },
     ],
+    eventUse: {
+      Content: "",
+      CoverImage: "",
+      Quote: "",
+      DateEvent: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+        .toISOString()
+        .substr(0, 10),
+      EventType: 1,
+      Title: "",
+      TypeRepeat: 0,
+      TimePush: new Date(new Date().setHours(9, 0, 0)),
+      ContentPush: "",
+    },
+    // ele1: "",
+    // ele2: "",
   }),
   created: function () {
     this.initialize();
     // console.log(this.event);
-    this.event.ContentPush = this.event.ContentPush.replaceAll('"', "");
+    console.log(this.mode);
+    // if (!this.mode == 2) {
+    //   this.event.ContentPush = this.event.ContentPush.replaceAll('"', "");
+    // }
+    // if (this.mode == 1) {
+    //   this.event = {
+    //     Content: "",
+    //     CoverImage: "",
+    //     CoverImageFake: this.getRandomBase64Image(new Date()),
+    //     Quote: this.getRandomQuote(new Date()),
+    //     DateEvent: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+    //       .toISOString()
+    //       .substr(0, 10),
+    //     EventType: 2,
+    //     Title: "",
+    //     HasLayer: true,
+    //   };
+    // }
+
+    //
+    if (this.mode == 2) {
+      this.eventUse = JSON.parse(JSON.stringify(this.event));
+      this.eventUse.ContentPush = this.eventUse.ContentPush.replaceAll('"', "");
+    }
+    if (this.mode == 1) {
+      this.eventUse.textDayLunar = "";
+      this.eventUse = {
+        Content: "",
+        CoverImage: "",
+        CoverImageFake: this.getRandomBase64Image(new Date()),
+        Quote: this.getRandomQuote(new Date()),
+        DateEvent: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+          .toISOString()
+          .substr(0, 10),
+        EventType: 2,
+        Title: "",
+        HasLayer: true,
+      };
+    }
+  },
+  watch: {
+    showPickker: function () {},
+    event: function () {
+      // console.log(this.eventUse);
+    },
   },
   methods: {
+    changeDateInsert() {
+      this.showPickker = false;
+      // console.log(this.eventUse.DateEvent);
+      var a = new Date(this.eventUse.DateEvent);
+      this.eventUse.textDayLunar = formatDate(a);
+      this.eventUse.DateEvent = a.toISOString();
+    },
+    getHeaderDateFormat(isoDate) {
+      var arrDate = isoDate.split("-");
+      // console.log("getHeaderDateFormat: " + isoDate);
+      return `Tháng ${arrDate[1]} - ${arrDate[0]}`;
+    },
+    getImgUrl(pet) {
+      var images = require.context("../assets/Cover/", false, /\.png$/);
+      return images("./" + pet + ".png");
+    },
+    getRandomQuote: function (date) {
+      var date = new Date(date);
+      var start = new Date(date.getFullYear(), 0, 1);
+      var diff = date - start;
+      var oneDay = 1000 * 60 * 60 * 24;
+      let dayOfYear = Math.floor(diff / oneDay);
+      if (dayOfYear == 142) {
+        return this.quotes[142 - 1].Content;
+      }
+      return this.quotes[dayOfYear % 142].Content;
+    },
+    getRandomBase64Image: function (date) {
+      var date = new Date(date);
+      var start = new Date(date.getFullYear(), 0, 1);
+      var diff = date - start;
+      var oneDay = 1000 * 60 * 60 * 24;
+      let dayOfYear = Math.floor(diff / oneDay) % 146;
+      return this.getImgUrl(`cover_${dayOfYear}`);
+    },
     save() {
-      this.event.State = 2;
+      const me = this;
+      // const newDiv = document.createElement("div");
+      const newDiv = $("<div></div>").html(this.event.Content);
+      // newDiv.innerHTML = this.event.Content;
+      let arrImg = newDiv.find("img");
+
+      if (arrImg && arrImg.length > 0) {
+        // arrImg.forEach((element) => console.log(element));
+        arrImg.each(function (index, element) {
+          // console.log(index + ": " + element);
+          // console.log(element);
+          // console.log(me.getBase64Image(element));
+          // element.attr('src',111111);
+          // me.ele1 = element.src;
+          // me.ele2 = me.getBase64Image(element);
+          element.src = me.getBase64Image(element);
+        });
+        this.eventUse.Content = newDiv.html();
+      }
+      
+      this.eventUse.State = +this.mode;
+      if(this.checkEventLuna) {
+        this.eventUse.EventType = 1;
+      } else {
+        this.eventUse.EventType = 2;
+
+      }
+      this.event = JSON.parse(JSON.stringify(this.eventUse));
       apiClient.post(`event`, this.event).then((response) => {
         if (response.Data && response.Success) {
-          alert("Cập nhật dữ liệu thành công ");
+          if(this.mode == 1) {
+            alert("Thêm dữ liệu thành công ");
+            this.mode = 2;
+            this.eventUse = response.Data[0];
+          } else{
+            alert("Cập nhật dữ liệu thành công ");
+          }
         } else {
           alert("Cập nhật dữ liệu thất bại ");
         }
       });
+    },
+    getBase64Image(img) {
+      // var canvas = document.createElement("canvas");
+      // var ctx = canvas.getContext("2d");
+      // canvas.width = img.width;
+      // canvas.height = img.height;
+      // var oc = document.createElement("canvas"),
+      //   octx = oc.getContext("2d");
+
+      // oc.width = 750;
+      // oc.height = 600;
+      // octx.drawImage(img, 0, 0, oc.width, oc.height);
+      // octx.drawImage(oc, 0, 0, oc.width * 0.5, oc.height * 0.5);
+      // ctx.drawImage(
+      //   oc,
+      //   0,
+      //   0,
+      //   oc.width * 0.5,
+      //   oc.height * 0.5,
+      //   0,
+      //   0,
+      //   canvas.width,
+      //   canvas.height
+      // );
+      // Resize the image
+      var canvas = document.createElement("canvas"),
+        max_size = 1000,
+        width = img.width,
+        height = img.height;
+      if (width > height) {
+        if (width > max_size) {
+          height *= max_size / width;
+          width = max_size;
+        }
+      } else {
+        if (height > max_size) {
+          width *= max_size / height;
+          height = max_size;
+        }
+      }
+      canvas.width = 750;
+      canvas.height = 600;
+      canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+      var dataURL = canvas.toDataURL("image/png");
+      return dataURL;
     },
     emitBack() {
       this.$emit("back-event", true);
@@ -254,31 +486,6 @@ export default {
     opentNoti() {
       // this.window.location.href = window.location.origin + "/maps/google/"
       this.$router.push("/components/notifications/");
-    },
-    sendData12: function () {
-      console.log("senddata");
-      // if (!this.event.CoverImage) {
-      //   this.getRandomBase64Image();
-      // }
-      if (!this.event.Quote) {
-        this.getRandomQuote();
-      }
-
-      this.event.TimePush = new Date(
-        new Date(this.event.DateEvent).setHours(9, 0, 0)
-      );
-
-      console.log(this.event.CoverImage);
-      // axios
-      //   .post("https://localhost:5001/Event", this.event)
-      //   .then((response) => {
-      //     console.log(this.event);
-      //     this.event.Content = "";
-      //     this.event.CoverImage = null;
-      //     this.event.Quote = "";
-      //     this.event.Title = "";
-      //     this.event.ContentPush = "";
-      //   });
     },
     getday: function () {
       var date = new Date(this.event.DateEvent);
@@ -295,22 +502,7 @@ export default {
       console.log(file);
       // this.image = file;
     },
-    getRandomBase64Image: function () {
-      var date = new Date(this.event.DateEvent);
-      var start = new Date(date.getFullYear(), 0, 0);
-      var diff = date - start;
-      var oneDay = 1000 * 60 * 60 * 24;
-      this.dayOfYear = Math.floor(diff / oneDay);
-      setImage(`../assets/Cover/cover_{this.dayOfYear}.png`);
-    },
-    getRandomQuote: function () {
-      var date = new Date(this.event.DateEvent);
-      var start = new Date(date.getFullYear(), 0, 0);
-      var diff = date - start;
-      var oneDay = 1000 * 60 * 60 * 24;
-      this.dayOfYear = Math.floor(diff / oneDay);
-      this.event.Quote = this.quotes[this.dayOfYear % 142];
-    },
+
     initialize() {},
   },
 };
@@ -357,13 +549,14 @@ a {
   border-radius: 6px;
   height: 40px;
 }
-.text-day-lunar {
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
-  height: 40px;
-  padding: 9px 10px;
-  font-size: 15px;
-}
+
+// .v-input__prepend-outer {
+//   position: absolute;
+//   right: 0;
+// }
+// .v-input__slot::before {
+//   display: none;
+// }
 .color-button-add {
   height: 32px;
   padding: 0px 10px;
@@ -377,6 +570,9 @@ a {
   .tiptap-vuetify-editor__content {
     height: 400px;
   }
+  img {
+    width: 100%;
+  }
 }
 .oke-number1 {
   height: 40px;
@@ -388,5 +584,99 @@ a {
   align-items: center;
   padding: 9px;
   font-size: 14px;
+}
+.v-input.v-input--is-readonly.theme--light.v-text-field.v-text-field--is-booted {
+  height: 0px;
+  margin: 0;
+  padding-top: 0px;
+}
+</style>
+<style lang="scss">
+.text-day-lunar {
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  height: 40px;
+  padding: 9px 10px;
+  font-size: 15px;
+  position: relative;
+  i.v-icon.notranslate.v-icon--right.mdi.mdi-calendar.theme--light {
+    position: absolute;
+    right: -6px;
+    top: -4px;
+  }
+  .v-input.v-input--is-label-active.v-input--is-dirty.v-input--is-readonly.theme--light.v-text-field.v-text-field--is-booted {
+    position: relative;
+  }
+  .v-input__prepend-outer {
+    position: absolute;
+    right: 0;
+  }
+  .v-input__slot::before {
+    display: none;
+  }
+  .v-input__slot::after {
+    display: none;
+  }
+}
+.theme--light.v-data-table > .v-data-table__wrapper > table > thead > tr > th {
+  color: #000000;
+  font-weight: bold !important;
+  font-size: 14px;
+}
+.v-data-table-header {
+  border: 2px solid #f5f5f5;
+  background: #d9d9d9;
+  color: #000000 !important;
+  border-radius: 103px;
+}
+.table-noti {
+  table {
+    border-collapse: collapse;
+    tbody {
+      border: thin solid #d9d9d9;
+    }
+  }
+}
+
+.text-title-name {
+  font-weight: 500;
+  color: #000000;
+  font-size: 14px;
+}
+
+.footer {
+  border-top: thin solid #d9d9d9;
+}
+</style>
+<style lang="scss">
+.v-dialog > .v-card > .v-card__actions {
+  padding: 8px 20px;
+}
+.v-input.v-input--is-label-active.v-input--is-dirty.v-input--is-readonly.theme--light.v-text-field.v-text-field--is-booted {
+  position: relative;
+  .v-input__prepend-outer {
+    position: absolute;
+    right: 0;
+  }
+}
+.disabled-input {
+  background: #f5f5f5;
+}
+.date-send-noti {
+  background: #f5f5f5;
+  border-radius: 6px;
+  width: 143px;
+  height: 40px;
+  padding: 9px 12px;
+  color: #000000;
+}
+.date-send-noti:hover {
+  cursor: pointer;
+}
+.v-btn__content {
+  font-size: 12px;
+}
+.v-time-picker-title {
+  color: black;
 }
 </style>
