@@ -39,9 +39,9 @@
             />
             <!-- v-model="user.Name" -->
           </div>
-          <div class="color-text font-italic mt-1" v-if="checkErroTitle">
+          <!-- <div class="color-text font-italic mt-1" >
             Tên sự kiện sai định dạng
-          </div>
+          </div> -->
           <div>
             <div class="font-14 font-size: font-weight-black mb-2 mt-5">
               <label v-if="mode == 2">Ngày diễn ra (Dương lịch)</label>
@@ -64,7 +64,7 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
-                    v-model="eventUse.textDayLunar"
+                    v-model="textDayLunar"
                     persistent-hint
                     prepend-icon="prepend"
                     readonly
@@ -91,6 +91,7 @@
                 </template>-->
                 <!-- v-model="event.DateEvent" -->
                 <v-date-picker
+                  v-model="eventUse.DateEvent"
                   :header-date-format="getHeaderDateFormat"
                   no-title
                   @input="changeDateInsert()"
@@ -136,7 +137,8 @@
             </image-uploader>
           </div>
           <!-- {{event.CoverImage == ''}} -->
-          <img  id="img-detail-event"
+          <img
+            id="img-detail-event"
             class="flex-1-1-auto"
             v-bind:src="
               eventUse.CoverImage == ''
@@ -258,6 +260,7 @@ export default {
       Paragraph,
       HardBreak,
     ],
+    textDayLunar: "",
     checkEventLuna: false,
     extensions2: [History, Blockquote, Underline, Italic, Bold, HardBreak],
     dayOfYear: 1,
@@ -361,13 +364,15 @@ export default {
       this.showPickker = false;
       // console.log(this.eventUse.DateEvent);
       var a = new Date(this.eventUse.DateEvent);
-      this.eventUse.textDayLunar = formatDate(a);
+      this.textDayLunar = formatDate(a);
       this.eventUse.DateEvent = a.toISOString();
+      this;
     },
     getHeaderDateFormat(isoDate) {
       var arrDate = isoDate.split("-");
       // console.log("getHeaderDateFormat: " + isoDate);
-      return `Tháng ${arrDate[1]} - ${arrDate[0]}`;
+      var a = arrDate[1] ? `Tháng ${arrDate[1]} - ` : "";
+      return `${a} ${arrDate[0]}`;
     },
     getImgUrl(pet) {
       var images = require.context("../assets/Cover/", false, /\.png$/);
@@ -393,7 +398,12 @@ export default {
       return this.getImgUrl(`cover_${dayOfYear}`);
     },
     save() {
-      if(!this.eventUse.Title || !this.eventUse.Title.trim() || !this.eventUse.textDayLunar || !this.eventUse.textDayLunar.trim()){
+      if (
+        !this.eventUse.Title ||
+        !this.eventUse.Title.trim() ||
+        !this.eventUse.textDayLunar ||
+        !this.eventUse.textDayLunar.trim()
+      ) {
         alert("Có trường dữ liệu chưa hợp lệ vui lòng kiểm tra");
         return;
       }
@@ -416,28 +426,27 @@ export default {
         });
         this.eventUse.Content = newDiv.html();
       }
-      
+
       this.eventUse.State = +this.mode;
-      if(this.mode == 1 ){
-        var base64 = this.getBase64ImageV2(
-            document.getElementById("img-detail-event")
-          );
-          this.eventUse.CoverImage = base64;
-        if(this.checkEventLuna) {
+      if (this.mode == 1) {
+        var base64 = this.getBase64Image(
+          document.getElementById("img-detail-event")
+        );
+        this.eventUse.CoverImage = base64;
+        if (this.checkEventLuna) {
           this.eventUse.EventType = 1;
         } else {
           this.eventUse.EventType = 2;
         }
-
       }
       this.event = JSON.parse(JSON.stringify(this.eventUse));
       apiClient.post(`event`, this.event).then((response) => {
         if (response.Data && response.Success) {
-          if(this.mode == 1) {
+          if (this.mode == 1) {
             alert("Thêm dữ liệu thành công ");
             this.mode = 2;
             this.eventUse = response.Data[0];
-          } else{
+          } else {
             alert("Cập nhật dữ liệu thành công ");
           }
         } else {
@@ -514,7 +523,7 @@ export default {
         canvas.height
       );
       // Resize the image
-      
+
       var dataURL = canvas.toDataURL("image/png");
       return dataURL;
     },
