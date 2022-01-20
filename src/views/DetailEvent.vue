@@ -158,7 +158,7 @@
           </button>
         </div>
         <div class="d-flex flex-column mt-3">
-            <div v-if="mode == 1 || event.ContentPush == null || event.ContentPush.length == 0">
+            <div v-if="checkContentPush">
             <v-textarea
               outlined
               name="input-7-4"
@@ -166,7 +166,7 @@
               v-model="event.ContentPush"
             ></v-textarea>
           </div>
-          <div v-if="mode != 1 && event.ContentPush.length > 0" class="oke-number1" :title="eventUse.ContentPush">
+          <div v-if="!checkContentPush" class="oke-number1" :title="eventUse.ContentPush">
             {{ eventUse.ContentPush }}
           </div>
           <!-- <div v-for="item of listTitleEvent" :key="item">
@@ -251,6 +251,7 @@ export default {
   },
   data: () => ({
     showPickker: false,
+    checkContentPush: false,
     extensions: [
       History,
       Image,
@@ -359,6 +360,13 @@ export default {
         Title: "",
         HasLayer: true,
       };
+    }
+
+    if (this.mode == 1 || this.eventUse.ContentPush == null || this.eventUse.ContentPush.length == 0){
+      this.checkContentPush = true
+    }
+    else if (this.mode != 1 && this.event.ContentPush.length > 0){
+      this.checkContentPush = false
     }
   },
   watch: {
