@@ -158,15 +158,15 @@
           </button>
         </div>
         <div class="d-flex flex-column mt-3">
-            <div v-if="mode == 1 || event.ContentPush == null || event.ContentPush.length == 0">
+            <div v-if="mode == 1 || eventUse.ContentPush == '' ">
             <v-textarea
               outlined
               name="input-7-4"
               label="Nội dung thông báo"
-              v-model="event.ContentPush"
+              v-model="eventUse.ContentPush"
             ></v-textarea>
           </div>
-          <div v-if="mode != 1 && event.ContentPush.length > 0" class="oke-number1" :title="eventUse.ContentPush">
+          <div v-if="mode != 1 && eventUse.ContentPush != '' " > 0" class="oke-number1" :title="eventUse.ContentPush">
             {{ eventUse.ContentPush }}
           </div>
           <!-- <div v-for="item of listTitleEvent" :key="item">
@@ -344,6 +344,7 @@ export default {
     //
     if (this.mode == 2) {
       this.eventUse = JSON.parse(JSON.stringify(this.event));
+      if(this.eventUse.ContentPush)
       this.eventUse.ContentPush = this.eventUse.ContentPush.replaceAll('"', "");
     }
     if (this.mode == 1) {
@@ -410,8 +411,7 @@ export default {
       if (
         !this.eventUse.Title ||
         !this.eventUse.Title.trim() ||
-        !this.eventUse.textDayLunar ||
-        !this.eventUse.textDayLunar.trim()
+        !this.eventUse.DateEvent
       ) {
         alert("Có trường dữ liệu chưa hợp lệ vui lòng kiểm tra");
         return;
@@ -438,7 +438,7 @@ export default {
 
       this.eventUse.State = +this.mode;
       if (this.mode == 1) {
-        var base64 = this.getBase64Image(
+        var base64 = this.getBase64ImageV2(
           document.getElementById("img-detail-event")
         );
         this.eventUse.CoverImage = base64;
@@ -563,7 +563,8 @@ export default {
       this.dayOfYear = this.dayOfYear === 157 ? 157 : this.dayOfYear % 157;
     },
     setImage1: function (file) {
-      this.event.CoverImage = file;
+      this.eventUse.CoverImage = file;
+      // eventUse.CoverImage
       // this.hasImage = true;
       console.log(file);
       // this.image = file;
