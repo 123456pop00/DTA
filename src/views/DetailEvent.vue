@@ -91,7 +91,7 @@
                 </template>-->
                 <!-- v-model="event.DateEvent" -->
                 <v-date-picker
-                  v-model="eventUse.DateEvent"
+                  v-model="dateEvent"
                   :header-date-format="getHeaderDateFormat"
                   no-title
                   @input="changeDateInsert()"
@@ -247,6 +247,7 @@ export default {
       TypeRepeat: 0,
       TimePush: new Date(new Date().setHours(9, 0, 0)),
       ContentPush: "",
+      dateEvent : "" 
     },
   },
   data: () => ({
@@ -371,7 +372,7 @@ export default {
     changeDateInsert() {
       this.showPickker = false;
       // console.log(this.eventUse.DateEvent);
-      var a = new Date(this.eventUse.DateEvent);
+      var a = new Date(this.dateEvent);
       this.textDayLunar = formatDate(a);
       this.eventUse.DateEvent = a.toISOString();
       this;
