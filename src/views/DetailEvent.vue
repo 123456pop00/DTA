@@ -91,7 +91,7 @@
                 </template>-->
                 <!-- v-model="event.DateEvent" -->
                 <v-date-picker
-                  v-model="eventUse.DateEvent"
+                  v-model="dateEvent"
                   :header-date-format="getHeaderDateFormat"
                   no-title
                   @input="changeDateInsert()"
@@ -163,10 +163,10 @@
               outlined
               name="input-7-4"
               label="Nội dung thông báo"
-              v-model="event.ContentPush"
+              v-model="eventUse.ContentPush"
             ></v-textarea>
           </div>
-          <div v-if="!checkContentPush" class="oke-number1" :title="eventUse.ContentPush">
+          <div v-if="!checkContentPush" > 
             {{ eventUse.ContentPush }}
           </div>
           <!-- <div v-for="item of listTitleEvent" :key="item">
@@ -247,6 +247,7 @@ export default {
       TypeRepeat: 0,
       TimePush: new Date(new Date().setHours(9, 0, 0)),
       ContentPush: "",
+      dateEvent : "" 
     },
   },
   data: () => ({
@@ -344,6 +345,7 @@ export default {
     //
     if (this.mode == 2) {
       this.eventUse = JSON.parse(JSON.stringify(this.event));
+      if(this.eventUse.ContentPush)
       this.eventUse.ContentPush = this.eventUse.ContentPush.replaceAll('"', "");
     }
     if (this.mode == 1) {
@@ -379,7 +381,7 @@ export default {
     changeDateInsert() {
       this.showPickker = false;
       // console.log(this.eventUse.DateEvent);
-      var a = new Date(this.eventUse.DateEvent);
+      var a = new Date(this.dateEvent);
       this.textDayLunar = formatDate(a);
       this.eventUse.DateEvent = a.toISOString();
       this;
@@ -417,8 +419,7 @@ export default {
       if (
         !this.eventUse.Title ||
         !this.eventUse.Title.trim() ||
-        !this.eventUse.textDayLunar ||
-        !this.eventUse.textDayLunar.trim()
+        !this.eventUse.DateEvent
       ) {
         alert("Có trường dữ liệu chưa hợp lệ vui lòng kiểm tra");
         return;
@@ -445,7 +446,7 @@ export default {
 
       this.eventUse.State = +this.mode;
       if (this.mode == 1) {
-        var base64 = this.getBase64Image(
+        var base64 = this.getBase64ImageV2(
           document.getElementById("img-detail-event")
         );
         this.eventUse.CoverImage = base64;
@@ -570,7 +571,8 @@ export default {
       this.dayOfYear = this.dayOfYear === 157 ? 157 : this.dayOfYear % 157;
     },
     setImage1: function (file) {
-      this.event.CoverImage = file;
+      this.eventUse.CoverImage = file;
+      // eventUse.CoverImage
       // this.hasImage = true;
       console.log(file);
       // this.image = file;
