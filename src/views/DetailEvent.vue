@@ -225,6 +225,7 @@ import {
   Image,
 } from "tiptap-vuetify";
 import formatDate from "../common/commonFn";
+import {eventBus} from '../main.js';
 import Quotes from "../models/const/quotes";
 import $ from "jquery";
 import ImageUploader from "vue-image-upload-resize";
@@ -424,9 +425,10 @@ export default {
         alert("Có trường dữ liệu chưa hợp lệ vui lòng kiểm tra");
         return;
       }
+      eventBus.ShowLoading();
       const me = this;
       // const newDiv = document.createElement("div");
-      const newDiv = $("<div></div>").html(this.event.Content);
+      const newDiv = $("<div></div>").html(this.eventUse.Content);
       // newDiv.innerHTML = this.event.Content;
       let arrImg = newDiv.find("img");
 
@@ -468,6 +470,7 @@ export default {
 
       this.event = JSON.parse(JSON.stringify(this.eventUse));
       apiClient.post(`event`, this.event).then((response) => {
+         eventBus.HidenLoading();
         if (response.Data && response.Success) {
           if (this.mode == 1) {
             alert("Thêm dữ liệu thành công ");

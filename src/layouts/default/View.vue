@@ -1,5 +1,6 @@
 <template>
   <v-main>
+    <div class="loading" v-if="checkLoading">Loading&#8230;</div>
     <div class="d-flex justify-space-between title">
       <div>Ứng dụng lịch</div>
       <div class="font-14 font-weight-medium d-flex" style="color: black">
@@ -12,17 +13,23 @@
 </template>
 
 <script>
+import {eventBus} from '../../main.js';
 import workLocalStorage from "../../common/workLocalStorage";
 export default {
   name: "DefaultView",
   data: () => ({
     user: "Bạn",
+    checkLoading : false
   }),
   created: function () {
+    const me = this;
     var DataUser = workLocalStorage("DataUser");
     if (DataUser.data()) {
       this.user = DataUser.get("FullName") ? DataUser.get("FullName") : "Bạn";
     }
+    eventBus.$on('Loading', (event) => {
+      me.checkLoading = event;
+    });
   },
   methods: {
     logout() {

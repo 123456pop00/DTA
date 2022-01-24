@@ -27,7 +27,18 @@ export default {
     Object.defineProperty(Vue.prototype, '$axios', { value: instance });
   }
 }
-
+export const eventBus = new Vue(
+  {
+      methods:{
+          ShowLoading(){
+              this.$emit("Loading",true);
+          },
+          HidenLoading(){
+              this.$emit("Loading",false);
+          }
+      }
+  }
+);
 
 Vue.config.productionTip = false
 Vue.use(TiptapVuetifyPlugin, {

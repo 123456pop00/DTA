@@ -428,6 +428,7 @@ import {
   Image,
 } from "tiptap-vuetify";
 import lunarCalendar from "vue-lunar-calendar";
+import {eventBus} from '../main.js';
 import Quotes from "../models/const/quotes";
 import moment from "moment";
 import ImageUploader from "vue-image-upload-resize";
@@ -536,11 +537,13 @@ export default {
       this.currentMode = 1;
     },
     deleteItemConfirm() {
+      eventBus.ShowLoading();
       const me = this;
 
       me.editedItem.State = 3;
       // debugger;
       apiClient.post(`event`, me.editedItem).then((res) => {
+        eventBus.HidenLoading();
         if (res.Success) {
           // me.initialize();
           me.getListEvent();
@@ -613,6 +616,7 @@ export default {
     },
 
     saveEventDay() {
+      eventBus.ShowLoading();
       const me = this;
       // console.log(123123);
       if (this.event) {
@@ -629,6 +633,7 @@ export default {
           this.event.CoverImage = base64;
         }
         apiClient.post(`event`, this.event).then((response) => {
+          eventBus.HidenLoading();
           if (response.Data && response.Success) {
             console.log(me.event);
             if (this.event.ID) {
@@ -649,11 +654,14 @@ export default {
       return images("./" + pet + ".png");
     },
     showDetailEventFn(event) {
+      eventBus.ShowLoading();
       const me = this;
       this.currentMode = 2;
       if (event) {
         // gan thang event kia thanh
         apiClient.get(`event/getbyid/${event.ID}`).then((response) => {
+        eventBus.HidenLoading();
+
           if (response.Data && response.Success) {
             var a = 1;
             //  this.clickShowDetail(response.Data[0]);
