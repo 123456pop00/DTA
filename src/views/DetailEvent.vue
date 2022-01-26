@@ -158,7 +158,7 @@
           </button>
         </div>
         <div class="d-flex flex-column mt-3">
-            <div v-if="checkContentPush">
+          <div v-if="checkContentPush">
             <v-textarea
               outlined
               name="input-7-4"
@@ -166,7 +166,7 @@
               v-model="eventUse.ContentPush"
             ></v-textarea>
           </div>
-          <div v-if="!checkContentPush" > 
+          <div v-if="!checkContentPush">
             {{ eventUse.ContentPush }}
           </div>
           <!-- <div v-for="item of listTitleEvent" :key="item">
@@ -225,7 +225,7 @@ import {
   Image,
 } from "tiptap-vuetify";
 import formatDate from "../common/commonFn";
-import {eventBus} from '../main.js';
+import { eventBus } from "../main.js";
 import Quotes from "../models/const/quotes";
 import $ from "jquery";
 import ImageUploader from "vue-image-upload-resize";
@@ -248,7 +248,7 @@ export default {
       TypeRepeat: 0,
       TimePush: new Date(new Date().setHours(9, 0, 0)),
       ContentPush: "",
-      dateEvent : "" 
+      dateEvent: "",
     },
   },
   data: () => ({
@@ -346,8 +346,11 @@ export default {
     //
     if (this.mode == 2) {
       this.eventUse = JSON.parse(JSON.stringify(this.event));
-      if(this.eventUse.ContentPush)
-      this.eventUse.ContentPush = this.eventUse.ContentPush.replaceAll('"', "");
+      if (this.eventUse.ContentPush)
+        this.eventUse.ContentPush = this.eventUse.ContentPush.replaceAll(
+          '"',
+          ""
+        );
     }
     if (this.mode == 1) {
       this.eventUse.textDayLunar = "";
@@ -365,11 +368,14 @@ export default {
       };
     }
 
-    if (this.mode == 1 || this.eventUse.ContentPush == null || this.eventUse.ContentPush.length == 0){
-      this.checkContentPush = true
-    }
-    else if (this.mode != 1 && this.event.ContentPush.length > 0){
-      this.checkContentPush = false
+    if (
+      this.mode == 1 ||
+      this.eventUse.ContentPush == null ||
+      this.eventUse.ContentPush.length == 0
+    ) {
+      this.checkContentPush = true;
+    } else if (this.mode != 1 && this.event.ContentPush.length > 0) {
+      this.checkContentPush = false;
     }
   },
   watch: {
@@ -431,18 +437,30 @@ export default {
       const newDiv = $("<div></div>").html(this.eventUse.Content);
       // newDiv.innerHTML = this.event.Content;
       let arrImg = newDiv.find("img");
-
+      let isNot = false;
       if (arrImg && arrImg.length > 0) {
+        for (let index = 0; index < arrImg.length; index++) {
+          const element = arrImg[index];
+          let total = me.CalFileSize(element.src);
+          console.log(total);
+          if (total / 1024 > 1.2) {
+            element.className = "aaaaaaa";
+            element.setAttribute("style", "border:3px solid red;");
+            isNot = true;
+          }
+          // element.src = me.getBase64Image(element);
+        }
         // arrImg.forEach((element) => console.log(element));
-        arrImg.each(function (index, element) {
-          // console.log(index + ": " + element);
-          // console.log(element);
-          // console.log(me.getBase64Image(element));
-          // element.attr('src',111111);
-          // me.ele1 = element.src;
-          // me.ele2 = me.getBase64Image(element);
-          element.src = me.getBase64Image(element);
-        });
+        // arrImg.each(function (index, element) {
+        //   let total = me.CalFileSize(element.src);
+        //   console.log(total);
+        //   if(total / 1024 > 1) {
+        //     element.setAttribute("style", "border:3px solid red;");
+        //     eventBus.HidenLoading();
+        //     return;
+        //   }
+        //   element.src = me.getBase64Image(element);
+        // });
         this.eventUse.Content = newDiv.html();
       }
 
@@ -459,18 +477,28 @@ export default {
         }
       }
 
-      if (this.mode == 1 || !this.eventUse?.TimePush || this.eventUse.TimePush.length == 0){
-        var tmp = new Date(this.eventUse.DateEvent)
+      if (
+        this.mode == 1 ||
+        !this.eventUse?.TimePush ||
+        this.eventUse.TimePush.length == 0
+      ) {
+        var tmp = new Date(this.eventUse.DateEvent);
         tmp.setHours(7);
         tmp.setMinutes(0);
         tmp.setSeconds(0);
         tmp.setMilliseconds(0);
         this.eventUse.TimePush = tmp;
       }
-
+      if (isNot) {
+        // this.eventUse.Content = newDiv.html();
+        // this.eventUse = JSON.parse(JSON.stringify(this.eventUse));
+       alert("Bạn không thể tải ảnh dung lượng quá 1MB trong phần nội dung");
+       eventBus.HidenLoading();
+        return;
+      }
       this.event = JSON.parse(JSON.stringify(this.eventUse));
       apiClient.post(`event`, this.event).then((response) => {
-         eventBus.HidenLoading();
+        eventBus.HidenLoading();
         if (response.Data && response.Success) {
           if (this.mode == 1) {
             alert("Thêm dữ liệu thành công ");
@@ -485,11 +513,11 @@ export default {
       });
     },
     // trả về kb
-    CalFileSize(base64String){
-      var stringLength = base64String.length - 'data:image/png;base64,'.length;
+    CalFileSize(base64String) {
+      var stringLength = base64String.length - "data:image/png;base64,".length;
 
-      var sizeInBytes = 4 * Math.ceil((stringLength / 3))*0.5624896334383812;
-      return sizeInBytes/1000;
+      var sizeInBytes = 4 * Math.ceil(stringLength / 3) * 0.5624896334383812;
+      return sizeInBytes / 1000;
     },
     getBase64Image(img) {
       // var canvas = document.createElement("canvas");
